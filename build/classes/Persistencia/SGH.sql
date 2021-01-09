@@ -12,3 +12,10 @@ insert into Usuarios(nombreCuenta,contraseña,tipoCuenta) values
 	("admin","admin","ADMINISTRADOR"),
 	("MeloDev","2111","ADMINISTRADOR")
 ;
+
+insert into Usuarios(nombreCuenta,contraseña,tipoCuenta) values
+	("recep","recep","RECEPCIONISTA"),
+	("huesped","huesped","HUESPED")
+;
+
+select * from Usuarios;

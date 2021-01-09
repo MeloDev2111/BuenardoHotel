@@ -1,6 +1,7 @@
 package Presentacion;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 public class VistaLogin extends javax.swing.JPanel {
     private JFrame frame = new JFrame("LOGIN");
@@ -164,10 +165,10 @@ public class VistaLogin extends javax.swing.JPanel {
 
     private void btnIniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarSesionActionPerformed
         if ("".equals(lblNombreCuenta.getText())) {
-            System.out.println("BRO FALTA EL USUARIO");
+            this.mostrarMensajeAdvertencia("DEBE INGRESAR EL USUARIO!");
         }else{
             if ("".equals(String.valueOf(lblContraseña.getPassword()))) {
-                System.out.println("BRO FALTA PONER LA CONTRASEÑA");
+                this.mostrarMensajeAdvertencia("DEBE INGRESAR LA CONTRASEÑA!!");
             }else{
                 presentador.iniciarSesion();
             }
@@ -187,6 +188,10 @@ public class VistaLogin extends javax.swing.JPanel {
         frame.setLocationRelativeTo(null);
     }
     
+    void cerrar() {
+        this.frame.dispose();
+    }
+    
     public String getNombreCuenta(){
         return lblNombreCuenta.getText();
     }
@@ -194,7 +199,16 @@ public class VistaLogin extends javax.swing.JPanel {
     public String getContraseña(){
         return String.valueOf(lblContraseña.getPassword());
     }
-    
+    public void mostrarMensajeError(String msg){
+        JOptionPane.showMessageDialog(null,
+                msg,
+                "ERROR",JOptionPane.ERROR_MESSAGE);
+    }
+    public void mostrarMensajeAdvertencia(String msg){
+        JOptionPane.showMessageDialog(null,
+                msg,
+                "CUIDADO",JOptionPane.WARNING_MESSAGE);
+    }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel PanelFormulario;
@@ -209,4 +223,5 @@ public class VistaLogin extends javax.swing.JPanel {
     private javax.swing.JTextField lblNombreCuenta;
     private javax.swing.JLabel lblnombreHotel;
     // End of variables declaration//GEN-END:variables
+
 }

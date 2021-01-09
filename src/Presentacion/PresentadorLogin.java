@@ -14,17 +14,40 @@ public class PresentadorLogin {
     
     public void iniciarSesion(){
         ServicioLogin servicioLogin = new ServicioLogin();
-        
         user.setNombreCuenta(vista.getNombreCuenta());
         user.setContraseña(vista.getContraseña());
-        if (servicioLogin.verificarExistencia(user)) {
-            if (servicioLogin.verificarContraseña(user)) {
-                System.out.println("BIENVENIDO CRACK");
-            }else{
-                System.out.println("AQUI LA VISTA MUESTRA:CONTRASEÑA INCORRECTA");
-            }
-        }else{
-            System.out.println("AQUI LA VISTA MUESTRA: ESTA CUENTA NO EXISTE");
+        
+        user = servicioLogin.getUsuario(user);
+        
+        mostrarVentanaUsuario();
+    }
+    
+    private void mostrarVentanaUsuario(){
+        if (user.getIdUsuario()!=null) {
+            System.out.println("LOGGING...");
+            switch (user.getTipoCuenta()) {
+                case "ADMINISTRADOR":
+                    vista.mostrarMensajeAdvertencia("PRONTO DISPONIBLE VISTA ADMINISTRADOR, C;");
+                    break;
+                case "RECEPCIONISTA":
+                    //AQUI PROXIMAMENTE IRA LA CLASE RECEPCIONISTA -- SE VIENEN BASTANTES CAMBIOS
+                    VistaRecepcion vistaRecep = new VistaRecepcion();
+
+                    PresentadorRecepcion presentadorRecep = new PresentadorRecepcion(user,vistaRecep);
+                    vistaRecep.setPresentador(presentadorRecep);
+
+                    vistaRecep.iniciar();
+                    vistaRecep.setNombreCuenta(user.getNombreCuenta());
+
+                    vista.cerrar();
+                    break;
+                case "HUESPED":
+                    vista.mostrarMensajeAdvertencia("PRONTO DISPONIBLE VISTA HUESPED, C;");
+                    break;
+                default:
+                    vista.mostrarMensajeError("SU VISTA AUN NO HA SIDO CREADA");
+            } 
         }
+        
     }
 }

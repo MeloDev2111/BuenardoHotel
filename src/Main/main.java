@@ -16,8 +16,11 @@ public class main {
         
         //PUEDE INICIAR SESION CON LAS SIGUIENTES CUENTAS
         //USUARIO   CONTRASEÑA  ROL
-        //admin     admin       Administrador
-        //recep     recep       Recepcionista
+        //admin     admin       ADMINISTRADOR
+        //recep     recep       RECEPCIONISTA
         //huesped   huesped     Huesped
+        
+        //Disculpe el poco avance, estos ultimos meses han sido muy
+        //dificiles para mi y mi familia. Pronto me pondré al día
     }
 }
