@@ -14,10 +14,10 @@ public class PresentadorLogin {
     
     public void iniciarSesion(){
         ServicioLogin servicioLogin = new ServicioLogin();
-        user.setNombreCuenta(vista.getNombreCuenta());
+        user.setNombreUsuario(vista.getNombreCuenta());
         user.setContraseña(vista.getContraseña());
         
-        user = servicioLogin.getUsuario(user);
+        user = servicioLogin.iniciarSesion(user);
         
         mostrarVentanaUsuario();
     }
@@ -25,7 +25,7 @@ public class PresentadorLogin {
     private void mostrarVentanaUsuario(){
         if (user.getIdUsuario()!=null) {
             System.out.println("LOGGING...");
-            switch (user.getTipoCuenta()) {
+            switch (user.getTipoUsuario()) {
                 case "ADMINISTRADOR":
                     vista.mostrarMensajeAdvertencia("PRONTO DISPONIBLE VISTA ADMINISTRADOR, C;");
                     break;
@@ -37,7 +37,7 @@ public class PresentadorLogin {
                     vistaRecep.setPresentador(presentadorRecep);
 
                     vistaRecep.iniciar();
-                    vistaRecep.setNombreCuenta(user.getNombreCuenta());
+                    vistaRecep.setNombreCuenta(user.getNombreUsuario());
 
                     vista.cerrar();
                     break;

@@ -20,7 +20,5 @@ public class main {
         //recep     recep       RECEPCIONISTA
         //huesped   huesped     Huesped
         
-        //Disculpe el poco avance, estos ultimos meses han sido muy
-        //dificiles para mi y mi familia. Pronto me pondré al día
     }
 }

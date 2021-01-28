@@ -30,9 +30,9 @@ public class DAOUsuariosImpl implements DAOUsuarios {
         try {
             this.conexion.conectar();
             PreparedStatement st = this.conexion.getConnection().prepareStatement(sql);//Codigo sql
-            st.setString(1, usuario.getNombreCuenta());// replace ? número 1 con el nombre
+            st.setString(1, usuario.getNombreUsuario());// replace ? número 1 con el nombre
             st.setString(2, usuario.getContraseña());
-            st.setString(3, usuario.getTipoCuenta());
+            st.setString(3, usuario.getTipoUsuario());
             st.executeUpdate();//Ejectura codigo sql cuando este tiene parametros
             
         } catch (Exception e) {
@@ -49,9 +49,9 @@ public class DAOUsuariosImpl implements DAOUsuarios {
         try {
             this.conexion.conectar();
             PreparedStatement st = this.conexion.getConnection().prepareStatement(sql);
-            st.setString(1, usuario.getNombreCuenta());
+            st.setString(1, usuario.getNombreUsuario());
             st.setString(2, usuario.getContraseña());
-            st.setString(3, usuario.getTipoCuenta());
+            st.setString(3, usuario.getTipoUsuario());
             st.setString(4, usuario.getIdUsuario());
             
             st.executeUpdate();
@@ -94,9 +94,9 @@ public class DAOUsuariosImpl implements DAOUsuarios {
             usuario = new Usuario();
             while (rs.next()) {
                 usuario.setIdUsuario(rs.getString("idUsuario"));
-                usuario.setNombreCuenta(rs.getString("nombreCuenta"));
+                usuario.setNombreUsuario(rs.getString("nombreCuenta"));
                 usuario.setContraseña(rs.getString("contraseña"));
-                usuario.setTipoCuenta(rs.getString("tipoCuenta"));
+                usuario.setTipoUsuario(rs.getString("tipoCuenta"));
             }
             
             rs.close();
@@ -119,15 +119,15 @@ public class DAOUsuariosImpl implements DAOUsuarios {
         try {
             this.conexion.conectar();
             PreparedStatement st = this.conexion.getConnection().prepareStatement(sql);
-            st.setString(1, user.getNombreCuenta());
+            st.setString(1, user.getNombreUsuario());
             
             ResultSet rs = st.executeQuery(); //ejecutar el codigo sql ya sea ddl o dml??//ITERATOR? QUE ES ESTO?
             usuario = new Usuario();
             while (rs.next()) {
                 usuario.setIdUsuario(rs.getString("idUsuario"));
-                usuario.setNombreCuenta(rs.getString("nombreCuenta"));
+                usuario.setNombreUsuario(rs.getString("nombreCuenta"));
                 usuario.setContraseña(rs.getString("contraseña"));
-                usuario.setTipoCuenta(rs.getString("tipoCuenta"));
+                usuario.setTipoUsuario(rs.getString("tipoCuenta"));
             }
             
             rs.close();
@@ -156,9 +156,9 @@ public class DAOUsuariosImpl implements DAOUsuarios {
             while (rs.next()) {
                 Usuario usuario = new Usuario();
                 usuario.setIdUsuario(rs.getString("idUsuario"));//parametro del nombre de la columna en la bd
-                usuario.setNombreCuenta(rs.getString("nombreCuenta"));
+                usuario.setNombreUsuario(rs.getString("nombreCuenta"));
                 usuario.setContraseña(rs.getString("contraseña"));
-                usuario.setTipoCuenta(rs.getString("tipoCuenta"));
+                usuario.setTipoUsuario(rs.getString("tipoCuenta"));
                 lista.add(usuario);
             }
             rs.close();

@@ -8,30 +8,31 @@ public class ServicioLogin {
     DAOUsuarios dao = new DAOUsuariosImpl();
     Usuario userBD;
     
-    public Usuario getUsuario(Usuario usuario){
-        userBD=new Usuario();
-        try {
-            userBD = dao.buscarUsuarioByname(usuario);
-        } catch (Exception ex) {
-            System.out.println("ERROR en VerificarContraseña");
-        }
-        
-        if (verificarExistencia(usuario)) {
-            if (verificarContraseña(usuario)) {
-                return userBD;
-            }else{
-                mostrarMensajeError("CONTRASEÑA INCORRECTA!");
-            }
-        }else{
+    public Usuario iniciarSesion(Usuario usuario){
+              
+        if (!verificarExistencia(usuario)) {
             mostrarMensajeError("ESTA CUENTA NO EXISTE!");
+            return usuario;
         }
         
-        userBD=new Usuario();    
+        //REVISAR SI ESTA ACTIVO(HUESPEDES DESALOJADOS)
+        
+        if (!verificarContraseña(usuario)) {
+            mostrarMensajeError("CONTRASEÑA INCORRECTA!");
+            return usuario;
+        }
+            
         return userBD;
     }
     
     private boolean verificarExistencia(Usuario usuario){
-        return !(userBD.getIdUsuario()==null);          
+        try {
+            userBD = dao.buscarUsuarioByname(usuario);
+        } catch (Exception ex) {
+            System.out.println("ERROR al buscar usuario por nombre");
+            userBD = new Usuario();
+        }
+        return (userBD.getIdUsuario()!=null);          
     }
     
     private boolean verificarContraseña(Usuario usuario){

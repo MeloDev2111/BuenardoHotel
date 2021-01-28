@@ -19,3 +19,5 @@ insert into Usuarios(nombreCuenta,contraseña,tipoCuenta) values
 ;
 
 select * from Usuarios;
+
+-- EXPANDIENDO
