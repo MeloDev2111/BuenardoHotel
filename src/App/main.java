@@ -1,4 +1,4 @@
-package Main;
+package App;
 
 import Negocio.Usuario;
 import Presentacion.PresentadorLogin;
