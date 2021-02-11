@@ -29,7 +29,6 @@ public class VistaLogin extends javax.swing.JPanel {
         lblContraseña = new javax.swing.JPasswordField();
         PanelPresentacion = new javax.swing.JPanel();
         lblLogoHotel = new javax.swing.JLabel();
-        lblnombreHotel = new javax.swing.JLabel();
 
         PanelFormulario.setBackground(new java.awt.Color(51, 255, 204));
 
@@ -106,7 +105,7 @@ public class VistaLogin extends javax.swing.JPanel {
                 .addComponent(lblContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(71, 71, 71)
                 .addComponent(btnIniciarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(32, Short.MAX_VALUE))
             .addGroup(PanelFormularioLayout.createSequentialGroup()
                 .addComponent(lblClose, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
@@ -117,11 +116,7 @@ public class VistaLogin extends javax.swing.JPanel {
 
         lblLogoHotel.setBackground(new java.awt.Color(255, 255, 255));
         lblLogoHotel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblLogoHotel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/logo_Hotel.png"))); // NOI18N
-
-        lblnombreHotel.setFont(new java.awt.Font("Tempus Sans ITC", 1, 36)); // NOI18N
-        lblnombreHotel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblnombreHotel.setText("Buenardo Hotel");
+        lblLogoHotel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/logo2_Hotel.png"))); // NOI18N
 
         javax.swing.GroupLayout PanelPresentacionLayout = new javax.swing.GroupLayout(PanelPresentacion);
         PanelPresentacion.setLayout(PanelPresentacionLayout);
@@ -129,18 +124,12 @@ public class VistaLogin extends javax.swing.JPanel {
             PanelPresentacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelPresentacionLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblLogoHotel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblLogoHotel, javax.swing.GroupLayout.DEFAULT_SIZE, 376, Short.MAX_VALUE)
                 .addContainerGap())
-            .addComponent(lblnombreHotel, javax.swing.GroupLayout.DEFAULT_SIZE, 396, Short.MAX_VALUE)
         );
         PanelPresentacionLayout.setVerticalGroup(
             PanelPresentacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PanelPresentacionLayout.createSequentialGroup()
-                .addGap(73, 73, 73)
-                .addComponent(lblLogoHotel)
-                .addGap(44, 44, 44)
-                .addComponent(lblnombreHotel, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(93, Short.MAX_VALUE))
+            .addComponent(lblLogoHotel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -221,7 +210,6 @@ public class VistaLogin extends javax.swing.JPanel {
     private javax.swing.JPasswordField lblContraseña;
     private javax.swing.JLabel lblLogoHotel;
     private javax.swing.JTextField lblNombreCuenta;
-    private javax.swing.JLabel lblnombreHotel;
     // End of variables declaration//GEN-END:variables
 
 }

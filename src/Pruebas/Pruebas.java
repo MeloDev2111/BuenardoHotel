@@ -3,10 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Persistencia;
+package Pruebas;
 
 import Negocio.ServicioLogin;
 import Negocio.Usuario;
+import Persistencia.old.BuilderConexion;
+import Persistencia.old.BuilderConexionCleverCloud;
+import Persistencia.Conexion;
 import java.util.List;
 
 

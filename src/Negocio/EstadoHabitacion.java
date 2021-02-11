@@ -9,7 +9,9 @@ public abstract class EstadoHabitacion {
     //public abstract void agregarHuesped(Reservacion r);
     public abstract void desalojarHuesped();
     public abstract void estadoSiguiente();
-    public abstract String getNombreEstado();
+    public String getNombreEstado() {
+        return nombreEstado;
+    }
     
     public EstadoHabitacion(Habitacion habitacion) {
         this.habitacion = habitacion;

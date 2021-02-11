@@ -1,7 +1,7 @@
 package Negocio;
 
-import Persistencia.DAOUsuarios;
-import Persistencia.DAOUsuariosImpl;
+import Persistencia.old.DAOUsuarios;
+import Persistencia.old.DAOUsuariosImpl;
 import javax.swing.JOptionPane;
 
 public class ServicioLogin {

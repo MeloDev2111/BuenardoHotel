@@ -5,26 +5,23 @@ public class EstadoDisponible extends EstadoHabitacion{
 
     public EstadoDisponible(Habitacion habitacion) {
         super(habitacion);
+        nombreEstado="Disponible";
     }
 
     @Override
     public void agregarHuesped(Huesped h) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        habitacion.setHuesped(h);
+        System.out.println("HUESPED ALOJADO");
+        estadoSiguiente();
     }
 
     @Override
     public void desalojarHuesped() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        System.out.println("No existe Huesped actualmente - Habitacion Disponible");
     }
 
     @Override
     public void estadoSiguiente() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        habitacion.setEstado(new EstadoOcupado(habitacion));
     }
-
-    @Override
-    public String getNombreEstado() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
 }
