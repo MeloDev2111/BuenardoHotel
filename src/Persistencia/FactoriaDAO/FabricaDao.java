@@ -6,7 +6,7 @@ import Persistencia.FactoriaDAO.Mysql.FabricaDaoMysql;
 public abstract class FabricaDao {
     //DAOs a FABRICAR
     public abstract IUsuarioDao getUsuarioDao();
-    //public abstract OrderDAO getOrderDAO();
+    public abstract IHabitacionDao getHabitacionDao();
 
     public static FabricaDao getDAOFactory(ETiposFabricaDao tipo) {
 

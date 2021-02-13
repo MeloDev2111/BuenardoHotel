@@ -1,9 +1,10 @@
 package Persistencia.FactoriaDAO.Mysql;
 
 import java.sql.Connection;
-import Persistencia.ConexionTipo;
-import Persistencia.FabricaConexiones;
+import Persistencia.Conexiones.ConexionTipo;
+import Persistencia.Conexiones.FabricaConexiones;
 import Persistencia.FactoriaDAO.FabricaDao;
+import Persistencia.FactoriaDAO.IHabitacionDao;
 import Persistencia.FactoriaDAO.IUsuarioDao;
 
 public class FabricaDaoMysql extends FabricaDao{
@@ -12,6 +13,11 @@ public class FabricaDaoMysql extends FabricaDao{
     @Override
     public IUsuarioDao getUsuarioDao() {
         return new UsuarioDaoMysql(con);
+    }
+
+    @Override
+    public IHabitacionDao getHabitacionDao() {
+        return new HabitacionDaoMysql(con);
     }
 
 }

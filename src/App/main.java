@@ -1,8 +1,8 @@
 package App;
 
 import Negocio.Usuario;
-import Presentacion.PresentadorLogin;
-import Presentacion.VistaLogin;
+import Presentacion.Presentadores.PresentadorLogin;
+import Presentacion.Vistas.VistaLogin;
 
 public class main {
     public static void main(String[] args) {

@@ -14,8 +14,6 @@ public class UsuarioDaoMysql implements IUsuarioDao{
         conexion=con;
     }
     
-
-
     @Override
     public Usuario registrar(Usuario usuario) {
         String sql ="INSERT INTO Usuarios(nombreCuenta,contraseña,tipoCuenta) VALUES(?,?,?)";

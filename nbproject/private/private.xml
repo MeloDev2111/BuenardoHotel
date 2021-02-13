@@ -11,6 +11,11 @@
         </file>
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/D:/Josue/UNS-temp/SI%20II/Diaz_Diaz_Melio_Josue_Avance_I_Unidad/SistemaGestionHotelera/src/Presentacion/Presentadores/PresentadorHabitacion.java</file>
+            <file>file:/D:/Josue/UNS-temp/SI%20II/Diaz_Diaz_Melio_Josue_Avance_I_Unidad/SistemaGestionHotelera/src/Presentacion/Presentadores/PresentadorAdmin.java</file>
+            <file>file:/D:/Josue/UNS-temp/SI%20II/Diaz_Diaz_Melio_Josue_Avance_I_Unidad/SistemaGestionHotelera/src/Presentacion/Vistas/VHabitaciones.java</file>
+            <file>file:/D:/Josue/UNS-temp/SI%20II/Diaz_Diaz_Melio_Josue_Avance_I_Unidad/SistemaGestionHotelera/src/Negocio/ServicioHabitaciones.java</file>
+        </group>
     </open-files>
 </project-private>
