@@ -78,15 +78,11 @@ public class Anidado extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        int a = Integer.valueOf( lblnum.getText() );
-        a++;
-        lblnum.setText(""+a);
+        presenter.sumar();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        int a = Integer.valueOf( lblnum.getText() );
-        a--;
-        lblnum.setText(""+a);
+        presenter.restar();
     }//GEN-LAST:event_jButton2ActionPerformed
     
     public void setPresenter(PresentadorAnidado presenter) {
@@ -102,6 +98,13 @@ public class Anidado extends javax.swing.JPanel {
         frame.setLocationRelativeTo(null);
     }
     
+    public int getNumero(){
+        return Integer.valueOf( lblnum.getText() );
+    }
+    
+    public void setNumero(int a){
+        lblnum.setText(""+a);
+    }
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

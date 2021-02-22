@@ -1,62 +1,63 @@
 package Presentacion.Presentadores;
 
-import Negocio.ServicioLogin;
-import Negocio.Usuario;
+import Apoyo.Mensajes;
+import Negocio.Login.LogicaLogin;
+import Negocio.Login.Usuario;
 import Presentacion.Vistas.VAdmin;
 import Presentacion.Vistas.VistaLogin;
 import Presentacion.Vistas.VistaRecepcion;
 
 public class PresentadorLogin {
-    Usuario user;
-    VistaLogin vista;
-
-    public PresentadorLogin(Usuario user, VistaLogin vista) {
-        this.user = user;
+    private Usuario user;
+    private VistaLogin vista;
+    
+    private Mensajes msg = new Mensajes();
+    private LogicaLogin logiLogin = new LogicaLogin();
+    
+    public PresentadorLogin(VistaLogin vista) {
+        this.user = new Usuario();
         this.vista = vista;
     }
     
     public void iniciarSesion(){
-        ServicioLogin servicioLogin = new ServicioLogin();
-        user.setNombreUsuario(vista.getNombreCuenta());
+        user.setNombreCuenta(vista.getNombreCuenta());
         user.setContraseña(vista.getContraseña());
         
-        user = servicioLogin.iniciarSesion(user);
+        user = logiLogin.iniciarSesion(user);
         
-        mostrarVentanaUsuario();
+        
+        mostrarVentanaUsuario();  
     }
     
     private void mostrarVentanaUsuario(){
         if (user.getIdUsuario() != null) {
             System.out.println("LOGGING...");
+            
             switch (user.getTipoUsuario()) {
-                case "ADMINISTRADOR":
+                case ADMINISTRADOR:
                     VAdmin vistaAdmin = new VAdmin();
                     PresentadorAdmin presentadorAdmin = new PresentadorAdmin(user, vistaAdmin);
                     vistaAdmin.setPresentador(presentadorAdmin);
-                    //Ver si creamos una entidad empleado y ponemos a los admins y recepcionistas
                     vistaAdmin.iniciar();
                     vistaAdmin.setNombre(user.getNombreUsuario());
-                    
                     this.vista.cerrar();
-                    
                     break;
-                case "RECEPCIONISTA":
-                    //AQUI PROXIMAMENTE IRA LA CLASE RECEPCIONISTA -- SE VIENEN BASTANTES CAMBIOS
+                case RECEPCIONISTA:
                     VistaRecepcion vistaRecep = new VistaRecepcion();
 
                     PresentadorRecepcion presentadorRecep = new PresentadorRecepcion(user,vistaRecep);
                     vistaRecep.setPresentador(presentadorRecep);
 
                     vistaRecep.iniciar();
-                    vistaRecep.setNombreCuenta(user.getNombreUsuario());
-
-                    vista.cerrar();
+                    vistaRecep.setNombreUsuario(user.getNombreUsuario());
+                    this.vista.cerrar();
                     break;
-                case "HUESPED":
-                    vista.mostrarMensajeAdvertencia("PRONTO DISPONIBLE VISTA HUESPED, C;");
+                case HUESPED:
+                    msg.advertenciaMsg("IN PROCESS", "PRONTO DISPONIBLE VISTA HUESPED, C;");
                     break;
                 default:
-                    vista.mostrarMensajeError("SU VISTA AUN NO HA SIDO CREADA");
+                    msg.advertenciaMsg("IN PROCESS", "PRONTO DISPONIBLE VISTA HUESPED, C;");
+                    break;
             } 
         }
         

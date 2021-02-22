@@ -80,7 +80,7 @@ public class VAdmin extends javax.swing.JPanel{
         jPanel1.setBackground(new java.awt.Color(51, 255, 204));
 
         lblBienvenida.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        lblBienvenida.setForeground(new java.awt.Color(49, 175, 204));
+        lblBienvenida.setForeground(new java.awt.Color(48, 152, 204));
         lblBienvenida.setText(" Bienvenido DIAZ DIAZ MELIO JOSUE");
 
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -103,9 +103,9 @@ public class VAdmin extends javax.swing.JPanel{
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblBienvenida)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(lblBienvenida, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnCerrarSesion)
                 .addGap(23, 23, 23))
@@ -113,15 +113,12 @@ public class VAdmin extends javax.swing.JPanel{
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(35, 35, 35)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblBienvenida)
-                            .addComponent(btnCerrarSesion))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(46, 46, 46)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblBienvenida)
+                    .addComponent(btnCerrarSesion))
+                .addContainerGap(48, Short.MAX_VALUE))
+            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
         );
 
         jPanel2.setBackground(new java.awt.Color(102, 204, 255));

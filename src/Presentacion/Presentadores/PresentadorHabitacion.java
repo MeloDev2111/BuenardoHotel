@@ -1,15 +1,18 @@
 package Presentacion.Presentadores;
 
-import Negocio.Habitacion;
-import Negocio.ServicioHabitaciones;
+import Apoyo.Formateo;
+import Negocio.Servicios.Habitacion;
+import Negocio.Servicios.LogicaHabitaciones;
 import Presentacion.Vistas.VHabitaciones;
 
 /* @author MeloDev */
 public class PresentadorHabitacion {
-    VHabitaciones vista;
-    Habitacion habitacion;
+    private VHabitaciones vista;
+    private Habitacion habitacion;
     
-    ServicioHabitaciones serv = new ServicioHabitaciones();
+    private Formateo format = new Formateo();
+    private LogicaHabitaciones logica = new LogicaHabitaciones();
+    
     public PresentadorHabitacion(VHabitaciones vista, Habitacion habitacion) {
         this.vista = vista;
         this.habitacion = habitacion;
@@ -18,17 +21,21 @@ public class PresentadorHabitacion {
     public void configurarRolAdmin(){
         vista.deshabilitarBotones();
         vista.habilitarBtnsAdmin();
-        establecerListaHabitaciones();
+        establecerTablaHabitaciones();
     }
     
     public void configurarRolRecep(){
         vista.deshabilitarBotones();
         vista.habilitarBtnsRecep();
-        establecerListaHabitaciones();
+        establecerTablaHabitaciones();
     }
     
-    public void establecerListaHabitaciones(){
-        vista.setListaHabitaciones(serv.cargarHabitaciones());
+    public void establecerTablaHabitaciones() {
+        vista.setTablaHabitaciones(
+            format.formatoJtableHabitaciones(
+                logica.cargarHabitaciones(vista.getNombreTipo(), vista.getFiltroSeleccionado())
+            )     
+        );
     }
     
 }

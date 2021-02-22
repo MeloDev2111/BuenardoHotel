@@ -1,14 +1,18 @@
 package Presentacion.Presentadores;
 
-import Negocio.Habitacion;
-import Negocio.Usuario;
+import Negocio.Cliente;
+import Negocio.Servicios.Habitacion;
+import Negocio.Login.Usuario;
 import Presentacion.Vistas.VAdmin;
+import Presentacion.Vistas.VClientes;
 import Presentacion.Vistas.VHabitaciones;
+import Presentacion.Vistas.VUsuarios;
 import Presentacion.Vistas.VistaLogin;
 
 public class PresentadorAdmin{
     private Usuario user;
     private VAdmin vista;
+    
     public PresentadorAdmin(Usuario user, VAdmin vista) {
         this.vista = vista;
         this.user = user;
@@ -16,9 +20,7 @@ public class PresentadorAdmin{
     
     public void backToLogin(){
         VistaLogin vistaLogin = new VistaLogin();
-        user = new Usuario();
-        
-        PresentadorLogin presentador = new PresentadorLogin(user,vistaLogin);
+        PresentadorLogin presentador = new PresentadorLogin(vistaLogin);
         vistaLogin.setPresentador(presentador);
         
         vistaLogin.iniciar();
@@ -29,10 +31,21 @@ public class PresentadorAdmin{
         vista.mostrarInicio();
     }   
     public void mostrarVUsuarios(){
+        VUsuarios vistaUsu = new VUsuarios();
+        PresentadorUsuarios pUsuarios = new PresentadorUsuarios(vistaUsu,user);
+        vistaUsu.setPresentador(pUsuarios);
+        pUsuarios.establecerTablaUsuarios();
         
+        this.vista.cambiarVistaActual(vistaUsu);
     }
     public void mostrarVClientes(){
+        VClientes vistaCli = new VClientes();
+        Cliente cliente = new Cliente();
+        PresentadorClientes pClien = new PresentadorClientes(vistaCli, cliente);
+        vistaCli.setPresentador(pClien);
+        pClien.configurarRolAdmin();
         
+        this.vista.cambiarVistaActual(vistaCli);
     }
     public void mostrarVHabitacciones(){
         

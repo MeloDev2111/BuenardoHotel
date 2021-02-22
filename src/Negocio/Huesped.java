@@ -1,5 +1,6 @@
 package Negocio;
 
+import Negocio.Login.Usuario;
 import java.time.LocalDate;
 import java.time.LocalTime;
 

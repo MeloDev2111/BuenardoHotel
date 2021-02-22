@@ -7,7 +7,9 @@ public abstract class FabricaDao {
     //DAOs a FABRICAR
     public abstract IUsuarioDao getUsuarioDao();
     public abstract IHabitacionDao getHabitacionDao();
-
+    public abstract ITipoHabitacionDao getTipoHabitacionDao();
+    public abstract IClienteDao getClientesDao();
+    
     public static FabricaDao getDAOFactory(ETiposFabricaDao tipo) {
 
       switch (tipo) {

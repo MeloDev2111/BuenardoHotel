@@ -5,6 +5,7 @@
  */
 package Presentacion.Vistas;
 
+import Apoyo.Mensajes;
 import Presentacion.Presentadores.PresentadorHabitacion;
 import javax.swing.JFrame;
 
@@ -15,6 +16,7 @@ import javax.swing.JFrame;
 public class VHabitaciones extends javax.swing.JPanel {
     private JFrame frame = new JFrame("VAdmin");
     private PresentadorHabitacion presentador;
+    private Mensajes msg = new Mensajes();
     /**
      * Creates new form VHabitaciones
      */
@@ -31,22 +33,29 @@ public class VHabitaciones extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        btnGroupFiltros = new javax.swing.ButtonGroup();
+        panelTable = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         tableHabitaciones = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
+        txtNombreTipo = new javax.swing.JTextField();
+        btnBuscar = new javax.swing.JButton();
+        rdBtnTodos = new javax.swing.JRadioButton();
+        rdBtnDisponibles = new javax.swing.JRadioButton();
         panelAdmin = new javax.swing.JPanel();
         jButton19 = new javax.swing.JButton();
         jButton20 = new javax.swing.JButton();
         jButton21 = new javax.swing.JButton();
         jButton25 = new javax.swing.JButton();
-        jPanel3 = new javax.swing.JPanel();
+        panelTitulo = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         panelRecepcionista = new javax.swing.JPanel();
+        btnElegir = new javax.swing.JButton();
+        btnVolver = new javax.swing.JButton();
+
+        setBackground(new java.awt.Color(102, 204, 255));
+
+        panelTable.setBackground(new java.awt.Color(255, 255, 255));
 
         tableHabitaciones.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -74,51 +83,73 @@ public class VHabitaciones extends javax.swing.JPanel {
         tableHabitaciones.getTableHeader().setReorderingAllowed(false);
         jScrollPane3.setViewportView(tableHabitaciones);
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setText("Tipo");
 
-        jTextField1.setText("Luxury");
+        btnBuscar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnBuscar.setText("Buscar");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
 
-        jButton1.setText("Buscar");
+        btnGroupFiltros.add(rdBtnTodos);
+        rdBtnTodos.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        rdBtnTodos.setText("Todos");
+        rdBtnTodos.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                rdBtnTodosItemStateChanged(evt);
+            }
+        });
 
-        jRadioButton1.setText("Todos");
+        btnGroupFiltros.add(rdBtnDisponibles);
+        rdBtnDisponibles.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        rdBtnDisponibles.setSelected(true);
+        rdBtnDisponibles.setText("Disponibles");
+        rdBtnDisponibles.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                rdBtnDisponiblesItemStateChanged(evt);
+            }
+        });
 
-        jRadioButton2.setText("Disponibles");
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout panelTableLayout = new javax.swing.GroupLayout(panelTable);
+        panelTable.setLayout(panelTableLayout);
+        panelTableLayout.setHorizontalGroup(
+            panelTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelTableLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panelTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane3)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGroup(panelTableLayout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(18, 18, 18)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtNombreTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton1)
+                        .addComponent(btnBuscar)
                         .addGap(63, 63, 63)
-                        .addComponent(jRadioButton1)
+                        .addComponent(rdBtnTodos)
                         .addGap(47, 47, 47)
-                        .addComponent(jRadioButton2)
-                        .addGap(0, 115, Short.MAX_VALUE)))
+                        .addComponent(rdBtnDisponibles)
+                        .addGap(0, 53, Short.MAX_VALUE)))
                 .addContainerGap())
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+        panelTableLayout.setVerticalGroup(
+            panelTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelTableLayout.createSequentialGroup()
                 .addGap(26, 26, 26)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(panelTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1)
-                    .addComponent(jRadioButton1)
-                    .addComponent(jRadioButton2))
+                    .addComponent(txtNombreTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBuscar)
+                    .addComponent(rdBtnTodos)
+                    .addComponent(rdBtnDisponibles))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(14, 14, 14))
         );
+
+        panelAdmin.setBackground(new java.awt.Color(255, 255, 255));
 
         jButton19.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton19.setText("Agregar");
@@ -179,35 +210,70 @@ public class VHabitaciones extends javax.swing.JPanel {
                 .addContainerGap(22, Short.MAX_VALUE))
         );
 
-        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        panelTitulo.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setText("Lista de Habitaciones");
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
+        javax.swing.GroupLayout panelTituloLayout = new javax.swing.GroupLayout(panelTitulo);
+        panelTitulo.setLayout(panelTituloLayout);
+        panelTituloLayout.setHorizontalGroup(
+            panelTituloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelTituloLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel7)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
+        panelTituloLayout.setVerticalGroup(
+            panelTituloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelTituloLayout.createSequentialGroup()
                 .addGap(33, 33, 33)
                 .addComponent(jLabel7)
                 .addContainerGap(26, Short.MAX_VALUE))
         );
+
+        panelRecepcionista.setBackground(new java.awt.Color(255, 255, 255));
+
+        btnElegir.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnElegir.setText("Elegir");
+        btnElegir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnElegirActionPerformed(evt);
+            }
+        });
+
+        btnVolver.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnVolver.setText("Volver");
+        btnVolver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVolverActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelRecepcionistaLayout = new javax.swing.GroupLayout(panelRecepcionista);
         panelRecepcionista.setLayout(panelRecepcionistaLayout);
         panelRecepcionistaLayout.setHorizontalGroup(
             panelRecepcionistaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(panelRecepcionistaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panelRecepcionistaLayout.createSequentialGroup()
+                    .addGap(128, 128, 128)
+                    .addComponent(btnElegir, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(231, 231, 231)
+                    .addComponent(btnVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(128, Short.MAX_VALUE)))
         );
         panelRecepcionistaLayout.setVerticalGroup(
             panelRecepcionistaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 100, Short.MAX_VALUE)
+            .addGroup(panelRecepcionistaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panelRecepcionistaLayout.createSequentialGroup()
+                    .addGap(22, 22, 22)
+                    .addGroup(panelRecepcionistaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnElegir, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addContainerGap(23, Short.MAX_VALUE)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -215,21 +281,21 @@ public class VHabitaciones extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(panelAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(panelTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(panelRecepcionista, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(panelTable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(panelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(panelTable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(panelAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(panelRecepcionista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 13, Short.MAX_VALUE))
+                .addGap(0, 9, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -242,12 +308,36 @@ public class VHabitaciones extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton20ActionPerformed
 
     private void jButton21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton21ActionPerformed
-
+        if (tableHabitaciones.getSelectedRow()!=-1) {            
+            //presentador.eliminarHabitacion();
+        }else{
+            msg.errorMsg("DEBE SELECCIONAR UN USUARIO");
+        }
     }//GEN-LAST:event_jButton21ActionPerformed
 
     private void jButton25ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton25ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton25ActionPerformed
+
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        presentador.establecerTablaHabitaciones();
+    }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void rdBtnTodosItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_rdBtnTodosItemStateChanged
+        presentador.establecerTablaHabitaciones();
+    }//GEN-LAST:event_rdBtnTodosItemStateChanged
+
+    private void rdBtnDisponiblesItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_rdBtnDisponiblesItemStateChanged
+        presentador.establecerTablaHabitaciones();
+    }//GEN-LAST:event_rdBtnDisponiblesItemStateChanged
+
+    private void btnElegirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnElegirActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnElegirActionPerformed
+
+    private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnVolverActionPerformed
     public void setPresentador(PresentadorHabitacion p) {
         presentador = p;
     }
@@ -257,7 +347,7 @@ public class VHabitaciones extends javax.swing.JPanel {
         frame.setUndecorated(true);
         frame.pack();
         frame.setVisible(true);
-        frame.setSize(1000, 730);
+        frame.setSize(760, 580);
         frame.setLocationRelativeTo(null);
     }
     
@@ -271,38 +361,64 @@ public class VHabitaciones extends javax.swing.JPanel {
     }
     public void habilitarBtnsAdmin(){
         this.panelAdmin.setVisible(true);
+        this.rdBtnTodos.setSelected(true);
     }
     
     public void habilitarBtnsRecep(){
         this.panelRecepcionista.setVisible(true);
+        this.rdBtnDisponibles.setSelected(true);
     }
     
-    public void setListaHabitaciones(Object[][] listaHabitaciones){
+    public void setTablaHabitaciones(Object[][] listaUsuarios){
+        String[] cabezera = {"Codigo", "Tipo","Descripcion","Precio","Estado"};
         this.tableHabitaciones.setModel(new javax.swing.table.DefaultTableModel(
-            listaHabitaciones,
-            new String [] {
-                "Codigo", "Tipo","Descripcion",
-                "Precio", "Estado"
-            }
+            listaUsuarios,
+            cabezera
         ));
     }
+    
+    public String getNombreTipo(){
+        return txtNombreTipo.getText();
+    }
+    
+    public String getIdSeleccionado(){
+        int pos = tableHabitaciones.getSelectedRow();
+        return tableHabitaciones.getValueAt(pos, 1).toString();
+    }
+    
+    public String getFiltroSeleccionado(){
+        
+        if (rdBtnTodos.isSelected()) {
+            return null;
+        }
+        
+        if (rdBtnDisponibles.isSelected()) {
+            return "DISPONIBLE";
+        }
+        
+        return null;
+    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnBuscar;
+    private javax.swing.JButton btnElegir;
+    private javax.swing.ButtonGroup btnGroupFiltros;
+    private javax.swing.JButton btnVolver;
     private javax.swing.JButton jButton19;
     private javax.swing.JButton jButton20;
     private javax.swing.JButton jButton21;
     private javax.swing.JButton jButton25;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JPanel panelAdmin;
     private javax.swing.JPanel panelRecepcionista;
+    private javax.swing.JPanel panelTable;
+    private javax.swing.JPanel panelTitulo;
+    private javax.swing.JRadioButton rdBtnDisponibles;
+    private javax.swing.JRadioButton rdBtnTodos;
     private javax.swing.JTable tableHabitaciones;
+    private javax.swing.JTextField txtNombreTipo;
     // End of variables declaration//GEN-END:variables
 }

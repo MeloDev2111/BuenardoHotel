@@ -12,10 +12,27 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Josue/UNS-temp/SI%20II/Diaz_Diaz_Melio_Josue_Avance_I_Unidad/SistemaGestionHotelera/src/Presentacion/Presentadores/PresentadorHabitacion.java</file>
             <file>file:/D:/Josue/UNS-temp/SI%20II/Diaz_Diaz_Melio_Josue_Avance_I_Unidad/SistemaGestionHotelera/src/Presentacion/Presentadores/PresentadorAdmin.java</file>
+            <file>file:/D:/Josue/UNS-temp/SI%20II/Diaz_Diaz_Melio_Josue_Avance_I_Unidad/SistemaGestionHotelera/src/Negocio/Login/LogicaUsuarios.java</file>
+            <file>file:/D:/Josue/UNS-temp/SI%20II/Diaz_Diaz_Melio_Josue_Avance_I_Unidad/SistemaGestionHotelera/src/Negocio/Servicios/LogicaHabitaciones.java</file>
+            <file>file:/D:/Josue/UNS-temp/SI%20II/Diaz_Diaz_Melio_Josue_Avance_I_Unidad/SistemaGestionHotelera/src/Persistencia/FactoriaDAO/Mysql/ClienteDaoMysql.java</file>
+            <file>file:/D:/Josue/UNS-temp/SI%20II/Diaz_Diaz_Melio_Josue_Avance_I_Unidad/SistemaGestionHotelera/src/Presentacion/Presentadores/PresentadorClientes.java</file>
+            <file>file:/D:/Josue/UNS-temp/SI%20II/Diaz_Diaz_Melio_Josue_Avance_I_Unidad/SistemaGestionHotelera/src/Presentacion/Vistas/VUsuarios.java</file>
+            <file>file:/D:/Josue/UNS-temp/SI%20II/Diaz_Diaz_Melio_Josue_Avance_I_Unidad/SistemaGestionHotelera/src/Presentacion/Presentadores/PresentadorRecepcion.java</file>
+            <file>file:/D:/Josue/UNS-temp/SI%20II/Diaz_Diaz_Melio_Josue_Avance_I_Unidad/SistemaGestionHotelera/src/Negocio/Cliente.java</file>
             <file>file:/D:/Josue/UNS-temp/SI%20II/Diaz_Diaz_Melio_Josue_Avance_I_Unidad/SistemaGestionHotelera/src/Presentacion/Vistas/VHabitaciones.java</file>
-            <file>file:/D:/Josue/UNS-temp/SI%20II/Diaz_Diaz_Melio_Josue_Avance_I_Unidad/SistemaGestionHotelera/src/Negocio/ServicioHabitaciones.java</file>
+            <file>file:/D:/Josue/UNS-temp/SI%20II/Diaz_Diaz_Melio_Josue_Avance_I_Unidad/SistemaGestionHotelera/src/Negocio/Login/Usuario.java</file>
+            <file>file:/D:/Josue/UNS-temp/SI%20II/Diaz_Diaz_Melio_Josue_Avance_I_Unidad/SistemaGestionHotelera/src/Persistencia/FactoriaDAO/FabricaDao.java</file>
+            <file>file:/D:/Josue/UNS-temp/SI%20II/Diaz_Diaz_Melio_Josue_Avance_I_Unidad/SistemaGestionHotelera/src/Apoyo/Formateo.java</file>
+            <file>file:/D:/Josue/UNS-temp/SI%20II/Diaz_Diaz_Melio_Josue_Avance_I_Unidad/SistemaGestionHotelera/src/Negocio/LogicaClientes.java</file>
+            <file>file:/D:/Josue/UNS-temp/SI%20II/Diaz_Diaz_Melio_Josue_Avance_I_Unidad/SistemaGestionHotelera/src/Persistencia/FactoriaDAO/IClienteDao.java</file>
+            <file>file:/D:/Josue/UNS-temp/SI%20II/Diaz_Diaz_Melio_Josue_Avance_I_Unidad/SistemaGestionHotelera/src/Presentacion/Presentadores/PresentadorHabitacion.java</file>
+            <file>file:/D:/Josue/UNS-temp/SI%20II/Diaz_Diaz_Melio_Josue_Avance_I_Unidad/SistemaGestionHotelera/src/Presentacion/Vistas/VAdmin.java</file>
+            <file>file:/D:/Josue/UNS-temp/SI%20II/Diaz_Diaz_Melio_Josue_Avance_I_Unidad/SistemaGestionHotelera/src/Presentacion/Presentadores/PresentadorUsuarios.java</file>
+            <file>file:/D:/Josue/UNS-temp/SI%20II/Diaz_Diaz_Melio_Josue_Avance_I_Unidad/SistemaGestionHotelera/src/Negocio/IDBAccess.java</file>
+            <file>file:/D:/Josue/UNS-temp/SI%20II/Diaz_Diaz_Melio_Josue_Avance_I_Unidad/SistemaGestionHotelera/src/Persistencia/FactoriaDAO/Mysql/FabricaDaoMysql.java</file>
+            <file>file:/D:/Josue/UNS-temp/SI%20II/Diaz_Diaz_Melio_Josue_Avance_I_Unidad/SistemaGestionHotelera/src/Presentacion/Presentadores/PresentadorLogin.java</file>
+            <file>file:/D:/Josue/UNS-temp/SI%20II/Diaz_Diaz_Melio_Josue_Avance_I_Unidad/SistemaGestionHotelera/src/Presentacion/Vistas/VClientes.java</file>
         </group>
     </open-files>
 </project-private>

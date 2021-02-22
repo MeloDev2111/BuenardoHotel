@@ -1,11 +1,12 @@
 package Persistencia.FactoriaDAO.Mysql;
 
+import Negocio.Login.TiposUsuario;
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import Persistencia.FactoriaDAO.IUsuarioDao;
-import Negocio.Usuario;
+import Negocio.Login.Usuario;
 
 public class UsuarioDaoMysql implements IUsuarioDao{
     private Connection conexion;
@@ -16,12 +17,13 @@ public class UsuarioDaoMysql implements IUsuarioDao{
     
     @Override
     public Usuario registrar(Usuario usuario) {
-        String sql ="INSERT INTO Usuarios(nombreCuenta,contraseña,tipoCuenta) VALUES(?,?,?)";
+        String sql ="INSERT INTO Usuarios(nombreCuenta,nombreUsuario,contraseña,tipoCuenta) VALUES(?,?,?,?)";
         try {
             PreparedStatement st = this.conexion.prepareStatement(sql);//Codigo sql
-            st.setString(1, usuario.getNombreUsuario());// replace ? número 1 con el nombre
-            st.setString(2, usuario.getContraseña());
-            st.setString(3, usuario.getTipoUsuario());
+            st.setString(1, usuario.getNombreCuenta());// replace ? número 1 con el nombre
+            st.setString(2, usuario.getNombreUsuario());
+            st.setString(3, usuario.getContraseña());
+            st.setString(4, usuario.getTipoUsuario().name());
             st.executeUpdate();//Ejectura codigo sql cuando este tiene parametros
             
         } catch (Exception e) {
@@ -46,9 +48,11 @@ public class UsuarioDaoMysql implements IUsuarioDao{
             while (rs.next()) {
                 Usuario usuario = new Usuario();
                 usuario.setIdUsuario(rs.getString("idUsuario"));//parametro del nombre de la columna en la bd
-                usuario.setNombreUsuario(rs.getString("nombreCuenta"));
+                usuario.setNombreUsuario(rs.getString("nombreUsuario"));
+                usuario.setNombreCuenta(rs.getString("nombreCuenta"));
                 usuario.setContraseña(rs.getString("contraseña"));
-                usuario.setTipoUsuario(rs.getString("tipoCuenta"));
+                usuario.setTipoUsuario( TiposUsuario.valueOf( rs.getString("tipoCuenta") ) );
+                usuario.setActivo(rs.getBoolean("activo"));
                 lista.add(usuario);
             }
             rs.close();
@@ -64,14 +68,20 @@ public class UsuarioDaoMysql implements IUsuarioDao{
 
     @Override
     public Usuario actualizar(Usuario usuario) {
-        String sql ="UPDATE Usuarios set nombreCuenta=?, contraseña=?,tipoCuenta=? where idUsuario=? ";
+        String sql ="UPDATE Usuarios SET nombreCuenta = ?," +
+            "nombreUsuario = ?," +
+            "contraseña = ?," +
+            "tipoCuenta = ?," +
+            "activo = ? WHERE idUsuario = ?;";
         try {
             PreparedStatement st = this.conexion.prepareStatement(sql);
-            st.setString(1, usuario.getNombreUsuario());
-            st.setString(2, usuario.getContraseña());
-            st.setString(3, usuario.getTipoUsuario());
-            st.setString(4, usuario.getIdUsuario());
-            
+            st.setString(1, usuario.getNombreCuenta());            
+            st.setString(2, usuario.getNombreUsuario());
+            st.setString(3, usuario.getContraseña());
+            st.setString(4, usuario.getTipoUsuario().name());
+            st.setBoolean(5, usuario.isActivo());
+            st.setString(6, usuario.getIdUsuario());
+          
             st.executeUpdate();
             
         } catch (Exception e) {
@@ -108,9 +118,11 @@ public class UsuarioDaoMysql implements IUsuarioDao{
             usuario = new Usuario();
             while (rs.next()) {
                 usuario.setIdUsuario(rs.getString("idUsuario"));
-                usuario.setNombreUsuario(rs.getString("nombreCuenta"));
+                usuario.setNombreCuenta(rs.getString("nombreCuenta"));
+                usuario.setNombreUsuario(rs.getString("nombreUsuario"));
                 usuario.setContraseña(rs.getString("contraseña"));
-                usuario.setTipoUsuario(rs.getString("tipoCuenta"));
+                usuario.setTipoUsuario( TiposUsuario.valueOf( rs.getString( "tipoCuenta" ) ) );
+                usuario.setActivo(rs.getBoolean("activo"));
             }
             
             rs.close();
@@ -123,21 +135,23 @@ public class UsuarioDaoMysql implements IUsuarioDao{
     }
 
     @Override
-    public Usuario buscarxNombre(String nombreUsuario) {
-                Usuario usuario = null;
+    public Usuario buscarxNombre(String nombreCuenta) {
+        Usuario usuario = null;
         
         String sql ="SELECT * FROM Usuarios WHERE nombreCuenta=?";
         try {
             PreparedStatement st = this.conexion.prepareStatement(sql);
-            st.setString(1, nombreUsuario);
+            st.setString(1, nombreCuenta);
             
             ResultSet rs = st.executeQuery(); //ejecutar el codigo sql ya sea ddl o dml??//ITERATOR? QUE ES ESTO?
             usuario = new Usuario();
             while (rs.next()) {
                 usuario.setIdUsuario(rs.getString("idUsuario"));
-                usuario.setNombreUsuario(rs.getString("nombreCuenta"));
+                usuario.setNombreCuenta(rs.getString("nombreCuenta"));
+                usuario.setNombreUsuario(rs.getString("nombreUsuario"));
                 usuario.setContraseña(rs.getString("contraseña"));
-                usuario.setTipoUsuario(rs.getString("tipoCuenta"));
+                usuario.setTipoUsuario( TiposUsuario.valueOf( rs.getString( "tipoCuenta" ) ) );
+                usuario.setActivo(rs.getBoolean("activo"));
             }
             
             rs.close();
@@ -150,10 +164,39 @@ public class UsuarioDaoMysql implements IUsuarioDao{
     }
 
     @Override
-    public ArrayList<Usuario> filtrar(String palabraClave) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public ArrayList<Usuario> filtrar(String palabraClave, boolean activo) {
+        String sql ="select * from Usuarios"
+                + " where nombreUsuario like '%"+palabraClave+"%'";
+        if (activo) {
+            sql = sql + " AND activo = "+activo;
+        }
+              
+        ArrayList<Usuario> lista =null;
+        
+        try {
+            PreparedStatement st = this.conexion.prepareStatement(sql);
+            
+            lista = new ArrayList();
+            ResultSet rs = st.executeQuery(); //ejecutar el codigo sql ya sea ddl o dml??//ITERATOR? QUE ES ESTO? 
+            
+            while (rs.next()) {
+                Usuario usuario = new Usuario();
+                usuario.setIdUsuario(rs.getString("idUsuario"));//parametro del nombre de la columna en la bd
+                usuario.setNombreUsuario(rs.getString("nombreUsuario"));
+                usuario.setNombreCuenta(rs.getString("nombreCuenta"));
+                usuario.setContraseña(rs.getString("contraseña"));
+                usuario.setTipoUsuario( TiposUsuario.valueOf( rs.getString("tipoCuenta") ) );
+                usuario.setActivo(rs.getBoolean("activo"));
+                lista.add(usuario);
+            }
+            rs.close();
+            st.close();
+            
+            
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        } 
+        
+        return lista;
     }
-
-
-
 }

@@ -1,9 +1,9 @@
 package Persistencia.FactoriaDAO;
 
-import Negocio.Habitacion;
+import Negocio.Servicios.Habitacion;
 import java.util.ArrayList;
 
 /*@author MelioDev*/
 public interface IHabitacionDao extends IDaoCrud<Habitacion>{
-    public abstract ArrayList<Habitacion> filtrar(String palabraClave);
+    public abstract ArrayList<Habitacion> filtrar(String palabraClave, String estado);
 }

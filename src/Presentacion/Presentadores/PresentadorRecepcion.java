@@ -1,13 +1,18 @@
 package Presentacion.Presentadores;
 
-import Negocio.Usuario;
+import Apoyo.Mensajes;
+import Negocio.Login.Usuario;
+import Negocio.Servicios.Habitacion;
+import Presentacion.Vistas.VHabitaciones;
 import Presentacion.Vistas.VistaLogin;
 import Presentacion.Vistas.VistaRecepcion;
 
 public class PresentadorRecepcion {
-    Usuario user;
-    VistaRecepcion vista;
-
+    private Usuario user;
+    private VistaRecepcion vista;
+    
+    private Mensajes msg = new Mensajes();
+    
     public PresentadorRecepcion(Usuario user, VistaRecepcion vista) {
         this.user = user;
         this.vista = vista;
@@ -15,12 +20,36 @@ public class PresentadorRecepcion {
     
     public void backToLogin(){
         VistaLogin vistaLogin = new VistaLogin();
-        user = new Usuario();
-        
-        PresentadorLogin presentador = new PresentadorLogin(user,vistaLogin);
+        PresentadorLogin presentador = new PresentadorLogin(vistaLogin);
         vistaLogin.setPresentador(presentador);
         
         vistaLogin.iniciar();
         this.vista.close();
+    }
+
+    public void mostrarVConsultarCuartos() {
+        VHabitaciones vistaHab = new VHabitaciones();
+        Habitacion hab = new Habitacion();
+        PresentadorHabitacion pHab = new PresentadorHabitacion(vistaHab, hab);
+        vistaHab.setPresentador(pHab);
+        
+        pHab.configurarRolRecep();
+        vistaHab.iniciar();
+    }
+
+    public void mostrarVRegistroEntrada() {
+        msg.advertenciaMsg("IN PROCESS", "PRONTO!!");
+    }
+
+    public void mostrarVReservar() {
+        msg.advertenciaMsg("IN PROCESS", "PRONTO!!");
+    }
+
+    public void mostrarVRegistroSalida() {
+        msg.advertenciaMsg("IN PROCESS", "PRONTO!!");
+    }
+
+    public void mostrarVReservaciones() {
+        msg.advertenciaMsg("IN PROCESS", "PRONTO!!");
     }
 }

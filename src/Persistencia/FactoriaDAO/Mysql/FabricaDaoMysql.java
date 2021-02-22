@@ -4,7 +4,9 @@ import java.sql.Connection;
 import Persistencia.Conexiones.ConexionTipo;
 import Persistencia.Conexiones.FabricaConexiones;
 import Persistencia.FactoriaDAO.FabricaDao;
+import Persistencia.FactoriaDAO.IClienteDao;
 import Persistencia.FactoriaDAO.IHabitacionDao;
+import Persistencia.FactoriaDAO.ITipoHabitacionDao;
 import Persistencia.FactoriaDAO.IUsuarioDao;
 
 public class FabricaDaoMysql extends FabricaDao{
@@ -18,6 +20,16 @@ public class FabricaDaoMysql extends FabricaDao{
     @Override
     public IHabitacionDao getHabitacionDao() {
         return new HabitacionDaoMysql(con);
+    }
+
+    @Override
+    public ITipoHabitacionDao getTipoHabitacionDao() {
+        return new TipoHabitacionDaoMysql(con);
+    }
+
+    @Override
+    public IClienteDao getClientesDao() {
+        return new ClienteDaoMysql(con);
     }
 
 }

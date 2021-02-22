@@ -1,15 +1,13 @@
 package App;
 
-import Negocio.Usuario;
 import Presentacion.Presentadores.PresentadorLogin;
 import Presentacion.Vistas.VistaLogin;
 
-public class main {
+public class Main {
     public static void main(String[] args) {
         VistaLogin vista = new VistaLogin();
-        Usuario MUsuario = new Usuario();
         
-        PresentadorLogin presentador = new PresentadorLogin(MUsuario,vista);
+        PresentadorLogin presentador = new PresentadorLogin(vista);
         vista.setPresentador(presentador);
         
         vista.iniciar();

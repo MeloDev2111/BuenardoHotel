@@ -5,6 +5,7 @@
  */
 package Presentacion.Vistas;
 
+import Apoyo.Mensajes;
 import Presentacion.Presentadores.PresentadorRecepcion;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -16,6 +17,8 @@ import javax.swing.JOptionPane;
 public class VistaRecepcion extends javax.swing.JPanel {
     private JFrame frame = new JFrame("RECEPCION");
     private PresentadorRecepcion presentador;
+    
+    private Mensajes msg = new Mensajes();
     
     public VistaRecepcion() {
         initComponents();
@@ -180,23 +183,23 @@ public class VistaRecepcion extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnVisualizarReservacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVisualizarReservacionesActionPerformed
-        mostrarMensajeAdvertencia("PRONTO!!");
+        presentador.mostrarVReservaciones();
     }//GEN-LAST:event_btnVisualizarReservacionesActionPerformed
 
     private void btnRegistroSalidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistroSalidaActionPerformed
-        mostrarMensajeAdvertencia("PRONTO!!");
+        presentador.mostrarVRegistroSalida();
     }//GEN-LAST:event_btnRegistroSalidaActionPerformed
 
     private void btnReservarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReservarActionPerformed
-        mostrarMensajeAdvertencia("PRONTO!!");
+        presentador.mostrarVReservar();
     }//GEN-LAST:event_btnReservarActionPerformed
 
     private void btnConsultarCuartosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarCuartosActionPerformed
-        mostrarMensajeAdvertencia("PRONTO!!");
+        presentador.mostrarVConsultarCuartos();
     }//GEN-LAST:event_btnConsultarCuartosActionPerformed
 
     private void btnRegistroEntradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistroEntradaActionPerformed
-        mostrarMensajeAdvertencia("PRONTO!!");
+        presentador.mostrarVRegistroEntrada();
     }//GEN-LAST:event_btnRegistroEntradaActionPerformed
 
     private void btnCloseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCloseMouseClicked
@@ -222,16 +225,10 @@ public class VistaRecepcion extends javax.swing.JPanel {
     public void close() {
         this.frame.dispose();
     }
-    public void setNombreCuenta(String nombre){
+    public void setNombreUsuario(String nombre){
         this.lblNombreRecepcionista.setText(nombre);
     }
     
-    public void mostrarMensajeAdvertencia(String msg){
-        JOptionPane.showMessageDialog(null,
-                msg,
-                "IN PROCESS",JOptionPane.WARNING_MESSAGE);
-    }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel btnBack;
     private javax.swing.JLabel btnClose;
