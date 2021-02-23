@@ -1,9 +1,11 @@
 package Presentacion.Presentadores;
 
 import Apoyo.Mensajes;
+import Negocio.Huesped;
 import Negocio.Login.Usuario;
 import Negocio.Servicios.Habitacion;
 import Presentacion.Vistas.VHabitaciones;
+import Presentacion.Vistas.VRegistroEntrada;
 import Presentacion.Vistas.VistaLogin;
 import Presentacion.Vistas.VistaRecepcion;
 
@@ -38,7 +40,12 @@ public class PresentadorRecepcion {
     }
 
     public void mostrarVRegistroEntrada() {
-        msg.advertenciaMsg("IN PROCESS", "PRONTO!!");
+        VRegistroEntrada vistaRegE = new VRegistroEntrada();
+        Huesped huesped = new Huesped();
+        PresentadorRegistroEntrada pRE = new PresentadorRegistroEntrada(vistaRegE, huesped);
+        vistaRegE.setPresentador(pRE);
+        
+        vistaRegE.iniciar();
     }
 
     public void mostrarVReservar() {

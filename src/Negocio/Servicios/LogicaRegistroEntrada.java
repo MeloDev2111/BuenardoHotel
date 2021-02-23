@@ -20,7 +20,7 @@ public class LogicaRegistroEntrada {
         LocalTime hEntrada = LocalTime.now();
         
         huesped.setCliente(c);
-        huesped.setIdHabitacion(h.getIdHabitacion());
+        huesped.setHabitacion(h);
         huesped.setfEntrada(fEntrada);
         huesped.sethEntrada(hEntrada);
         huesped.setfSalida(fEntrada.plusDays(diasEstancia));
@@ -40,7 +40,7 @@ public class LogicaRegistroEntrada {
     
     public Usuario generarUsuario(Huesped h){
         Usuario user = new Usuario();
-        user.setNombreUsuario(h.getIdHabitacion()+"-"
+        user.setNombreUsuario(h.getHabitacion().getIdHabitacion()+"-"
                 +h.getfEntrada().format(dtf)+"-"
                 +h.gethEntrada().format(dtf2));
         

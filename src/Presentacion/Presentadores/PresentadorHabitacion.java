@@ -1,6 +1,7 @@
 package Presentacion.Presentadores;
 
 import Apoyo.Formateo;
+import Negocio.Huesped;
 import Negocio.Servicios.Habitacion;
 import Negocio.Servicios.LogicaHabitaciones;
 import Presentacion.Vistas.VHabitaciones;
@@ -12,10 +13,16 @@ public class PresentadorHabitacion {
     
     private Formateo format = new Formateo();
     private LogicaHabitaciones logica = new LogicaHabitaciones();
+    private Huesped huesped;
     
     public PresentadorHabitacion(VHabitaciones vista, Habitacion habitacion) {
         this.vista = vista;
         this.habitacion = habitacion;
+    }
+    
+    public PresentadorHabitacion(VHabitaciones vista, Huesped huesped) {
+        this.vista = vista;
+        this.huesped = huesped;
     }
     
     public void configurarRolAdmin(){
@@ -36,6 +43,12 @@ public class PresentadorHabitacion {
                 logica.cargarHabitaciones(vista.getNombreTipo(), vista.getFiltroSeleccionado())
             )     
         );
+    }
+
+    public void elegirHabitacion() {
+        habitacion = logica.buscar(vista.getIdSeleccionado());
+        huesped.setHabitacion(habitacion);
+        System.out.println(habitacion.toString());
     }
     
 }

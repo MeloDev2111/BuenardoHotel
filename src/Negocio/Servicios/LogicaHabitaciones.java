@@ -11,6 +11,10 @@ public class LogicaHabitaciones implements IDBAccess{
     public ArrayList<Habitacion> cargarHabitaciones(String filter, String estado){
         return dao.filtrar(filter, estado);
     }
+    
+    public Habitacion buscar(String idHabitacion){
+        return dao.buscar(idHabitacion);
+    }
    
     
 }

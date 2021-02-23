@@ -16,7 +16,41 @@ public class HabitacionDaoMysql implements IHabitacionDao{
     public HabitacionDaoMysql(Connection con) {
         conexion=con;
     }
+    
+    @Override
+    public Habitacion buscar(String idHabitacion) {
+        String sql ="SELECT * FROM Habitaciones WHERE idHabitacion=?";
+        Habitacion h =null;
+        
+        TipoHabitacionDaoMysql daoTipo = new TipoHabitacionDaoMysql(conexion);
+        try {
+            PreparedStatement st = this.conexion.prepareStatement(sql);
+            st.setString(1, idHabitacion);
 
+            ResultSet rs = st.executeQuery(); //ejecutar el codigo sql ya sea ddl o dml??//ITERATOR? QUE ES ESTO? 
+            
+            while (rs.next()) {
+                h = new Habitacion();
+                h.setIdHabitacion(rs.getString("idHabitacion"));//parametro del nombre de la columna en la bd
+                h.setDescripcion(rs.getString("descripcion"));
+                h.setPrecio(rs.getDouble("precio"));
+                //TiposEstado Estado = TiposEstado.valueOf(rs.getString("estado"));
+                //switch(Estado) {
+                h.setEstado(rs.getString("estado"));
+                h.setTipo( daoTipo.buscar( rs.getString("idTipoHabitacion") ) );
+            }
+            rs.close();
+            st.close();
+            
+            
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        } 
+        
+        return h;
+    }
+    
+    
     @Override
     public Habitacion registrar(Habitacion h) {
         String sql ="INSERT INTO Habitaciones(idTipoHabitacion,descripcion,precio,estado)"
@@ -34,7 +68,8 @@ public class HabitacionDaoMysql implements IHabitacionDao{
             System.out.println(e.getMessage());
         } 
         
-        return h;    }
+        return h;    
+    }
 
     @Override
     public ArrayList<Habitacion> listado() {
@@ -55,17 +90,7 @@ public class HabitacionDaoMysql implements IHabitacionDao{
                 h.setPrecio(rs.getDouble("precio"));
                 //TiposEstado Estado = TiposEstado.valueOf(rs.getString("estado"));
                 //switch(Estado) {
-                switch(rs.getString("estado")) {
-                    case "DISPONIBLE":
-                        h.setEstado(new EstadoDisponible(h));
-                        break;
-                    case "OCUPADO":
-                        h.setEstado(new EstadoOcupado(h));
-                        break;
-                    case "RESERVADO":
-                        h.setEstado(new EstadoOcupado(h));
-                        break;
-                }
+                h.setEstado(rs.getString("estado"));
                 h.setTipo( daoTipo.buscar( rs.getString("idTipoHabitacion") ) );
                 lista.add(h);
             }
@@ -135,8 +160,7 @@ public class HabitacionDaoMysql implements IHabitacionDao{
         } 
         
         return lista;
-    }
-    
+    }    
 
 
 }

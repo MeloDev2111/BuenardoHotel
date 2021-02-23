@@ -19,6 +19,38 @@ public class ClienteDaoMysql implements IClienteDao{
         conexion=con;
     }
 
+        @Override
+    public Cliente buscar(String idCliente) {
+        String sql ="select * from Clientes WHERE idCliente=? ";
+        Cliente c = null;
+        
+        try {
+            PreparedStatement st = this.conexion.prepareStatement(sql);
+            st.setString(1, idCliente);
+            
+            ResultSet rs = st.executeQuery(); //ejecutar el codigo sql ya sea ddl o dml??//ITERATOR? QUE ES ESTO? 
+
+            while (rs.next()) {
+                c = new Cliente();
+                c.setIdCliente(rs.getString("idCliente"));
+                c.setTipo(rs.getString("tipoCliente"));
+                c.setApellidos(rs.getString("apellidosCliente"));
+                c.setNombres(rs.getString("nombresCliente"));
+                c.setTipoDocumento(rs.getString("tipoDocumento"));
+                c.setNumDocumento(rs.getString("numDocumento"));    
+            }
+            rs.close();
+            st.close();
+            
+            
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        } 
+        
+        return c;
+    }
+
+    
     @Override
     public ArrayList<Cliente> filtrar(String palabraClave) {
         String sql ="select * from Clientes WHERE activo = true AND numDocumento like '%"+palabraClave+"%' ";
@@ -71,7 +103,5 @@ public class ClienteDaoMysql implements IClienteDao{
     public ArrayList<Cliente> listado() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
-
-
 
 }

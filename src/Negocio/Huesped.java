@@ -1,6 +1,7 @@
 package Negocio;
 
 import Negocio.Login.Usuario;
+import Negocio.Servicios.Habitacion;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
@@ -8,7 +9,7 @@ import java.time.LocalTime;
 public class Huesped {
     //REFACTOR
     private Cliente cliente;
-    private String idHabitacion;
+    private Habitacion habitacion;
     private LocalDate fEntrada;
     private LocalTime hEntrada;
     private LocalDate fSalida;
@@ -23,12 +24,12 @@ public class Huesped {
         this.cliente = cliente;
     }
 
-    public String getIdHabitacion() {
-        return idHabitacion;
+    public Habitacion getHabitacion() {
+        return habitacion;
     }
 
-    public void setIdHabitacion(String idHabitacion) {
-        this.idHabitacion = idHabitacion;
+    public void setHabitacion(Habitacion habitacion) {
+        this.habitacion = habitacion;
     }
 
     public LocalDate getfEntrada() {
@@ -71,7 +72,11 @@ public class Huesped {
         this.user = user;
     }
 
-    
+    @Override
+    public String toString() {
+        return "Huesped{" + "cliente=" + cliente + ", habitacion=" + habitacion + ", fEntrada=" + fEntrada + ", hEntrada=" + hEntrada + ", fSalida=" + fSalida + ", HSalida=" + HSalida + ", user=" + user + '}';
+    }
+
     
     
 }

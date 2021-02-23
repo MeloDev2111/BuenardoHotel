@@ -261,7 +261,9 @@ public class VClientes extends javax.swing.JPanel {
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
-        presentador.mostrarVModificarCliente();
+        if (isRowSelected()) {
+            presentador.mostrarVModificarCliente();
+        }
     }//GEN-LAST:event_btnModificarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
@@ -282,9 +284,7 @@ public class VClientes extends javax.swing.JPanel {
     }//GEN-LAST:event_btnElegirActionPerformed
 
     private void btnVolverVRecepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverVRecepActionPerformed
-        if (isRowSelected()) {
-            presentador.volverVRecep();
-        }
+        presentador.volverVRecep();
     }//GEN-LAST:event_btnVolverVRecepActionPerformed
     
     public void setPresentador(PresentadorClientes p) {
@@ -331,7 +331,7 @@ public class VClientes extends javax.swing.JPanel {
     
     public String getIdSeleccionado(){
         int pos = tableClientes.getSelectedRow();
-        return tableClientes.getValueAt(pos, 1).toString();
+        return tableClientes.getValueAt(pos, 0).toString();
     }
 
     private boolean isRowSelected(){

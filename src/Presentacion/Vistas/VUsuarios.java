@@ -94,9 +94,9 @@ public class VUsuarios extends javax.swing.JPanel {
         btnGroupFiltro.add(rdBtnTodos);
         rdBtnTodos.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         rdBtnTodos.setText("Todos");
-        rdBtnTodos.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                rdBtnTodosStateChanged(evt);
+        rdBtnTodos.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                rdBtnTodosItemStateChanged(evt);
             }
         });
 
@@ -104,9 +104,9 @@ public class VUsuarios extends javax.swing.JPanel {
         rdBtnDisponibles.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         rdBtnDisponibles.setSelected(true);
         rdBtnDisponibles.setText("Disponibles");
-        rdBtnDisponibles.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                rdBtnDisponiblesStateChanged(evt);
+        rdBtnDisponibles.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                rdBtnDisponiblesItemStateChanged(evt);
             }
         });
 
@@ -272,17 +272,17 @@ public class VUsuarios extends javax.swing.JPanel {
         presentador.establecerTablaUsuarios();
     }//GEN-LAST:event_btnBuscarActionPerformed
 
-    private void rdBtnDisponiblesStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_rdBtnDisponiblesStateChanged
-        presentador.establecerTablaUsuarios();
-    }//GEN-LAST:event_rdBtnDisponiblesStateChanged
-
-    private void rdBtnTodosStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_rdBtnTodosStateChanged
-        presentador.establecerTablaUsuarios();
-    }//GEN-LAST:event_rdBtnTodosStateChanged
-
     private void btnDeshabilitarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeshabilitarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnDeshabilitarActionPerformed
+
+    private void rdBtnTodosItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_rdBtnTodosItemStateChanged
+        presentador.establecerTablaUsuarios();
+    }//GEN-LAST:event_rdBtnTodosItemStateChanged
+
+    private void rdBtnDisponiblesItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_rdBtnDisponiblesItemStateChanged
+        presentador.establecerTablaUsuarios();
+    }//GEN-LAST:event_rdBtnDisponiblesItemStateChanged
     
     public void setPresentador(PresentadorUsuarios p) {
         presentador = p;

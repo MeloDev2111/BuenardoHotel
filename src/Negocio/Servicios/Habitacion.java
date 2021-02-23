@@ -16,6 +16,21 @@ public class Habitacion {
         
     }
    
+    //MOVER LO DE TIPO HABITACION AQUI PQ SINO PAILA
+    public void setEstado(String estado){
+        switch(estado) {
+            case "DISPONIBLE":
+                setEstado(new EstadoDisponible(this));
+                break;
+            case "OCUPADO":
+                setEstado(new EstadoOcupado(this));
+                break;
+            case "RESERVADO":
+                setEstado(new EstadoOcupado(this));
+                break;
+        }
+    }
+    
     public void agregarHuesped(Huesped h) {
         estado.agregarHuesped(h);
     }
@@ -87,6 +102,11 @@ public class Habitacion {
 
     public void setHuesped(Huesped huesped) {
         this.huesped = huesped;
+    }
+
+    @Override
+    public String toString() {
+        return "Habitacion{" + "idHabitacion=" + idHabitacion + ", tipo=" + tipo + ", descripcion=" + descripcion + ", precio=" + precio + ", estado=" + estado + ", huesped=" + huesped + '}';
     }
     
     

@@ -11,7 +11,7 @@ public class LogicaLogin implements IDBAccess{
     
     public Usuario iniciarSesion(Usuario usuario){
               
-        if (!verificarExistencia(usuario)) {
+        if (!existe(usuario)) {
             msg.errorMsg("ESTA CUENTA NO EXISTE!");
             return usuario;
         }
@@ -31,7 +31,7 @@ public class LogicaLogin implements IDBAccess{
         return userBD;
     }
     
-    private boolean verificarExistencia(Usuario usuario){
+    private boolean existe(Usuario usuario){
         userBD = dao.buscarxNombre(usuario.getNombreCuenta());
         
         return userBD.getIdUsuario() != null;

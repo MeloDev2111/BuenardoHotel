@@ -42,6 +42,7 @@ public class VHabitaciones extends javax.swing.JPanel {
         btnBuscar = new javax.swing.JButton();
         rdBtnTodos = new javax.swing.JRadioButton();
         rdBtnDisponibles = new javax.swing.JRadioButton();
+        rdBtnOcupados = new javax.swing.JRadioButton();
         panelAdmin = new javax.swing.JPanel();
         jButton19 = new javax.swing.JButton();
         jButton20 = new javax.swing.JButton();
@@ -113,6 +114,15 @@ public class VHabitaciones extends javax.swing.JPanel {
             }
         });
 
+        btnGroupFiltros.add(rdBtnOcupados);
+        rdBtnOcupados.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        rdBtnOcupados.setText("Ocupados");
+        rdBtnOcupados.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                rdBtnOcupadosItemStateChanged(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelTableLayout = new javax.swing.GroupLayout(panelTable);
         panelTable.setLayout(panelTableLayout);
         panelTableLayout.setHorizontalGroup(
@@ -127,11 +137,13 @@ public class VHabitaciones extends javax.swing.JPanel {
                         .addComponent(txtNombreTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btnBuscar)
-                        .addGap(63, 63, 63)
+                        .addGap(18, 18, 18)
                         .addComponent(rdBtnTodos)
-                        .addGap(47, 47, 47)
+                        .addGap(18, 18, 18)
                         .addComponent(rdBtnDisponibles)
-                        .addGap(0, 53, Short.MAX_VALUE)))
+                        .addGap(18, 18, 18)
+                        .addComponent(rdBtnOcupados)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         panelTableLayout.setVerticalGroup(
@@ -143,7 +155,8 @@ public class VHabitaciones extends javax.swing.JPanel {
                     .addComponent(txtNombreTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnBuscar)
                     .addComponent(rdBtnTodos)
-                    .addComponent(rdBtnDisponibles))
+                    .addComponent(rdBtnDisponibles)
+                    .addComponent(rdBtnOcupados))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(14, 14, 14))
@@ -192,7 +205,7 @@ public class VHabitaciones extends javax.swing.JPanel {
                 .addComponent(jButton19, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(39, 39, 39)
                 .addComponent(jButton20, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
                 .addComponent(jButton21, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(72, 72, 72)
                 .addComponent(jButton25, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -327,17 +340,21 @@ public class VHabitaciones extends javax.swing.JPanel {
         presentador.establecerTablaHabitaciones();
     }//GEN-LAST:event_rdBtnTodosItemStateChanged
 
+    private void btnElegirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnElegirActionPerformed
+        presentador.elegirHabitacion();
+    }//GEN-LAST:event_btnElegirActionPerformed
+
+    private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
+        this.cerrar();
+    }//GEN-LAST:event_btnVolverActionPerformed
+
     private void rdBtnDisponiblesItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_rdBtnDisponiblesItemStateChanged
         presentador.establecerTablaHabitaciones();
     }//GEN-LAST:event_rdBtnDisponiblesItemStateChanged
 
-    private void btnElegirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnElegirActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnElegirActionPerformed
-
-    private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnVolverActionPerformed
+    private void rdBtnOcupadosItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_rdBtnOcupadosItemStateChanged
+        presentador.establecerTablaHabitaciones();
+    }//GEN-LAST:event_rdBtnOcupadosItemStateChanged
     public void setPresentador(PresentadorHabitacion p) {
         presentador = p;
     }
@@ -369,10 +386,10 @@ public class VHabitaciones extends javax.swing.JPanel {
         this.rdBtnDisponibles.setSelected(true);
     }
     
-    public void setTablaHabitaciones(Object[][] listaUsuarios){
-        String[] cabezera = {"Codigo", "Tipo","Descripcion","Precio","Estado"};
+    public void setTablaHabitaciones(Object[][] listaHabitaciones){
+        String[] cabezera = {"idHabita", "Tipo","Descripcion","Precio","Estado"};
         this.tableHabitaciones.setModel(new javax.swing.table.DefaultTableModel(
-            listaUsuarios,
+            listaHabitaciones,
             cabezera
         ));
     }
@@ -383,7 +400,7 @@ public class VHabitaciones extends javax.swing.JPanel {
     
     public String getIdSeleccionado(){
         int pos = tableHabitaciones.getSelectedRow();
-        return tableHabitaciones.getValueAt(pos, 1).toString();
+        return tableHabitaciones.getValueAt(pos, 0).toString();
     }
     
     public String getFiltroSeleccionado(){
@@ -394,6 +411,9 @@ public class VHabitaciones extends javax.swing.JPanel {
         
         if (rdBtnDisponibles.isSelected()) {
             return "DISPONIBLE";
+        }
+        if (rdBtnOcupados.isSelected()) {
+            return "OCUPADO";
         }
         
         return null;
@@ -417,6 +437,7 @@ public class VHabitaciones extends javax.swing.JPanel {
     private javax.swing.JPanel panelTable;
     private javax.swing.JPanel panelTitulo;
     private javax.swing.JRadioButton rdBtnDisponibles;
+    private javax.swing.JRadioButton rdBtnOcupados;
     private javax.swing.JRadioButton rdBtnTodos;
     private javax.swing.JTable tableHabitaciones;
     private javax.swing.JTextField txtNombreTipo;

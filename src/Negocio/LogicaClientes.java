@@ -12,5 +12,8 @@ public class LogicaClientes implements IDBAccess{
         return dao.filtrar(filter);
     }
    
+    public Cliente buscar(String idCliente){
+        return dao.buscar(idCliente);
+    }
     
 }
