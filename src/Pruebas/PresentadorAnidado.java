@@ -12,10 +12,12 @@ class PresentadorAnidado {
     public void sumar(){
         c.suma();
         vista.setNumero(c.getA());
+        vista.setFecha();
     }
     
     public void restar(){
         c.resta();
         vista.setNumero(c.getA());
+        vista.setFecha2();
     }
 }

@@ -2,9 +2,10 @@ package Presentacion.Presentadores;
 
 import Apoyo.Formateo;
 import Negocio.Cliente;
-import Negocio.Huesped;
+import Negocio.Hospedaje;
 import Negocio.LogicaClientes;
 import Presentacion.Vistas.VClientes;
+import Presentacion.Vistas.VRegistroEntrada;
 
 /* @author MeloDev */
 public class PresentadorClientes {
@@ -13,14 +14,14 @@ public class PresentadorClientes {
     
     private Formateo format = new Formateo();
     private LogicaClientes logiClientes = new LogicaClientes();
-    private Huesped huesped;
+    private Hospedaje huesped;
     
     public PresentadorClientes(VClientes vista, Cliente cliente) {
         this.vista = vista;
         this.cliente = cliente;
     }
     
-    public PresentadorClientes(VClientes vista, Huesped huesped) {
+    public PresentadorClientes(VClientes vista, Hospedaje huesped) {
         this.vista = vista;
         this.huesped = huesped;
     }
@@ -60,11 +61,18 @@ public class PresentadorClientes {
     public void elegirCliente() {
         cliente = logiClientes.buscar(vista.getIdSeleccionado());
         System.out.println(cliente.toString());
+        
         huesped.setCliente(cliente);
+        volverVRegistro();
     }
 
-    public void volverVRecep() {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public void volverVRegistro() {
+        VRegistroEntrada vistaReg = new VRegistroEntrada();
+        PresentadorRegistroEntrada pReg = new PresentadorRegistroEntrada(vistaReg, huesped);
+        vistaReg.setPresentador(pReg);
+        
+        vistaReg.iniciar();
+        this.vista.cerrar();
     }
     
 }

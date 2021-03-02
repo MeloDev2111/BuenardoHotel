@@ -3,10 +3,56 @@ package Apoyo;
 import Negocio.Cliente;
 import Negocio.Login.Usuario;
 import Negocio.Servicios.Habitacion;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 /* @author MeloDev */
 public class Formateo {
+    
+    public String DateTime_to_timeStamp(LocalDateTime fecha){
+        //formato del timeStamp 2021-03-01 19:58:40
+        
+        DateTimeFormatter dtfFecha = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        DateTimeFormatter dtfHora = DateTimeFormatter.ofPattern("HH:mm:ss");
+        
+        return fecha.format(dtfFecha)+" "+fecha.format(dtfHora);
+    }
+    
+    public LocalDateTime timeStamp_to_DateTime(String fechaBD){
+        //formato del timeStamp 2021-03-01 19:58:40
+        
+        LocalDate fecha = LocalDate.parse(fechaBD.split(" ")[0]);
+        LocalTime hora  = LocalTime.parse(fechaBD.split(" ")[1]);
+        
+        return LocalDateTime.of(fecha, hora);
+    }
+    
+    public LocalDateTime formatoUTC_0(LocalDateTime fecha){
+        ZoneId oldZone = ZoneId.systemDefault();
+        ZoneId newZone = ZoneId.of("GMT+0");
+                
+        LocalDateTime nowUTC0 = fecha.atZone(oldZone)
+                                    .withZoneSameInstant(newZone)
+                                    .toLocalDateTime();
+        
+        return nowUTC0;
+    }
+    
+    public LocalDateTime formatoUTC0_to_Actual(LocalDateTime fecha){
+        ZoneId zonaSistema = ZoneId.systemDefault();
+        ZoneId oldZone = ZoneId.of("GMT+0");//ZoneId de la bd
+                
+        LocalDateTime nowUTCsys = fecha.atZone(oldZone)
+                                    .withZoneSameInstant(zonaSistema)
+                                    .toLocalDateTime();
+        
+        return nowUTCsys;
+    }
+    
     
     public Object[][] formatoJtableHabitaciones(ArrayList<Habitacion> habitaciones){
         Object[][] H = new Object[habitaciones.size()][5];

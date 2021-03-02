@@ -18,5 +18,10 @@ public class LogicaUsuarios implements IDBAccess{
     public ArrayList<Usuario> cargarListaUsuariosFiltrados(String filter, boolean activo){
         return dao.filtrar(filter, activo);                
     }
+
+    public Usuario guardar(Usuario user) {
+        user = dao.registrar(user);
+        return user;
+    }
     
 }

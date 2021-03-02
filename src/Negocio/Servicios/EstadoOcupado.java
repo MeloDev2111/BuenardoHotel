@@ -1,24 +1,33 @@
 package Negocio.Servicios;
 
-import Negocio.Huesped;
+import Negocio.Cliente;
+import Negocio.Hospedaje;
 
 /* @author MeloDev */
 public class EstadoOcupado extends EstadoHabitacion{
-
+    
     public EstadoOcupado(Habitacion habitacion) {
         super(habitacion);
         nombreEstado="Ocupado";
     }
 
     @Override
-    public void agregarHuesped(Huesped h) {
-        System.out.println("Existe Huesped actualmente - Habitacion Ocupada");
+    public void agregarAlquiler(Hospedaje h) {
+        msg.errorMsg("Actualmente "+nombreEstado+", no se puede registrar huesped");
     }
 
     @Override
+    public void agregarReserva(Hospedaje h) {
+        msg.errorMsg("Actualmente "+nombreEstado+", no se puede reservar habitacion");
+    }
+    
+    @Override
     public void desalojarHuesped() {
-        habitacion.setHuesped(null);
-        System.out.println("HUESPED DESALOJADO");
+        
+        //CHECK OUT
+        
+        //MSG FINALIZADO
+        msg.OKMsg("HUESPED DESALOJADO");
         estadoSiguiente();
     }
 
@@ -26,4 +35,7 @@ public class EstadoOcupado extends EstadoHabitacion{
     public void estadoSiguiente() {
         habitacion.setEstado(new EstadoDisponible(habitacion));
     }
+
+
+
 }

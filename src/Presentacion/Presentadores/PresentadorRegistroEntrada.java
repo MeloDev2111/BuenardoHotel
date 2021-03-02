@@ -1,8 +1,8 @@
 package Presentacion.Presentadores;
 
-import Negocio.Cliente;
-import Negocio.Huesped;
-import Negocio.Servicios.Habitacion;
+import Apoyo.Mensajes;
+import Negocio.Hospedaje;
+import Negocio.LogicaHospedajes;
 import Presentacion.Vistas.VClientes;
 import Presentacion.Vistas.VHabitaciones;
 import Presentacion.Vistas.VRegistroEntrada;
@@ -10,42 +10,80 @@ import Presentacion.Vistas.VRegistroEntrada;
 /* @author MeloDev */
 public class PresentadorRegistroEntrada {
     private VRegistroEntrada vista;
+    private Hospedaje hospedaje;
     
-    private Huesped huesped;
-
-    public PresentadorRegistroEntrada(VRegistroEntrada vista, Huesped huesped) {
+    private Mensajes msg = new Mensajes();
+    
+    public PresentadorRegistroEntrada(VRegistroEntrada vista, Hospedaje huesped) {
         this.vista = vista;
-        this.huesped = huesped;
+        this.hospedaje = huesped;
     }
     
     public void establecerDatos(){
-        System.out.println(huesped.toString());
-//        vista.setInfoCliente(cliente.getNumDocumento()+"-"+cliente.getApellidos());
-//        vista.setInfoHabitacion(habitacion.getNombreTipo());
+        if (hospedaje.getCliente()!=null) {
+            String tipo = hospedaje.getCliente().getTipo().name();
+            String nombreCliente = hospedaje.getCliente().getApellidos();
+            if ("NATURAL".equals(tipo)) {
+                nombreCliente += " "+hospedaje.getCliente().getNombres();
+            }
+            String documento = hospedaje.getCliente().getNumDocumento();
+            
+            vista.setInfoCliente(nombreCliente,tipo,documento);
+        }
+        
+        if (hospedaje.getHabitacion()!=null) {
+            String tipo = hospedaje.getHabitacion().getNombreTipo();
+            String precio = ""+hospedaje.getHabitacion().getPrecio();
+            String desc = hospedaje.getHabitacion().getDescripcion();
+            
+            vista.setInfoHabitacion(tipo,precio,desc);
+            
+            LogicaHospedajes logiHosp = new LogicaHospedajes();
+            String id = hospedaje.getHabitacion().getIdHabitacion();
+            vista.setDiasElegibles(logiHosp.getNroDiasDisponibles(id));
+        }
     }
 
     public void mostrarVClientes() {
         VClientes vistaCli = new VClientes();
-        PresentadorClientes pCli = new PresentadorClientes(vistaCli, huesped);
+        PresentadorClientes pCli = new PresentadorClientes(vistaCli, hospedaje);
         vistaCli.setPresentador(pCli);
         pCli.configurarRolRecep();
         
-        this.vista.cambiarVistaActual(vistaCli);
+        vistaCli.iniciar();
+        
+        this.vista.cerrar();
+        
+        //this.vista.cambiarVistaActual(vistaCli);
     }
 
     public void mostrarVHabitaciones() {
         VHabitaciones vistaHab = new VHabitaciones();
-        PresentadorHabitacion pHab = new PresentadorHabitacion(vistaHab, huesped);
+        PresentadorHabitacion pHab = new PresentadorHabitacion(vistaHab, hospedaje);
         vistaHab.setPresentador(pHab);
-        pHab.configurarRolRecep();
+        pHab.configurarRolRecepRegistros();
         
-        this.vista.cambiarVistaActual(vistaHab);
+        vistaHab.iniciar();
+        
+        this.vista.cerrar();
+        
+        //this.vista.cambiarVistaActual(vistaHab);
     }
 
-    public void registrar() {
-        establecerDatos();
-//        System.out.println(habitacion.toString());
-//        System.out.println(cliente.toString());
+    public boolean registrar() {
+        if (hospedaje.getCliente()==null) {
+            msg.errorMsg("CLIENTE NO SELECCIONADO");
+            return false;
+        }
+        
+        if (hospedaje.getHabitacion()==null) {
+            msg.errorMsg("HABITACION NO SELECCIONADA");
+            return false;
+        }
+        
+        hospedaje.setNroDiasEstancia(vista.getNumDiasElegidos());
+        hospedaje.getHabitacion().agregarHuesped(hospedaje);
+        return true;
     }
 
 }

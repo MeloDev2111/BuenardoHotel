@@ -1,10 +1,11 @@
 package Presentacion.Presentadores;
 
 import Apoyo.Formateo;
-import Negocio.Huesped;
+import Negocio.Hospedaje;
 import Negocio.Servicios.Habitacion;
 import Negocio.Servicios.LogicaHabitaciones;
 import Presentacion.Vistas.VHabitaciones;
+import Presentacion.Vistas.VRegistroEntrada;
 
 /* @author MeloDev */
 public class PresentadorHabitacion {
@@ -13,16 +14,16 @@ public class PresentadorHabitacion {
     
     private Formateo format = new Formateo();
     private LogicaHabitaciones logica = new LogicaHabitaciones();
-    private Huesped huesped;
+    private Hospedaje hospedaje;
     
     public PresentadorHabitacion(VHabitaciones vista, Habitacion habitacion) {
         this.vista = vista;
         this.habitacion = habitacion;
     }
     
-    public PresentadorHabitacion(VHabitaciones vista, Huesped huesped) {
+    public PresentadorHabitacion(VHabitaciones vista, Hospedaje huesped) {
         this.vista = vista;
-        this.huesped = huesped;
+        this.hospedaje = huesped;
     }
     
     public void configurarRolAdmin(){
@@ -31,11 +32,19 @@ public class PresentadorHabitacion {
         establecerTablaHabitaciones();
     }
     
-    public void configurarRolRecep(){
+    public void configurarRolRecepConsultas(){
         vista.deshabilitarBotones();
-        vista.habilitarBtnsRecep();
+        vista.habilitarBtnsRecepConsultas();
         establecerTablaHabitaciones();
     }
+    
+    public void configurarRolRecepRegistros(){
+        vista.deshabilitarBotones();
+        vista.habilitarBtnsRecepRegistros();
+        establecerTablaHabitaciones();
+    }
+    
+    
     
     public void establecerTablaHabitaciones() {
         vista.setTablaHabitaciones(
@@ -47,8 +56,18 @@ public class PresentadorHabitacion {
 
     public void elegirHabitacion() {
         habitacion = logica.buscar(vista.getIdSeleccionado());
-        huesped.setHabitacion(habitacion);
+        hospedaje.setHabitacion(habitacion);
         System.out.println(habitacion.toString());
+        VolverVRegistro();
+    }
+
+    public void VolverVRegistro() {
+        VRegistroEntrada vistaReg = new VRegistroEntrada();
+        PresentadorRegistroEntrada pReg = new PresentadorRegistroEntrada(vistaReg, hospedaje);
+        vistaReg.setPresentador(pReg);
+        
+        vistaReg.iniciar();
+        this.vista.cerrar();
     }
     
 }

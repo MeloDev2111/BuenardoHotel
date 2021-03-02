@@ -1,7 +1,7 @@
 package Presentacion.Presentadores;
 
 import Apoyo.Mensajes;
-import Negocio.Huesped;
+import Negocio.Hospedaje;
 import Negocio.Login.Usuario;
 import Negocio.Servicios.Habitacion;
 import Presentacion.Vistas.VHabitaciones;
@@ -35,13 +35,13 @@ public class PresentadorRecepcion {
         PresentadorHabitacion pHab = new PresentadorHabitacion(vistaHab, hab);
         vistaHab.setPresentador(pHab);
         
-        pHab.configurarRolRecep();
+        pHab.configurarRolRecepConsultas();
         vistaHab.iniciar();
     }
 
     public void mostrarVRegistroEntrada() {
         VRegistroEntrada vistaRegE = new VRegistroEntrada();
-        Huesped huesped = new Huesped();
+        Hospedaje huesped = new Hospedaje();
         PresentadorRegistroEntrada pRE = new PresentadorRegistroEntrada(vistaRegE, huesped);
         vistaRegE.setPresentador(pRE);
         

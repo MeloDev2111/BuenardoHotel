@@ -70,7 +70,7 @@ public class Cliente {
     public void setNombres(String nombres) {
         this.nombres = nombres;
     }
-
+    
     @Override
     public String toString() {
         return "Cliente{" + "idCliente=" + idCliente + ", tipo=" + tipo + ", tipoDocumento=" + tipoDocumento + ", numDocumento=" + numDocumento + ", nombres=" + nombres + ", apellidos=" + apellidos + '}';

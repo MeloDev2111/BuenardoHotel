@@ -183,9 +183,6 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Todos"/>
           </Properties>
-          <Events>
-            <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="rdBtnTodosItemStateChanged"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JRadioButton" name="rdBtnDisponibles">
           <Properties>
@@ -198,9 +195,6 @@
             <Property name="selected" type="boolean" value="true"/>
             <Property name="text" type="java.lang.String" value="Disponibles"/>
           </Properties>
-          <Events>
-            <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="rdBtnDisponiblesItemStateChanged"/>
-          </Events>
         </Component>
       </SubComponents>
     </Container>

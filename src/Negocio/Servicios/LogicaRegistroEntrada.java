@@ -1,54 +1,67 @@
 package Negocio.Servicios;
 
-import Negocio.Cliente;
-import Negocio.Huesped;
-import Negocio.Servicios.Habitacion;
+import Apoyo.Formateo;
+import Apoyo.Mensajes;
+import Negocio.Hospedaje;
+import Negocio.LogicaHospedajes;
+import Negocio.Login.LogicaUsuarios;
 import Negocio.Login.TiposUsuario;
 import Negocio.Login.Usuario;
-import java.time.LocalDate;
-import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
 /* @author MeloDev */
 public class LogicaRegistroEntrada {
-    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-    DateTimeFormatter dtf2 = DateTimeFormatter.ofPattern("HH-mm");
+    private Mensajes msg = new Mensajes();
+    private Formateo format = new Formateo();
+    private LogicaHospedajes logica = new LogicaHospedajes();
     
-    public Huesped registrarHuesped(Cliente c, Habitacion h, int diasEstancia){
-        Huesped huesped = new Huesped();
-        LocalDate fEntrada = LocalDate.now();
-        LocalTime hEntrada = LocalTime.now();
+    public void registrarAlquiler(Hospedaje h){
+        //Generamos Usuario
+        h.setUser(generarUsuario(h));
         
-        huesped.setCliente(c);
-        huesped.setHabitacion(h);
-        huesped.setfEntrada(fEntrada);
-        huesped.sethEntrada(hEntrada);
-        huesped.setfSalida(fEntrada.plusDays(diasEstancia));
-        huesped.setHSalida(hEntrada);
-        //GENERAR USUARIO
-        generarUsuario(huesped);
+        //AGREGAR GASTOS OPCIONAL
         
-        //GUARDAR REGISTRO DE ENTRADA
-        //cliente - habitacion - fentrada
+        //Ajustes antes de entrar a la bd
+        //la bd esta en utc 0
+        h.setfHEntrada( format.formatoUTC_0( h.getfHEntrada() ) );
+        h.setfHSalida( format.formatoUTC_0( h.getfHSalida() ) );
         
-        //CREAR CARRITO
+        logica.guardar(h);
         
-        return huesped;
     }
     
     //REGISTRO HUESPED CON RESERVA
+    public void registrarReserva(Hospedaje h) {
+        //Ajustes antes de entrar a la bd
+        //la bd esta en utc 0
+        h.setfHEntrada( format.formatoUTC_0( h.getfHEntrada() ) );
+        h.setfHSalida( format.formatoUTC_0( h.getfHSalida() ) );
+        
+        logica.guardar(h);
+    }
     
-    public Usuario generarUsuario(Huesped h){
+    public Usuario generarUsuario(Hospedaje h){
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd-HH-mm");
+        LogicaUsuarios logi = new LogicaUsuarios();
         Usuario user = new Usuario();
-        user.setNombreUsuario(h.getHabitacion().getIdHabitacion()+"-"
-                +h.getfEntrada().format(dtf)+"-"
-                +h.gethEntrada().format(dtf2));
+        
+        user.setNombreCuenta(h.getHabitacion().getIdHabitacion()+"-"
+                +h.getfHEntrada().format(dtf) );
+        
+        String nombreCliente = h.getCliente().getApellidos()
+                               +h.getCliente().getNombres();
+        user.setNombreUsuario(nombreCliente);
         
         user.setContraseña(h.getCliente().getNumDocumento());
         user.setTipoUsuario(TiposUsuario.HUESPED);
-        //user.setActivo(true);
-        //AGREGAR ESTADO ACTIVO INACTIVO PARA LOS USUARIOS PQ ESAS CUENTAS SON MOMENTANEAS
+        
         //GUARDAR USUSARIO
+        user = logi.guardar(user);
+        
+        msg.OKMsg("Usuario registrado con credenciales:"
+                  +"\nUsuario: "+user.getNombreCuenta()
+                  +"\nContraseña: "+user.getContraseña());
+        
         return user;
     }
 }

@@ -1,6 +1,6 @@
 package Negocio.Servicios;
 
-import Negocio.Huesped;
+import Negocio.Hospedaje;
 
 /* @author MeloDev */
 public class Habitacion {
@@ -9,7 +9,6 @@ public class Habitacion {
    private String descripcion; 
    private double precio; 
    private EstadoHabitacion estado;
-   private Huesped huesped;
 
     public Habitacion() {
         estado = new EstadoDisponible(this);
@@ -31,8 +30,8 @@ public class Habitacion {
         }
     }
     
-    public void agregarHuesped(Huesped h) {
-        estado.agregarHuesped(h);
+    public void agregarHuesped(Hospedaje h) {
+        estado.agregarAlquiler(h);
     }
 
     public void desalojarHuesped() {
@@ -96,18 +95,9 @@ public class Habitacion {
         this.estado = estado;
     }
 
-    public Huesped getHuesped() {
-        return huesped;
-    }
-
-    public void setHuesped(Huesped huesped) {
-        this.huesped = huesped;
-    }
-
     @Override
     public String toString() {
-        return "Habitacion{" + "idHabitacion=" + idHabitacion + ", tipo=" + tipo + ", descripcion=" + descripcion + ", precio=" + precio + ", estado=" + estado + ", huesped=" + huesped + '}';
+        return "Habitacion{" + "idHabitacion=" + idHabitacion + ", tipo=" + tipo + ", descripcion=" + descripcion + ", precio=" + precio + ", estado=" + estado + '}';
     }
-    
     
 }

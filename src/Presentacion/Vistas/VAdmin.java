@@ -159,7 +159,7 @@ public class VAdmin extends javax.swing.JPanel{
         btnVReservaciones.setFont(new java.awt.Font("UD Digi Kyokasho NP-B", 1, 24)); // NOI18N
         btnVReservaciones.setForeground(new java.awt.Color(255, 255, 255));
         btnVReservaciones.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/habitaciones.png"))); // NOI18N
-        btnVReservaciones.setText(" Reservaciones");
+        btnVReservaciones.setText(" Hospedajes");
         btnVReservaciones.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnVReservaciones.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {

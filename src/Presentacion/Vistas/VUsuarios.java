@@ -7,6 +7,8 @@ package Presentacion.Vistas;
 
 import Apoyo.Mensajes;
 import Presentacion.Presentadores.PresentadorUsuarios;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 
 /**
@@ -94,21 +96,11 @@ public class VUsuarios extends javax.swing.JPanel {
         btnGroupFiltro.add(rdBtnTodos);
         rdBtnTodos.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         rdBtnTodos.setText("Todos");
-        rdBtnTodos.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                rdBtnTodosItemStateChanged(evt);
-            }
-        });
 
         btnGroupFiltro.add(rdBtnDisponibles);
         rdBtnDisponibles.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         rdBtnDisponibles.setSelected(true);
         rdBtnDisponibles.setText("Disponibles");
-        rdBtnDisponibles.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                rdBtnDisponiblesItemStateChanged(evt);
-            }
-        });
 
         javax.swing.GroupLayout panelTableLayout = new javax.swing.GroupLayout(panelTable);
         panelTable.setLayout(panelTableLayout);
@@ -275,17 +267,22 @@ public class VUsuarios extends javax.swing.JPanel {
     private void btnDeshabilitarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeshabilitarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnDeshabilitarActionPerformed
-
-    private void rdBtnTodosItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_rdBtnTodosItemStateChanged
-        presentador.establecerTablaUsuarios();
-    }//GEN-LAST:event_rdBtnTodosItemStateChanged
-
-    private void rdBtnDisponiblesItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_rdBtnDisponiblesItemStateChanged
-        presentador.establecerTablaUsuarios();
-    }//GEN-LAST:event_rdBtnDisponiblesItemStateChanged
     
     public void setPresentador(PresentadorUsuarios p) {
         presentador = p;
+    }
+    
+    
+    public void setListeners() {
+        ActionListener listener = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                presentador.establecerTablaUsuarios();
+            }
+        };
+        
+        rdBtnDisponibles.addActionListener(listener);
+        rdBtnTodos.addActionListener(listener);
     }
 
     public void iniciar(){
@@ -296,6 +293,7 @@ public class VUsuarios extends javax.swing.JPanel {
         frame.setSize(1000, 730);
         frame.setLocationRelativeTo(null);
         presentador.establecerTablaUsuarios();
+        this.setListeners();
         this.rdBtnDisponibles.setSelected(true);
     }
     

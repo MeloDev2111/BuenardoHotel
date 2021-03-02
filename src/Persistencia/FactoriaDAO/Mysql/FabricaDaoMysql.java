@@ -6,6 +6,7 @@ import Persistencia.Conexiones.FabricaConexiones;
 import Persistencia.FactoriaDAO.FabricaDao;
 import Persistencia.FactoriaDAO.IClienteDao;
 import Persistencia.FactoriaDAO.IHabitacionDao;
+import Persistencia.FactoriaDAO.IHospedajeDao;
 import Persistencia.FactoriaDAO.ITipoHabitacionDao;
 import Persistencia.FactoriaDAO.IUsuarioDao;
 
@@ -30,6 +31,11 @@ public class FabricaDaoMysql extends FabricaDao{
     @Override
     public IClienteDao getClientesDao() {
         return new ClienteDaoMysql(con);
+    }
+
+    @Override
+    public IHospedajeDao getHospedajeDao() {
+        return new HospedajeDaoMysql(con);
     }
 
 }

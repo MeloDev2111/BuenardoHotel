@@ -35,6 +35,7 @@ public class PresentadorAdmin{
         PresentadorUsuarios pUsuarios = new PresentadorUsuarios(vistaUsu,user);
         vistaUsu.setPresentador(pUsuarios);
         pUsuarios.establecerTablaUsuarios();
+        vistaUsu.setListeners();
         
         this.vista.cambiarVistaActual(vistaUsu);
     }
@@ -54,6 +55,7 @@ public class PresentadorAdmin{
         PresentadorHabitacion pHabitacion = new PresentadorHabitacion(vistaHab, hab);
         vistaHab.setPresentador(pHabitacion);
         pHabitacion.configurarRolAdmin();
+        vistaHab.setListeners();
         
         this.vista.cambiarVistaActual(vistaHab);
     }

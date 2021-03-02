@@ -7,6 +7,7 @@ package Pruebas;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.WindowConstants;
 
 /**
  *
@@ -160,6 +161,7 @@ public class General extends javax.swing.JPanel {
     public void iniciar(){
         frame.setContentPane(this);
         frame.setUndecorated(false);
+        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
         frame.setSize(685, 550);

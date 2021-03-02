@@ -9,6 +9,7 @@ public abstract class FabricaDao {
     public abstract IHabitacionDao getHabitacionDao();
     public abstract ITipoHabitacionDao getTipoHabitacionDao();
     public abstract IClienteDao getClientesDao();
+    public abstract IHospedajeDao getHospedajeDao();
     
     public static FabricaDao getDAOFactory(ETiposFabricaDao tipo) {
 

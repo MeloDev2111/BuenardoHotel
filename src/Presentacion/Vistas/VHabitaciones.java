@@ -7,6 +7,8 @@ package Presentacion.Vistas;
 
 import Apoyo.Mensajes;
 import Presentacion.Presentadores.PresentadorHabitacion;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 
 /**
@@ -50,11 +52,19 @@ public class VHabitaciones extends javax.swing.JPanel {
         jButton25 = new javax.swing.JButton();
         panelTitulo = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
-        panelRecepcionista = new javax.swing.JPanel();
+        panelRegistro = new javax.swing.JPanel();
         btnElegir = new javax.swing.JButton();
-        btnVolver = new javax.swing.JButton();
+        btnVolverVRegistro = new javax.swing.JButton();
+        panelConsultas = new javax.swing.JPanel();
+        btnConsultarHuesped = new javax.swing.JButton();
+        btnVolverVRecep = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        jComboBox2 = new javax.swing.JComboBox<>();
 
         setBackground(new java.awt.Color(102, 204, 255));
+        setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         panelTable.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -98,30 +108,15 @@ public class VHabitaciones extends javax.swing.JPanel {
         btnGroupFiltros.add(rdBtnTodos);
         rdBtnTodos.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         rdBtnTodos.setText("Todos");
-        rdBtnTodos.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                rdBtnTodosItemStateChanged(evt);
-            }
-        });
 
         btnGroupFiltros.add(rdBtnDisponibles);
         rdBtnDisponibles.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         rdBtnDisponibles.setSelected(true);
         rdBtnDisponibles.setText("Disponibles");
-        rdBtnDisponibles.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                rdBtnDisponiblesItemStateChanged(evt);
-            }
-        });
 
         btnGroupFiltros.add(rdBtnOcupados);
         rdBtnOcupados.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         rdBtnOcupados.setText("Ocupados");
-        rdBtnOcupados.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                rdBtnOcupadosItemStateChanged(evt);
-            }
-        });
 
         javax.swing.GroupLayout panelTableLayout = new javax.swing.GroupLayout(panelTable);
         panelTable.setLayout(panelTableLayout);
@@ -143,7 +138,7 @@ public class VHabitaciones extends javax.swing.JPanel {
                         .addComponent(rdBtnDisponibles)
                         .addGap(18, 18, 18)
                         .addComponent(rdBtnOcupados)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 14, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         panelTableLayout.setVerticalGroup(
@@ -203,14 +198,17 @@ public class VHabitaciones extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelAdminLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jButton19, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(39, 39, 39)
+                .addGap(51, 51, 51)
                 .addComponent(jButton20, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
+                .addGap(54, 54, 54)
                 .addComponent(jButton21, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(72, 72, 72)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton25, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(53, 53, 53))
+                .addContainerGap())
         );
+
+        panelAdminLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jButton19, jButton20, jButton21, jButton25});
+
         panelAdminLayout.setVerticalGroup(
             panelAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelAdminLayout.createSequentialGroup()
@@ -222,6 +220,8 @@ public class VHabitaciones extends javax.swing.JPanel {
                     .addComponent(jButton21, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(22, Short.MAX_VALUE))
         );
+
+        panelAdminLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jButton19, jButton20, jButton21, jButton25});
 
         panelTitulo.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -246,7 +246,7 @@ public class VHabitaciones extends javax.swing.JPanel {
                 .addContainerGap(26, Short.MAX_VALUE))
         );
 
-        panelRecepcionista.setBackground(new java.awt.Color(255, 255, 255));
+        panelRegistro.setBackground(new java.awt.Color(255, 255, 255));
 
         btnElegir.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnElegir.setText("Elegir");
@@ -256,38 +256,104 @@ public class VHabitaciones extends javax.swing.JPanel {
             }
         });
 
-        btnVolver.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnVolver.setText("Volver");
-        btnVolver.addActionListener(new java.awt.event.ActionListener() {
+        btnVolverVRegistro.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnVolverVRegistro.setText("Volver");
+        btnVolverVRegistro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnVolverActionPerformed(evt);
+                btnVolverVRegistroActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout panelRecepcionistaLayout = new javax.swing.GroupLayout(panelRecepcionista);
-        panelRecepcionista.setLayout(panelRecepcionistaLayout);
-        panelRecepcionistaLayout.setHorizontalGroup(
-            panelRecepcionistaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-            .addGroup(panelRecepcionistaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(panelRecepcionistaLayout.createSequentialGroup()
+        javax.swing.GroupLayout panelRegistroLayout = new javax.swing.GroupLayout(panelRegistro);
+        panelRegistro.setLayout(panelRegistroLayout);
+        panelRegistroLayout.setHorizontalGroup(
+            panelRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 748, Short.MAX_VALUE)
+            .addGroup(panelRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panelRegistroLayout.createSequentialGroup()
                     .addGap(128, 128, 128)
                     .addComponent(btnElegir, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(231, 231, 231)
-                    .addComponent(btnVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnVolverVRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addContainerGap(128, Short.MAX_VALUE)))
         );
-        panelRecepcionistaLayout.setVerticalGroup(
-            panelRecepcionistaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        panelRegistroLayout.setVerticalGroup(
+            panelRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 100, Short.MAX_VALUE)
-            .addGroup(panelRecepcionistaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(panelRecepcionistaLayout.createSequentialGroup()
+            .addGroup(panelRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panelRegistroLayout.createSequentialGroup()
                     .addGap(22, 22, 22)
-                    .addGroup(panelRecepcionistaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addGroup(panelRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(btnElegir, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnVolverVRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addContainerGap(23, Short.MAX_VALUE)))
         );
+
+        panelConsultas.setBackground(new java.awt.Color(255, 255, 255));
+
+        btnConsultarHuesped.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnConsultarHuesped.setText("Ver Huesped");
+        btnConsultarHuesped.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConsultarHuespedActionPerformed(evt);
+            }
+        });
+
+        btnVolverVRecep.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnVolverVRecep.setText("Volver");
+        btnVolverVRecep.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVolverVRecepActionPerformed(evt);
+            }
+        });
+
+        jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButton1.setText("Consultar");
+
+        jComboBox1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23" }));
+
+        jComboBox2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
+
+        javax.swing.GroupLayout panelConsultasLayout = new javax.swing.GroupLayout(panelConsultas);
+        panelConsultas.setLayout(panelConsultasLayout);
+        panelConsultasLayout.setHorizontalGroup(
+            panelConsultasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelConsultasLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(14, 14, 14)
+                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addGap(18, 18, 18)
+                .addComponent(btnConsultarHuesped, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnVolverVRecep, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        panelConsultasLayout.setVerticalGroup(
+            panelConsultasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelConsultasLayout.createSequentialGroup()
+                .addGroup(panelConsultasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelConsultasLayout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addGroup(panelConsultasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnVolverVRecep, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnConsultarHuesped, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(panelConsultasLayout.createSequentialGroup()
+                        .addGap(32, 32, 32)
+                        .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(25, Short.MAX_VALUE))
+        );
+
+        panelConsultasLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnConsultarHuesped, btnVolverVRecep, jButton1});
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -295,8 +361,9 @@ public class VHabitaciones extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(panelAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(panelTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(panelRecepcionista, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(panelRegistro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(panelTable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(panelConsultas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -307,8 +374,10 @@ public class VHabitaciones extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(panelAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(panelRecepcionista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 9, Short.MAX_VALUE))
+                .addComponent(panelRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(panelConsultas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(19, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -324,7 +393,7 @@ public class VHabitaciones extends javax.swing.JPanel {
         if (tableHabitaciones.getSelectedRow()!=-1) {            
             //presentador.eliminarHabitacion();
         }else{
-            msg.errorMsg("DEBE SELECCIONAR UN USUARIO");
+            msg.errorMsg("DEBE SELECCIONAR UN HABITACION");
         }
     }//GEN-LAST:event_jButton21ActionPerformed
 
@@ -336,25 +405,44 @@ public class VHabitaciones extends javax.swing.JPanel {
         presentador.establecerTablaHabitaciones();
     }//GEN-LAST:event_btnBuscarActionPerformed
 
-    private void rdBtnTodosItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_rdBtnTodosItemStateChanged
-        presentador.establecerTablaHabitaciones();
-    }//GEN-LAST:event_rdBtnTodosItemStateChanged
-
     private void btnElegirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnElegirActionPerformed
-        presentador.elegirHabitacion();
+        if (isSelected()) {
+            if (isDisponible()) {
+                presentador.elegirHabitacion();
+            }else{
+                msg.advertenciaMsg("REGISTRO NO PERMITIDO","HABITACION NO DISPONIBLE");
+            }
+        }else{
+            msg.errorMsg("Por favor, elija una habitacion");
+        }
     }//GEN-LAST:event_btnElegirActionPerformed
 
-    private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
+    private void btnVolverVRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverVRegistroActionPerformed
+        presentador.VolverVRegistro();
+    }//GEN-LAST:event_btnVolverVRegistroActionPerformed
+
+    private void btnConsultarHuespedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarHuespedActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnConsultarHuespedActionPerformed
+
+    private void btnVolverVRecepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverVRecepActionPerformed
         this.cerrar();
-    }//GEN-LAST:event_btnVolverActionPerformed
-
-    private void rdBtnDisponiblesItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_rdBtnDisponiblesItemStateChanged
-        presentador.establecerTablaHabitaciones();
-    }//GEN-LAST:event_rdBtnDisponiblesItemStateChanged
-
-    private void rdBtnOcupadosItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_rdBtnOcupadosItemStateChanged
-        presentador.establecerTablaHabitaciones();
-    }//GEN-LAST:event_rdBtnOcupadosItemStateChanged
+    }//GEN-LAST:event_btnVolverVRecepActionPerformed
+    public void setListeners() {
+        ActionListener listener = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                presentador.establecerTablaHabitaciones();
+            }
+        };
+        
+        rdBtnDisponibles.addActionListener(listener);
+        rdBtnOcupados.addActionListener(listener);
+        rdBtnTodos.addActionListener(listener);
+    } 
+    
+    
+    
     public void setPresentador(PresentadorHabitacion p) {
         presentador = p;
     }
@@ -366,6 +454,7 @@ public class VHabitaciones extends javax.swing.JPanel {
         frame.setVisible(true);
         frame.setSize(760, 580);
         frame.setLocationRelativeTo(null);
+        this.setListeners();
     }
     
     public void cerrar(){
@@ -374,16 +463,30 @@ public class VHabitaciones extends javax.swing.JPanel {
     
     public void deshabilitarBotones(){
         this.panelAdmin.setVisible(false);
-        this.panelRecepcionista.setVisible(false);
+        this.panelRegistro.setVisible(false);
+        this.panelConsultas.setVisible(false);
     }
+    
+    public void deshabilitarFiltros(){
+        this.rdBtnDisponibles.setVisible(false);
+        this.rdBtnOcupados.setVisible(false);
+        this.rdBtnTodos.setVisible(false);
+    }
+    
     public void habilitarBtnsAdmin(){
         this.panelAdmin.setVisible(true);
         this.rdBtnTodos.setSelected(true);
     }
     
-    public void habilitarBtnsRecep(){
-        this.panelRecepcionista.setVisible(true);
+    public void habilitarBtnsRecepRegistros(){
+        this.panelRegistro.setVisible(true);
         this.rdBtnDisponibles.setSelected(true);
+        deshabilitarFiltros();
+    }
+    
+    public void habilitarBtnsRecepConsultas(){
+        this.panelConsultas.setVisible(true);
+        this.rdBtnTodos.setSelected(true);
     }
     
     public void setTablaHabitaciones(Object[][] listaHabitaciones){
@@ -419,21 +522,39 @@ public class VHabitaciones extends javax.swing.JPanel {
         return null;
     }
     
+    private boolean isSelected(){
+        int pos = tableHabitaciones.getSelectedRow();
+        return pos!=-1;
+    }
+    
+    private boolean isDisponible(){
+        int pos = tableHabitaciones.getSelectedRow();
+        String estado = tableHabitaciones.getValueAt(pos, 4).toString();
+        return "Disponible".equals(estado);
+    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;
+    private javax.swing.JButton btnConsultarHuesped;
     private javax.swing.JButton btnElegir;
     private javax.swing.ButtonGroup btnGroupFiltros;
-    private javax.swing.JButton btnVolver;
+    private javax.swing.JButton btnVolverVRecep;
+    private javax.swing.JButton btnVolverVRegistro;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton19;
     private javax.swing.JButton jButton20;
     private javax.swing.JButton jButton21;
     private javax.swing.JButton jButton25;
+    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> jComboBox2;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JPanel panelAdmin;
-    private javax.swing.JPanel panelRecepcionista;
+    private javax.swing.JPanel panelConsultas;
+    private javax.swing.JPanel panelRegistro;
     private javax.swing.JPanel panelTable;
     private javax.swing.JPanel panelTitulo;
     private javax.swing.JRadioButton rdBtnDisponibles;

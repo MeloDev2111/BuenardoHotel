@@ -63,6 +63,7 @@ public class HabitacionDaoMysql implements IHabitacionDao{
             st.setString(4, h.getNombreEstado());
             st.executeUpdate();//Ejectura codigo sql cuando este tiene parametros
             
+            st.close();
         } catch (Exception e) {
             System.out.println("error en registrar Habitacion");
             System.out.println(e.getMessage());

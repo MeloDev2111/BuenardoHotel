@@ -107,7 +107,7 @@ public class UsuarioDaoMysql implements IUsuarioDao{
     }
 
     @Override
-    public Usuario buscarxID(String idUsuario) {
+    public Usuario buscar(String idUsuario) {
         Usuario usuario = null;
         String sql ="SELECT * FROM Usuarios WHERE idUsuario = ?";
         try {

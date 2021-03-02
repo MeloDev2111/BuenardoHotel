@@ -284,9 +284,9 @@ public class VClientes extends javax.swing.JPanel {
     }//GEN-LAST:event_btnElegirActionPerformed
 
     private void btnVolverVRecepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverVRecepActionPerformed
-        presentador.volverVRecep();
+        presentador.volverVRegistro();
     }//GEN-LAST:event_btnVolverVRecepActionPerformed
-    
+      
     public void setPresentador(PresentadorClientes p) {
         presentador = p;
     }
@@ -296,7 +296,7 @@ public class VClientes extends javax.swing.JPanel {
         frame.setUndecorated(true);
         frame.pack();
         frame.setVisible(true);
-        frame.setSize(1000, 730);
+        frame.setSize(760, 580);
         frame.setLocationRelativeTo(null);
         presentador.establecerTablaClientes();
     }
@@ -309,6 +309,7 @@ public class VClientes extends javax.swing.JPanel {
         this.panelAdmin.setVisible(false);
         this.panelRecep.setVisible(false);
     }
+
     public void habilitarBtnsAdmin(){
         this.panelAdmin.setVisible(true);
     }
