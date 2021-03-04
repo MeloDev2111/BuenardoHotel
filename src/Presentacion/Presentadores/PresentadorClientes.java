@@ -1,9 +1,10 @@
 package Presentacion.Presentadores;
 
 import Apoyo.Formateo;
-import Negocio.Cliente;
-import Negocio.Hospedaje;
-import Negocio.LogicaClientes;
+import Modelo.Cliente;
+import Modelo.Hospedaje;
+import Modelo.LogicaClientes;
+import Presentacion.Vistas.VAgregarModificarCliente;
 import Presentacion.Vistas.VClientes;
 import Presentacion.Vistas.VRegistroEntrada;
 
@@ -14,7 +15,7 @@ public class PresentadorClientes {
     
     private Formateo format = new Formateo();
     private LogicaClientes logiClientes = new LogicaClientes();
-    private Hospedaje huesped;
+    private Hospedaje hospedaje;
     
     public PresentadorClientes(VClientes vista, Cliente cliente) {
         this.vista = vista;
@@ -23,7 +24,7 @@ public class PresentadorClientes {
     
     public PresentadorClientes(VClientes vista, Hospedaje huesped) {
         this.vista = vista;
-        this.huesped = huesped;
+        this.hospedaje = huesped;
     }
     
     public void configurarRolAdmin(){
@@ -47,28 +48,45 @@ public class PresentadorClientes {
     }
     
     public void mostrarVAgregarCliente() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        VAgregarModificarCliente vAddCliente = new VAgregarModificarCliente();
+        PAgregarModificarClientes pAddCliente = new PAgregarModificarClientes(vAddCliente);
+        vAddCliente.setPresentador(pAddCliente);
+        vAddCliente.deshabilitarBotones();
+        vAddCliente.habilitarBtnsAdminAgregar();
+        
+        vAddCliente.iniciar();
     }
 
     public void mostrarVModificarCliente() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        cliente = logiClientes.buscar(vista.getIdSeleccionado());
+        VAgregarModificarCliente vAddCli = new VAgregarModificarCliente();
+        PAgregarModificarClientes pAddCli = 
+                new PAgregarModificarClientes(vAddCli,cliente);
+        vAddCli.setPresentador(pAddCli);
+        vAddCli.deshabilitarBotones();
+        vAddCli.habilitarBtnsAdminModificar();
+        
+        vAddCli.iniciar();
+        pAddCli.cargarDatos();
     }
 
     public void EliminarCliente() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        cliente.setIdCliente(vista.getIdSeleccionado());
+        logiClientes.eliminar(cliente);
+        establecerTablaClientes();
     }
 
     public void elegirCliente() {
         cliente = logiClientes.buscar(vista.getIdSeleccionado());
         System.out.println(cliente.toString());
         
-        huesped.setCliente(cliente);
+        hospedaje.setCliente(cliente);
         volverVRegistro();
     }
 
     public void volverVRegistro() {
         VRegistroEntrada vistaReg = new VRegistroEntrada();
-        PresentadorRegistroEntrada pReg = new PresentadorRegistroEntrada(vistaReg, huesped);
+        PresentadorRegistroEntrada pReg = new PresentadorRegistroEntrada(vistaReg, hospedaje);
         vistaReg.setPresentador(pReg);
         
         vistaReg.iniciar();

@@ -1,11 +1,12 @@
 package Presentacion.Presentadores;
 
 import Apoyo.Mensajes;
-import Negocio.Hospedaje;
-import Negocio.Login.Usuario;
-import Negocio.Servicios.Habitacion;
+import Modelo.Hospedaje;
+import Modelo.Login.Usuario;
+import Modelo.Servicios.Habitacion;
 import Presentacion.Vistas.VHabitaciones;
 import Presentacion.Vistas.VRegistroEntrada;
+import Presentacion.Vistas.VRegistroReserva;
 import Presentacion.Vistas.VistaLogin;
 import Presentacion.Vistas.VistaRecepcion;
 
@@ -41,22 +42,27 @@ public class PresentadorRecepcion {
 
     public void mostrarVRegistroEntrada() {
         VRegistroEntrada vistaRegE = new VRegistroEntrada();
-        Hospedaje huesped = new Hospedaje();
-        PresentadorRegistroEntrada pRE = new PresentadorRegistroEntrada(vistaRegE, huesped);
+        Hospedaje hospedaje = new Hospedaje();
+        PresentadorRegistroEntrada pRE = new PresentadorRegistroEntrada(vistaRegE, hospedaje);
         vistaRegE.setPresentador(pRE);
         
         vistaRegE.iniciar();
     }
 
-    public void mostrarVReservar() {
-        msg.advertenciaMsg("IN PROCESS", "PRONTO!!");
+    public void mostrarVRegistroReserva() {
+        VRegistroReserva vistaRegR = new VRegistroReserva();
+        Hospedaje hospedaje = new Hospedaje();
+        PresentadorRegistroReserva pRR = new PresentadorRegistroReserva(vistaRegR, hospedaje);
+        vistaRegR.setPresentador(pRR);
+        
+        vistaRegR.iniciar();
     }
 
     public void mostrarVRegistroSalida() {
         msg.advertenciaMsg("IN PROCESS", "PRONTO!!");
     }
 
-    public void mostrarVReservaciones() {
+    public void mostrarVHospedajes() {
         msg.advertenciaMsg("IN PROCESS", "PRONTO!!");
     }
 }

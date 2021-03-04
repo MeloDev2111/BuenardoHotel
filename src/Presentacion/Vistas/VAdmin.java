@@ -192,7 +192,7 @@ public class VAdmin extends javax.swing.JPanel{
         btnVServicios.setFont(new java.awt.Font("UD Digi Kyokasho NP-B", 1, 24)); // NOI18N
         btnVServicios.setForeground(new java.awt.Color(255, 255, 255));
         btnVServicios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/clientes.png"))); // NOI18N
-        btnVServicios.setText(" Servicios");
+        btnVServicios.setText("Servicios");
         btnVServicios.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnVServicios.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -277,7 +277,7 @@ public class VAdmin extends javax.swing.JPanel{
     }//GEN-LAST:event_btnVUsuariosMouseClicked
 
     private void btnVReservacionesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVReservacionesMouseClicked
-        presentador.mostrarVReservaciones();
+        presentador.mostrarVHospedajes();
     }//GEN-LAST:event_btnVReservacionesMouseClicked
 
     private void btnVHabitacionesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVHabitacionesMouseClicked

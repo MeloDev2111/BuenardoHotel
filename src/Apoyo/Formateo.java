@@ -1,17 +1,29 @@
 package Apoyo;
 
-import Negocio.Cliente;
-import Negocio.Login.Usuario;
-import Negocio.Servicios.Habitacion;
+import Modelo.Cliente;
+import Modelo.Hospedaje;
+import Modelo.Login.Usuario;
+import Modelo.Servicios.Habitacion;
+import Modelo.Servicios.TipoHabitacion;
+import Modelo.TiposCliente;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 
 /* @author MeloDev */
 public class Formateo {
+    
+    public String Date_to_String(Date d){
+        DateFormat fechaEnString = new SimpleDateFormat("yyyy-MM-dd");
+           
+        return fechaEnString.format(d);
+    }
     
     public String DateTime_to_timeStamp(LocalDateTime fecha){
         //formato del timeStamp 2021-03-01 19:58:40
@@ -53,7 +65,39 @@ public class Formateo {
         return nowUTCsys;
     }
     
+    public Object[][] formatoJtableHospedajes(ArrayList<Hospedaje> hospedajes){
+        Object[][] H = new Object[hospedajes.size()][7];
+        
+        int i=0;
+        for (Hospedaje hos : hospedajes) {
+            H[i][0]=hos.getIdHospedaje();
+            H[i][1]=hos.getTipo().name();
+            String nombre =hos.getCliente().getApellidos();
+            if (hos.getCliente().getNombres()!=null) {
+                nombre = nombre+" "+hos.getCliente().getNombres();
+            }
+            H[i][2]=nombre;
+            H[i][3]=DateTime_to_timeStamp(hos.getfHEntrada());
+            H[i][4]= DateTime_to_timeStamp(hos.getfHSalida());           
+            H[i][5]=hos.getHabitacion().getIdHabitacion();
+            H[i][6]=hos.getUser().getIdUsuario();
+            i++;
+        }
+       
+        return H;
+    }
+
     
+    public String[] formatoJtableTiposHab(ArrayList<TipoHabitacion> tipos){
+        String[] lista = new String[tipos.size()];
+        int i=0;
+        for (TipoHabitacion t : tipos) {
+            lista[i]=t.getIdTipo()+"-"+t.getNombreTipo();
+            i++;
+        }
+        return lista;
+    }
+
     public Object[][] formatoJtableHabitaciones(ArrayList<Habitacion> habitaciones){
         Object[][] H = new Object[habitaciones.size()][5];
         
@@ -100,6 +144,16 @@ public class Formateo {
         }
        
         return C;
+    }
+
+    public String[] formatoJtableTiposCli(TiposCliente[] values) {
+        String[] tipos = new String[TiposCliente.values().length];
+        int i =0;
+        for (TiposCliente tipo : TiposCliente.values()) {
+            tipos[i]=tipo.name();
+            i++;
+        }
+        return tipos;
     }
     
 }

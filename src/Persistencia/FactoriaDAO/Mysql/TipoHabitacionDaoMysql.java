@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.util.ArrayList;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import Negocio.Servicios.TipoHabitacion;
+import Modelo.Servicios.TipoHabitacion;
 import Persistencia.FactoriaDAO.ITipoHabitacionDao;
 
 public class TipoHabitacionDaoMysql implements ITipoHabitacionDao{

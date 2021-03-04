@@ -1,9 +1,10 @@
 package Presentacion.Presentadores;
 
 import Apoyo.Formateo;
-import Negocio.Hospedaje;
-import Negocio.Servicios.Habitacion;
-import Negocio.Servicios.LogicaHabitaciones;
+import Modelo.Hospedaje;
+import Modelo.Servicios.Habitacion;
+import Modelo.Servicios.LogicaHabitaciones;
+import Presentacion.Vistas.VAgregarModificarHabitaciones;
 import Presentacion.Vistas.VHabitaciones;
 import Presentacion.Vistas.VRegistroEntrada;
 
@@ -68,6 +69,35 @@ public class PresentadorHabitacion {
         
         vistaReg.iniciar();
         this.vista.cerrar();
+    }
+
+    public void mostrarVAgregarHabitaciones() {
+        VAgregarModificarHabitaciones vAddHab = new VAgregarModificarHabitaciones();
+        PAgregarModificarHabitacion pAddHab = new PAgregarModificarHabitacion(vAddHab);
+        vAddHab.setPresentador(pAddHab);
+        vAddHab.deshabilitarBotones();
+        vAddHab.habilitarBtnsAdminAgregar();
+        
+        vAddHab.iniciar();
+    }
+
+    public void mostrarVModificarHabitacion() {
+        habitacion = logica.buscar(vista.getIdSeleccionado());
+        VAgregarModificarHabitaciones vAddHab = new VAgregarModificarHabitaciones();
+        PAgregarModificarHabitacion pAddHab = 
+                new PAgregarModificarHabitacion(vAddHab,habitacion);
+        vAddHab.setPresentador(pAddHab);
+        vAddHab.deshabilitarBotones();
+        vAddHab.habilitarBtnsAdminModificar();
+        
+        vAddHab.iniciar();
+        pAddHab.cargarDatos();
+    }
+
+    public void eliminarHabitacion() {
+        habitacion.setIdHabitacion(vista.getIdSeleccionado());
+        logica.eliminar(habitacion);
+        establecerTablaHabitaciones();
     }
     
 }

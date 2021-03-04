@@ -1,8 +1,8 @@
 package Presentacion.Presentadores;
 
 import Apoyo.Mensajes;
-import Negocio.Hospedaje;
-import Negocio.LogicaHospedajes;
+import Modelo.Hospedaje;
+import Modelo.LogicaHospedajes;
 import Presentacion.Vistas.VClientes;
 import Presentacion.Vistas.VHabitaciones;
 import Presentacion.Vistas.VRegistroEntrada;

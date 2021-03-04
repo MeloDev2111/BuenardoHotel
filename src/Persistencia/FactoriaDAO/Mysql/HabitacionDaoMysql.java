@@ -1,14 +1,11 @@
 package Persistencia.FactoriaDAO.Mysql;
 
-import Negocio.Servicios.EstadoDisponible;
-import Negocio.Servicios.EstadoOcupado;
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import Persistencia.FactoriaDAO.IHabitacionDao;
-import Negocio.Servicios.Habitacion;
-import Negocio.Servicios.TipoHabitacion;
+import Modelo.Servicios.Habitacion;
 
 public class HabitacionDaoMysql implements IHabitacionDao{
     private Connection conexion;
@@ -34,8 +31,6 @@ public class HabitacionDaoMysql implements IHabitacionDao{
                 h.setIdHabitacion(rs.getString("idHabitacion"));//parametro del nombre de la columna en la bd
                 h.setDescripcion(rs.getString("descripcion"));
                 h.setPrecio(rs.getDouble("precio"));
-                //TiposEstado Estado = TiposEstado.valueOf(rs.getString("estado"));
-                //switch(Estado) {
                 h.setEstado(rs.getString("estado"));
                 h.setTipo( daoTipo.buscar( rs.getString("idTipoHabitacion") ) );
             }
@@ -74,7 +69,7 @@ public class HabitacionDaoMysql implements IHabitacionDao{
 
     @Override
     public ArrayList<Habitacion> listado() {
-        String sql ="SELECT * FROM vistaHabitaciones";
+        String sql ="SELECT * FROM Habitaciones where activo = true";
         ArrayList<Habitacion> lista =null;
         
         TipoHabitacionDaoMysql daoTipo = new TipoHabitacionDaoMysql(conexion);
@@ -89,8 +84,6 @@ public class HabitacionDaoMysql implements IHabitacionDao{
                 h.setIdHabitacion(rs.getString("idHabitacion"));//parametro del nombre de la columna en la bd
                 h.setDescripcion(rs.getString("descripcion"));
                 h.setPrecio(rs.getDouble("precio"));
-                //TiposEstado Estado = TiposEstado.valueOf(rs.getString("estado"));
-                //switch(Estado) {
                 h.setEstado(rs.getString("estado"));
                 h.setTipo( daoTipo.buscar( rs.getString("idTipoHabitacion") ) );
                 lista.add(h);
@@ -113,54 +106,37 @@ public class HabitacionDaoMysql implements IHabitacionDao{
 
     @Override
     public Habitacion eliminar(Habitacion obj) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public ArrayList<Habitacion> filtrar(String palabraClave, String estado) {
-        String sql ="SELECT * FROM vistaHabitaciones WHERE tipo like '%"+palabraClave+"%' ";
-        if (estado!=null) {
-            sql = sql +" AND estado = '"+estado+"'";
-        }
-        ArrayList<Habitacion> lista =null;
-        
-        TipoHabitacionDaoMysql daoTipo = new TipoHabitacionDaoMysql(conexion);
+        String sql ="UPDATE Habitaciones SET activo = false WHERE idHabitacion=?";
         try {
             PreparedStatement st = this.conexion.prepareStatement(sql);
-            
-            lista = new ArrayList();
-            ResultSet rs = st.executeQuery(); //ejecutar el codigo sql ya sea ddl o dml??//ITERATOR? QUE ES ESTO? 
-
-            while (rs.next()) {
-                Habitacion h = new Habitacion();
-                h.setIdHabitacion(rs.getString("idHabitacion"));//parametro del nombre de la columna en la bd
-                h.setDescripcion(rs.getString("descripcion"));
-                h.setPrecio(rs.getDouble("precio"));
-                //TiposEstado Estado = TiposEstado.valueOf(rs.getString("estado"));
-                //switch(Estado) {
-                switch(rs.getString("estado")) {
-                    case "DISPONIBLE":
-                        h.setEstado(new EstadoDisponible(h));
-                        break;
-                    case "OCUPADO":
-                        h.setEstado(new EstadoOcupado(h));
-                        break;
-                    case "RESERVADO":
-                        h.setEstado(new EstadoOcupado(h));
-                        break;
-                }
-                h.setTipo( daoTipo.buscar( rs.getString("idTipoHabitacion") ) );
-                lista.add(h);
-            }
-            rs.close();
-            st.close();
-            
+            st.setString(1, obj.getIdHabitacion());
+            st.executeUpdate();
             
         } catch (Exception e) {
             System.out.println(e.getMessage());
         } 
         
-        return lista;
+        return obj;
+    }
+
+    @Override
+    public ArrayList<Habitacion> filtrar(String palabraClave, String estado) {
+        ArrayList<Habitacion> lista = listado();
+        ArrayList<Habitacion> listaFiltrada = new ArrayList();
+        
+        palabraClave = palabraClave.toUpperCase();
+        estado = estado.toUpperCase();
+            
+        for (Habitacion h : lista) {
+            String tipo = h.getNombreTipo().toUpperCase();
+            String estadoHab = h.getNombreEstado().toUpperCase();
+                        
+            if (tipo.contains(palabraClave) && estadoHab.contains(estado)) {
+                listaFiltrada.add(h);
+            }
+        }
+        
+        return listaFiltrada;
     }    
 
 

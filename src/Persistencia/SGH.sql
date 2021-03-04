@@ -51,7 +51,8 @@ create table Habitaciones(
     idTipoHabitacion int not null,
 	descripcion text not null,
     precio double not null,
-    estado varchar(50) not null
+    estado varchar(50) not null,
+    activo boolean not null default(true)
 );
 
 create table TiposHabitacion(
@@ -181,10 +182,7 @@ BEGIN
 END$$
 delimiter ;
 
-call registrarHospedajeAlquiler(3,1,3,6);
-call registrarHospedajeAlquiler(2,2,3,7);
-
--- registrar Reserva problemicaaaaaaaaaaas
+-- registrar Reserva
 DELIMITER $$
 CREATE procedure registrarHospedajeReserva(idCli int, idHab int, fReserva timestamp,nroDias int)
 BEGIN
@@ -194,13 +192,19 @@ BEGIN
 END$$
 delimiter ;
 
-call registrarHospedajeReserva(2,2,DATE_ADD(current_timestamp(), INTERVAL 20 DAY),3);
-
-
 insert into Usuarios(nombreCuenta,nombreUsuario,contraseña,tipoCuenta) values
 	("2-2021-02-26-00-48","Huesped por defecto","pollo","HUESPED")
 ;
+
 select * from Usuarios;
+
+call registrarHospedajeAlquiler(3,1,3,5);
+call registrarHospedajeAlquiler(2,2,3,6);
+
+call registrarHospedajeReserva(2,2,DATE_ADD(current_timestamp(), INTERVAL 20 DAY),3);
+
+
+
 
 select * FROM Habitaciones;
 
@@ -218,7 +222,7 @@ select * FROM Hospedajes;
     select *,datediff(fechaSalida,fechaEntrada) as diasEstancia from Hospedajes;
 
 
--- Procedure de calcular dias permitidos
+-- Procedure de calcular dias permitidos de una habitacion disponible
 DELIMITER $$
 create procedure getDiasDisponibles(
 IN idHab int,
@@ -242,6 +246,8 @@ select @dias;
 select * from Hospedajes;
 
 select current_timestamp();
+
+
 
 
 
@@ -329,32 +335,6 @@ drop database bffb61mrt4emysc84vyz;
 -- generar usuario si es alquiler
 -- registrar hospedaje
 -- nah mas
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 -- revisar
 
 -- este tiene mas avance - NO FUNCIONA

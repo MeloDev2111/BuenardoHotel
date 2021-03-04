@@ -2,8 +2,8 @@ package Presentacion.Presentadores;
 
 import Apoyo.Formateo;
 import Apoyo.Mensajes;
-import Negocio.Login.LogicaUsuarios;
-import Negocio.Login.Usuario;
+import Modelo.Login.LogicaUsuarios;
+import Modelo.Login.Usuario;
 import Presentacion.Vistas.VUsuarios;
 
 /* @author MeloDev */

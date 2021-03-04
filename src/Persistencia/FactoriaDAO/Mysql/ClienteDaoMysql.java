@@ -1,15 +1,15 @@
 package Persistencia.FactoriaDAO.Mysql;
 
-import Negocio.Cliente;
-import Negocio.Servicios.EstadoDisponible;
-import Negocio.Servicios.EstadoOcupado;
+import Modelo.Cliente;
+import Modelo.Servicios.EstadoDisponible;
+import Modelo.Servicios.EstadoOcupado;
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import Persistencia.FactoriaDAO.IHabitacionDao;
-import Negocio.Servicios.Habitacion;
-import Negocio.Servicios.TipoHabitacion;
+import Modelo.Servicios.Habitacion;
+import Modelo.Servicios.TipoHabitacion;
 import Persistencia.FactoriaDAO.IClienteDao;
 
 public class ClienteDaoMysql implements IClienteDao{
@@ -86,7 +86,24 @@ public class ClienteDaoMysql implements IClienteDao{
 
     @Override
     public Cliente registrar(Cliente obj) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        String sql ="INSERT INTO Clientes(tipoCliente,apellidosCliente,nombresCliente,tipoDocumento,numDocumento)"
+                + " VALUES (?,?,?,?,?)";
+        try {
+            PreparedStatement st = this.conexion.prepareStatement(sql);//Codigo sql
+            st.setString(1, obj.getTipo().name());// replace ? número 1 con el nombre
+            st.setString(2, obj.getApellidos());
+            st.setString(3, obj.getNombres());
+            st.setString(4, obj.getTipoDocumento());
+            st.setString(5, obj.getNumDocumento());
+            st.executeUpdate();//Ejectura codigo sql cuando este tiene parametros
+            
+            st.close();
+        } catch (Exception e) {
+            System.out.println("error en registrar Clientes");
+            System.out.println(e.getMessage());
+        } 
+        
+        return obj; 
     }
 
     @Override
@@ -96,7 +113,17 @@ public class ClienteDaoMysql implements IClienteDao{
 
     @Override
     public Cliente eliminar(Cliente obj) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        String sql ="UPDATE Clientes SET activo = false WHERE idCliente=?";
+        try {
+            PreparedStatement st = this.conexion.prepareStatement(sql);
+            st.setString(1, obj.getIdCliente());
+            st.executeUpdate();
+            
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        } 
+        
+        return obj;
     }
 
     @Override

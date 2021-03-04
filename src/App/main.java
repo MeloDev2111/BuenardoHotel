@@ -14,7 +14,8 @@ public class Main {
         
         //PUEDE INICIAR SESION CON LAS SIGUIENTES CUENTAS
         //USUARIO   CONTRASEÑA  ROL
-        //admin     admin       ADMINISTRADOR
+        //admin     admin       ADMINISTRADOR  --DESACTIVADO
+        //melodev   2111        ADMINISTRADOR
         //recep     recep       RECEPCIONISTA
         //huesped   huesped     Huesped
         

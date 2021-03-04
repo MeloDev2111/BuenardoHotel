@@ -2,42 +2,48 @@ package Presentacion.Presentadores;
 
 import Apoyo.Formateo;
 import Apoyo.Mensajes;
-import Negocio.Login.LogicaUsuarios;
-import Negocio.Login.Usuario;
-import Presentacion.Vistas.VUsuarios;
+import Modelo.Hospedaje;
+import Modelo.LogicaHospedajes;
+import Presentacion.Vistas.VHospedajes;
 
 /* @author MeloDev */
 public class PresentadorHospedajes {
-    private VUsuarios vista;
-    private Usuario user;
+    private VHospedajes vista;
+    private Hospedaje h;
     
     private Formateo format = new Formateo();
-    private LogicaUsuarios servicio = new LogicaUsuarios();
+    private LogicaHospedajes servicio = new LogicaHospedajes();
     private Mensajes msg = new Mensajes();
     
-    public PresentadorHospedajes(VUsuarios vista, Usuario user) {
+    public PresentadorHospedajes(VHospedajes vista, Hospedaje hos) {
         this.vista = vista;
-        this.user = user;
+        this.h = hos;
     }
    
+    public void configurarRolAdmin(){
+        establecerTablaHospedajes();
+    }
     
-    public void establecerTablaUsuarios(){
-        vista.setListaUsuarios(
-            format.formatoJtableUsuarios(
-                servicio.cargarListaUsuariosFiltrados(
-                        vista.getNombreUsuario(), vista.getFiltroSeleccionado()
+    public void configurarRolRecepConsultas(){
+        establecerTablaHospedajes();
+    }
+    
+    
+    public void establecerTablaHospedajes(){
+        vista.setListaHospedajes(
+            format.formatoJtableHospedajes(
+                servicio.cargarHospedajesFiltrados(
+                        vista.getNombreCliente(), vista.getFiltroSeleccionado()
                 )
             )
         );
     }
 
-    public void EliminarUsuarios(){
+    public void EliminarHospedaje(){
         String idSelec = vista.getIdSeleccionado();
-        if (!user.getIdUsuario().equals(idSelec) ) {
-            servicio.eliminarUsuario(idSelec);
-        }
+        h = servicio.buscar(idSelec);
         
-        msg.errorMsg("EL ID SELECCIONADO ES EL USADO ACTUALMENTE");
+        servicio.eliminarHospedaje(h);
     }
 
     public void mostrarVAgregarUsuario(){

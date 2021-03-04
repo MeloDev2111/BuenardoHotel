@@ -1,6 +1,6 @@
 package Persistencia.FactoriaDAO;
 
-import Negocio.Cliente;
+import Modelo.Cliente;
 import java.util.ArrayList;
 
 /*@author MelioDev*/

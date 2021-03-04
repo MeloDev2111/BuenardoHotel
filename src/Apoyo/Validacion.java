@@ -1,40 +1,71 @@
 package Apoyo;
 
+import java.time.LocalDateTime;
+import java.util.Date;
+
 
 public class Validacion {
     
     private Mensajes msg = new Mensajes();
     
-    public boolean isDNI(String a){
-        if (a == null || "".equals(a)) {
-            msg.errorMsg("diferente de null");
+    public boolean isDNI(String numDocumento){
+        if (numDocumento == null || "".equals(numDocumento)) {
+            msg.errorMsg("Debe ser diferente de null");
             return false;
         }
         
-        if (a.length()!=8) {
-            msg.errorMsg("8 digitos");
+        if (numDocumento.length()!=8) {
+            msg.errorMsg("Debe tener 8 digitos");
             return false;
         }
         
-        for (char c : a.toCharArray()) {
+        if (!isInteger(numDocumento)) {
+            return false;
+        }
+        
+        return true; 
+    }
+    
+    public boolean isRUC(String numDocumento) {
+        if (numDocumento == null || "".equals(numDocumento)) {
+            msg.errorMsg("Debe ser diferente de null");
+            return false;
+        }
+        
+        if (numDocumento.length()!=11) {
+            msg.errorMsg("Debe tener 11 digitos");
+            return false;
+        }
+        
+        if (!isInteger(numDocumento)) {
+            return false;
+        }
+        
+        return true; 
+    }
+    
+    
+    public boolean isInteger(String a){
+       for (char c : a.toCharArray()) {
             if (c<48 || c>57) {
-                msg.errorMsg("Digitos numericos");
+                msg.errorMsg("Debe ser solo Digitos numericos");
                 return false;
             }
-        }
-        
+        } 
+       
         return true;
     }
     
+    
     public boolean isNombre(String a){
         if (a == null || "".equals(a)) {
-            msg.errorMsg("diferente de null");
+            msg.errorMsg("Debe ser diferente de null");
             return false;
         }
         
         for (char c : a.toCharArray()) {
-            if ( (c<'A' || c>'Z' ) && (c<'a' || c>'z') && c!=' ' ) {
-                msg.errorMsg("Solo Letras");
+            if ( (c<'A' || c>'Z' ) && (c<'a' || c>'z') && c!=' ' && c!=39 && c!='.') {
+                msg.errorMsg("Debe tener Solo Letras");
                 return false;
             }
         }
@@ -144,8 +175,6 @@ public class Validacion {
         return true;
     }
     
-    
-    //VEMOS SI SE QUEDA
     public boolean isDouble(String cadena){
         double d;
         
@@ -175,6 +204,24 @@ public class Validacion {
                 msg.errorMsg("input contiene doble .");
                 return false;
             }
+        }
+        
+        return true;
+    }
+
+    public boolean isFuture(Date date) {
+        if (date.before(new Date())) {
+            msg.errorMsg("Fecha pasada");
+            return false;
+        }
+        
+        return true;
+    }
+    
+    public boolean isFuture(LocalDateTime date) {
+        if (date.isBefore( LocalDateTime.now() ) ) {
+            msg.errorMsg("Fecha pasada");
+            return false;
         }
         
         return true;

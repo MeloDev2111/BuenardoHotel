@@ -1,12 +1,12 @@
 package Persistencia.FactoriaDAO.Mysql;
 
-import Negocio.Login.TiposUsuario;
+import Modelo.Login.TiposUsuario;
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import Persistencia.FactoriaDAO.IUsuarioDao;
-import Negocio.Login.Usuario;
+import Modelo.Login.Usuario;
 
 public class UsuarioDaoMysql implements IUsuarioDao{
     private Connection conexion;
@@ -93,7 +93,7 @@ public class UsuarioDaoMysql implements IUsuarioDao{
 
     @Override
     public Usuario eliminar(Usuario usuario) {
-        String sql ="DELETE FROM Usuarios WHERE idUsuario=?";
+        String sql ="UPDATE Usuarios SET activo = false WHERE idUsuario=?";
         try {
             PreparedStatement st = this.conexion.prepareStatement(sql);
             st.setString(1, usuario.getIdUsuario());

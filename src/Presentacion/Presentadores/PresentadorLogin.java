@@ -1,8 +1,8 @@
 package Presentacion.Presentadores;
 
 import Apoyo.Mensajes;
-import Negocio.Login.LogicaLogin;
-import Negocio.Login.Usuario;
+import Modelo.Login.LogicaLogin;
+import Modelo.Login.Usuario;
 import Presentacion.Vistas.VAdmin;
 import Presentacion.Vistas.VistaLogin;
 import Presentacion.Vistas.VistaRecepcion;

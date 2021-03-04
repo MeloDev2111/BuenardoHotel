@@ -46,7 +46,7 @@ public class VistaRecepcion extends javax.swing.JPanel {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        btnVisualizarReservaciones.setText("Visualizar Reservaciones");
+        btnVisualizarReservaciones.setText("Visualizar Hospedajes");
         btnVisualizarReservaciones.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnVisualizarReservacionesActionPerformed(evt);
@@ -183,7 +183,7 @@ public class VistaRecepcion extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnVisualizarReservacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVisualizarReservacionesActionPerformed
-        presentador.mostrarVReservaciones();
+        presentador.mostrarVHospedajes();
     }//GEN-LAST:event_btnVisualizarReservacionesActionPerformed
 
     private void btnRegistroSalidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistroSalidaActionPerformed
@@ -191,7 +191,7 @@ public class VistaRecepcion extends javax.swing.JPanel {
     }//GEN-LAST:event_btnRegistroSalidaActionPerformed
 
     private void btnReservarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReservarActionPerformed
-        presentador.mostrarVReservar();
+        presentador.mostrarVRegistroReserva();
     }//GEN-LAST:event_btnReservarActionPerformed
 
     private void btnConsultarCuartosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarCuartosActionPerformed

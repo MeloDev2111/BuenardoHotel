@@ -1,6 +1,5 @@
 package Pruebas;
 
-import Negocio.*;
 import Apoyo.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;

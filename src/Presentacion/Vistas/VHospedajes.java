@@ -40,7 +40,7 @@ public class VHospedajes extends javax.swing.JPanel {
         jScrollPane3 = new javax.swing.JScrollPane();
         tableHospedajes = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
-        txtNombreUsuario = new javax.swing.JTextField();
+        txtNombreCliente = new javax.swing.JTextField();
         btnBuscar = new javax.swing.JButton();
         rdBtnTodos = new javax.swing.JRadioButton();
         rdBtnAlquiler = new javax.swing.JRadioButton();
@@ -48,8 +48,8 @@ public class VHospedajes extends javax.swing.JPanel {
         panelAdmin = new javax.swing.JPanel();
         btnAgregar = new javax.swing.JButton();
         btnModificar = new javax.swing.JButton();
-        btnHabilitar = new javax.swing.JButton();
         btnDeshabilitar = new javax.swing.JButton();
+        btnAgregar1 = new javax.swing.JButton();
         panelTitulo = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
 
@@ -84,7 +84,7 @@ public class VHospedajes extends javax.swing.JPanel {
         jScrollPane3.setViewportView(tableHospedajes);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel1.setText("Nombre");
+        jLabel1.setText("Cliente");
 
         btnBuscar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnBuscar.setText("Buscar");
@@ -114,16 +114,16 @@ public class VHospedajes extends javax.swing.JPanel {
             .addGroup(panelTableLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(panelTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 730, Short.MAX_VALUE)
+                    .addComponent(jScrollPane3)
                     .addGroup(panelTableLayout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(18, 18, 18)
-                        .addComponent(txtNombreUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtNombreCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btnBuscar)
                         .addGap(18, 18, 18)
                         .addComponent(rdBtnTodos)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
                         .addComponent(rdBtnAlquiler)
                         .addGap(28, 28, 28)
                         .addComponent(rdBtnReserva)))
@@ -139,7 +139,7 @@ public class VHospedajes extends javax.swing.JPanel {
                         .addComponent(rdBtnAlquiler))
                     .addGroup(panelTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel1)
-                        .addComponent(txtNombreUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtNombreCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(btnBuscar)
                         .addComponent(rdBtnTodos)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
@@ -150,7 +150,7 @@ public class VHospedajes extends javax.swing.JPanel {
         panelAdmin.setBackground(new java.awt.Color(255, 255, 255));
 
         btnAgregar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnAgregar.setText("Agregar");
+        btnAgregar.setText("Alquilar");
         btnAgregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAgregarActionPerformed(evt);
@@ -158,18 +158,10 @@ public class VHospedajes extends javax.swing.JPanel {
         });
 
         btnModificar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnModificar.setText("Modificar");
+        btnModificar.setText("Visualizar");
         btnModificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnModificarActionPerformed(evt);
-            }
-        });
-
-        btnHabilitar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnHabilitar.setText("Habilitar");
-        btnHabilitar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnHabilitarActionPerformed(evt);
             }
         });
 
@@ -181,6 +173,14 @@ public class VHospedajes extends javax.swing.JPanel {
             }
         });
 
+        btnAgregar1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnAgregar1.setText("Reservar");
+        btnAgregar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregar1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelAdminLayout = new javax.swing.GroupLayout(panelAdmin);
         panelAdmin.setLayout(panelAdminLayout);
         panelAdminLayout.setHorizontalGroup(
@@ -188,11 +188,11 @@ public class VHospedajes extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelAdminLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(61, 61, 61)
+                .addComponent(btnAgregar1, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(67, 67, 67)
-                .addComponent(btnHabilitar, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(58, 58, 58)
+                .addGap(61, 61, 61)
                 .addComponent(btnDeshabilitar, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -203,8 +203,8 @@ public class VHospedajes extends javax.swing.JPanel {
                 .addGroup(panelAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnHabilitar, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnDeshabilitar, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnDeshabilitar, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAgregar1, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(22, Short.MAX_VALUE))
         );
 
@@ -255,41 +255,41 @@ public class VHospedajes extends javax.swing.JPanel {
         presentador.mostrarVAgregarUsuario();
     }//GEN-LAST:event_btnAgregarActionPerformed
 
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        presentador.establecerTablaHospedajes();
+    }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void btnDeshabilitarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeshabilitarActionPerformed
+        if (tableHospedajes.getSelectedRow()!=-1) {
+            presentador.EliminarHospedaje();
+        }else{
+            msg.errorMsg("DEBE SELECCIONAR UN Hospedaje");
+        }
+    }//GEN-LAST:event_btnDeshabilitarActionPerformed
+
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
         presentador.mostrarVModificarUsuarios();
     }//GEN-LAST:event_btnModificarActionPerformed
 
-    private void btnHabilitarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHabilitarActionPerformed
-        if (tableHospedajes.getSelectedRow()!=-1) {            
-            presentador.EliminarUsuarios();
-        }else{
-            msg.errorMsg("DEBE SELECCIONAR UN USUARIO");
-        }
-    }//GEN-LAST:event_btnHabilitarActionPerformed
-
-    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        presentador.establecerTablaUsuarios();
-    }//GEN-LAST:event_btnBuscarActionPerformed
-
-    private void btnDeshabilitarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeshabilitarActionPerformed
+    private void btnAgregar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregar1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnDeshabilitarActionPerformed
+    }//GEN-LAST:event_btnAgregar1ActionPerformed
     
     public void setPresentador(PresentadorHospedajes p) {
         presentador = p;
     }
     
-    
     public void setListeners() {
         ActionListener listener = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                presentador.establecerTablaUsuarios();
+                presentador.establecerTablaHospedajes();
             }
         };
         
-        rdBtnAlquiler.addActionListener(listener);
         rdBtnTodos.addActionListener(listener);
+        rdBtnAlquiler.addActionListener(listener);
+        rdBtnReserva.addActionListener(listener);
     }
 
     public void iniciar(){
@@ -299,7 +299,7 @@ public class VHospedajes extends javax.swing.JPanel {
         frame.setVisible(true);
         frame.setSize(1000, 730);
         frame.setLocationRelativeTo(null);
-        presentador.establecerTablaUsuarios();
+        presentador.establecerTablaHospedajes();
         this.setListeners();
         this.rdBtnAlquiler.setSelected(true);
     }
@@ -309,15 +309,15 @@ public class VHospedajes extends javax.swing.JPanel {
     }
    
     public void setListaHospedajes(Object[][] lista){
-        String[] cabezera = {"idHospedaje", "tipo", "nombreCliente", "idHabitacion", "idUsuario"};
+        String[] cabezera = {"id", "tipo", "nombreCliente","FechaEntrada","FechaSalida","idHabitacion", "idUsuario"};
         this.tableHospedajes.setModel(new javax.swing.table.DefaultTableModel(
             lista,
             cabezera
         ));
     }
     
-    public String getNombreUsuario(){
-        return txtNombreUsuario.getText();
+    public String getNombreCliente(){
+        return txtNombreCliente.getText();
     }
     
     public String getIdSeleccionado(){
@@ -339,10 +339,10 @@ public class VHospedajes extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar;
+    private javax.swing.JButton btnAgregar1;
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnDeshabilitar;
     private javax.swing.ButtonGroup btnGroupFiltro;
-    private javax.swing.JButton btnHabilitar;
     private javax.swing.JButton btnModificar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel7;
@@ -354,6 +354,6 @@ public class VHospedajes extends javax.swing.JPanel {
     private javax.swing.JRadioButton rdBtnReserva;
     private javax.swing.JRadioButton rdBtnTodos;
     private javax.swing.JTable tableHospedajes;
-    private javax.swing.JTextField txtNombreUsuario;
+    private javax.swing.JTextField txtNombreCliente;
     // End of variables declaration//GEN-END:variables
 }

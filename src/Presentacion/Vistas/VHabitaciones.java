@@ -64,7 +64,7 @@ public class VHabitaciones extends javax.swing.JPanel {
         jComboBox2 = new javax.swing.JComboBox<>();
 
         setBackground(new java.awt.Color(102, 204, 255));
-        setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         panelTable.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -138,7 +138,7 @@ public class VHabitaciones extends javax.swing.JPanel {
                         .addComponent(rdBtnDisponibles)
                         .addGap(18, 18, 18)
                         .addComponent(rdBtnOcupados)
-                        .addGap(0, 14, Short.MAX_VALUE)))
+                        .addGap(0, 10, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         panelTableLayout.setVerticalGroup(
@@ -176,7 +176,7 @@ public class VHabitaciones extends javax.swing.JPanel {
         });
 
         jButton21.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton21.setText("Quitar");
+        jButton21.setText("Eliminar");
         jButton21.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton21ActionPerformed(evt);
@@ -268,7 +268,7 @@ public class VHabitaciones extends javax.swing.JPanel {
         panelRegistro.setLayout(panelRegistroLayout);
         panelRegistroLayout.setHorizontalGroup(
             panelRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 748, Short.MAX_VALUE)
+            .addGap(0, 746, Short.MAX_VALUE)
             .addGroup(panelRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(panelRegistroLayout.createSequentialGroup()
                     .addGap(128, 128, 128)
@@ -377,23 +377,23 @@ public class VHabitaciones extends javax.swing.JPanel {
                 .addComponent(panelRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(panelConsultas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton19ActionPerformed
-
+        presentador.mostrarVAgregarHabitaciones();
     }//GEN-LAST:event_jButton19ActionPerformed
 
     private void jButton20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton20ActionPerformed
-
+        if (isSelected()) {
+            presentador.mostrarVModificarHabitacion();
+        }
     }//GEN-LAST:event_jButton20ActionPerformed
 
     private void jButton21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton21ActionPerformed
         if (tableHabitaciones.getSelectedRow()!=-1) {            
-            //presentador.eliminarHabitacion();
-        }else{
-            msg.errorMsg("DEBE SELECCIONAR UN HABITACION");
+            presentador.eliminarHabitacion();
         }
     }//GEN-LAST:event_jButton21ActionPerformed
 
@@ -412,8 +412,6 @@ public class VHabitaciones extends javax.swing.JPanel {
             }else{
                 msg.advertenciaMsg("REGISTRO NO PERMITIDO","HABITACION NO DISPONIBLE");
             }
-        }else{
-            msg.errorMsg("Por favor, elija una habitacion");
         }
     }//GEN-LAST:event_btnElegirActionPerformed
 
@@ -507,11 +505,7 @@ public class VHabitaciones extends javax.swing.JPanel {
     }
     
     public String getFiltroSeleccionado(){
-        
-        if (rdBtnTodos.isSelected()) {
-            return null;
-        }
-        
+
         if (rdBtnDisponibles.isSelected()) {
             return "DISPONIBLE";
         }
@@ -519,12 +513,16 @@ public class VHabitaciones extends javax.swing.JPanel {
             return "OCUPADO";
         }
         
-        return null;
+        return "";
     }
     
     private boolean isSelected(){
         int pos = tableHabitaciones.getSelectedRow();
-        return pos!=-1;
+        if (pos==-1) {
+            msg.errorMsg("DEBE SELECCIONAR UN HABITACION");
+            return false;
+        }
+        return true;
     }
     
     private boolean isDisponible(){

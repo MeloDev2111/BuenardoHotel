@@ -1,11 +1,13 @@
 package Presentacion.Presentadores;
 
-import Negocio.Cliente;
-import Negocio.Servicios.Habitacion;
-import Negocio.Login.Usuario;
+import Modelo.Cliente;
+import Modelo.Hospedaje;
+import Modelo.Servicios.Habitacion;
+import Modelo.Login.Usuario;
 import Presentacion.Vistas.VAdmin;
 import Presentacion.Vistas.VClientes;
 import Presentacion.Vistas.VHabitaciones;
+import Presentacion.Vistas.VHospedajes;
 import Presentacion.Vistas.VUsuarios;
 import Presentacion.Vistas.VistaLogin;
 
@@ -60,8 +62,15 @@ public class PresentadorAdmin{
         this.vista.cambiarVistaActual(vistaHab);
     }
     
-    public void mostrarVReservaciones(){
+    public void mostrarVHospedajes(){
+        VHospedajes vistaHos = new VHospedajes();
+        Hospedaje hos = new Hospedaje();
+        PresentadorHospedajes pHos = new PresentadorHospedajes(vistaHos, hos);
+        vistaHos.setPresentador(pHos);
+        pHos.configurarRolAdmin();
+        vistaHos.setListeners();
         
+        this.vista.cambiarVistaActual(vistaHos);     
     }
     
     public void mostrarVComprobantes(){

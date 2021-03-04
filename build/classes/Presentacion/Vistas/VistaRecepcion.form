@@ -87,7 +87,7 @@
       <SubComponents>
         <Component class="javax.swing.JButton" name="btnVisualizarReservaciones">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Visualizar Reservaciones"/>
+            <Property name="text" type="java.lang.String" value="Visualizar Hospedajes"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnVisualizarReservacionesActionPerformed"/>

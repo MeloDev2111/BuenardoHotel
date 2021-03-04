@@ -1,12 +1,13 @@
 package Persistencia.FactoriaDAO.Mysql;
 
 import Apoyo.Formateo;
-import Negocio.Hospedaje;
+import Modelo.Hospedaje;
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import Persistencia.FactoriaDAO.IHospedajeDao;
+import java.time.LocalDateTime;
 
 public class HospedajeDaoMysql implements IHospedajeDao{
     private Connection conexion;
@@ -95,7 +96,8 @@ public class HospedajeDaoMysql implements IHospedajeDao{
             PreparedStatement st = this.conexion.prepareStatement(sql);
             st.setString(1, obj.getCliente().getIdCliente());
             st.setString(2, obj.getHabitacion().getIdHabitacion());
-            st.setString(3, format.DateTime_to_timeStamp(obj.getfHEntrada()));
+            LocalDateTime fHEntradaBD = format.formatoUTC_0( obj.getfHEntrada() );
+            st.setString(3, format.DateTime_to_timeStamp(fHEntradaBD));
             st.setInt(4, obj.getNroDiasEstancia());
 
             st.executeQuery(); 
@@ -110,6 +112,28 @@ public class HospedajeDaoMysql implements IHospedajeDao{
         return obj;
     }
     
+    @Override
+    public ArrayList<Hospedaje> filtrar(String palabraClave, String tipo) {
+        ArrayList<Hospedaje> lista = listado();
+        
+        ArrayList<Hospedaje> listaFiltrada = new ArrayList();
+        palabraClave = palabraClave.toUpperCase();
+        tipo = tipo.toUpperCase();
+            
+        for (Hospedaje h : lista) {
+            String nombreCliente = h.getCliente().getApellidos()+" "+h.getCliente().getNombres();
+            nombreCliente = nombreCliente.toUpperCase();
+            String tipoHab = h.getNombreTipo();
+            
+            if (nombreCliente.contains(palabraClave) && tipoHab.contains(tipo)) {
+                listaFiltrada.add(h);
+            }
+        }
+        
+        
+        return listaFiltrada;
+        
+    }
 
     @Override
     public ArrayList<Hospedaje> listado() {
@@ -132,8 +156,10 @@ public class HospedajeDaoMysql implements IHospedajeDao{
                 h.setTipo(rs.getString("tipo"));
                 h.setCliente( daoCli.buscar( rs.getString("idCliente") ) );
                 h.setHabitacion(daoHab.buscar( rs.getString("idHabitacion") ) );
-                h.setfHEntrada( format.timeStamp_to_DateTime( rs.getString("fechaEntrada") ) );
-                h.setfHSalida(format.timeStamp_to_DateTime( rs.getString("fechaSalida") ) );
+                LocalDateTime fHEntradaBD = format.timeStamp_to_DateTime( rs.getString("fechaEntrada") );
+                h.setfHEntrada( format.formatoUTC0_to_Actual(fHEntradaBD) );
+                LocalDateTime fHSalidaBD = format.timeStamp_to_DateTime( rs.getString("fechaSalida") );
+                h.setfHSalida( format.formatoUTC0_to_Actual( fHSalidaBD ) );
                 h.setNroDiasEstancia( rs.getInt("diasEstancia") );
                 h.setUser( daoUser.buscar( rs.getString("idUsuario") ) );
                 h.setEstado(rs.getString("estado"));
