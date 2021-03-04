@@ -37,6 +37,15 @@ public class PAgregarModificarHabitacion {
         this.vista.cerrar();
     }
     
+    public void modificarHabitacion(){
+        h.setPrecio(vista.getPrecio());
+        h.setTipo(logicaTipos.buscar(vista.getTipoSeleccionado()));
+        h.setDescripcion(vista.getDescripcion());
+        logicaHabs.modificar(h);
+        
+        this.vista.cerrar();
+    }
+    
     public void cargarDatos(){
         if (h!=null) {
             vista.setTipo(h.getTipo().getIdTipo(), h.getNombreTipo());

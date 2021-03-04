@@ -303,6 +303,10 @@ public class VClientes extends javax.swing.JPanel {
         presentador.establecerTablaClientes();
     }
     
+    public JFrame getFrame(){
+        return frame;
+    }
+    
     public void cerrar(){
         frame.dispose();
     }

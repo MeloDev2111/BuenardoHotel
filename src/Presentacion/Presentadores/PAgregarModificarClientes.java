@@ -35,6 +35,16 @@ public class PAgregarModificarClientes {
         this.vista.cerrar();
     }
     
+    public void modificarCliente() {
+        c.setApellidos(vista.getApellidos());
+        c.setNombres(vista.getNombres());
+        c.setTipo(vista.getTipoCliSeleccionado());
+        c.setTipoDocumento(vista.getTipoDocumento());
+        c.setNumDocumento(vista.getNumDocumento());
+        
+        logica.modificar(c);
+        this.vista.cerrar();
+    }
     public void cargarDatos(){
         if (c!=null) {
             vista.setTipoCliente(c.getTipo().name());
@@ -67,6 +77,6 @@ public class PAgregarModificarClientes {
                 throw new AssertionError();
         }
     }
-    
+
     
 }

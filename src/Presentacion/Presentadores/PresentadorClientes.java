@@ -53,21 +53,31 @@ public class PresentadorClientes {
         vAddCliente.setPresentador(pAddCliente);
         vAddCliente.deshabilitarBotones();
         vAddCliente.habilitarBtnsAdminAgregar();
+        pAddCliente.cargarListadoTipos();
+        pAddCliente.establecerDatosTipoDocumento();
         
         vAddCliente.iniciar();
+        
+        //terminando el Agregar
+        establecerTablaClientes();
     }
 
     public void mostrarVModificarCliente() {
         cliente = logiClientes.buscar(vista.getIdSeleccionado());
-        VAgregarModificarCliente vAddCli = new VAgregarModificarCliente();
-        PAgregarModificarClientes pAddCli = 
-                new PAgregarModificarClientes(vAddCli,cliente);
-        vAddCli.setPresentador(pAddCli);
-        vAddCli.deshabilitarBotones();
-        vAddCli.habilitarBtnsAdminModificar();
+        VAgregarModificarCliente vModCli = new VAgregarModificarCliente();
+        PAgregarModificarClientes pModCli = 
+                new PAgregarModificarClientes(vModCli,cliente);
+        vModCli.setPresentador(pModCli);
+        vModCli.deshabilitarBotones();
+        vModCli.habilitarBtnsAdminModificar();
+        pModCli.cargarListadoTipos();
+        pModCli.establecerDatosTipoDocumento();
+        pModCli.cargarDatos();
         
-        vAddCli.iniciar();
-        pAddCli.cargarDatos();
+        vModCli.iniciar();
+        
+        //terminando el modificar
+        establecerTablaClientes();
     }
 
     public void EliminarCliente() {

@@ -9,6 +9,7 @@ import Apoyo.Mensajes;
 import Apoyo.Validacion;
 import Presentacion.Presentadores.PAgregarModificarHabitacion;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.WindowConstants;
 
@@ -18,6 +19,7 @@ import javax.swing.WindowConstants;
  */
 public class VAgregarModificarHabitaciones extends javax.swing.JPanel {
     private JFrame frame = new JFrame("Registro Habitaciones");
+    private JDialog dialog;
     private PAgregarModificarHabitacion presentador;
     private Mensajes msg = new Mensajes();
     private Validacion validar = new Validacion();
@@ -155,6 +157,11 @@ public class VAgregarModificarHabitaciones extends javax.swing.JPanel {
         );
 
         btnModificarAdmin.setText("Modificar");
+        btnModificarAdmin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModificarAdminActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Cancelar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -269,20 +276,25 @@ public class VAgregarModificarHabitaciones extends javax.swing.JPanel {
             presentador.guardarHabitacion();
         }
     }//GEN-LAST:event_btnGuardarAdminActionPerformed
+
+    private void btnModificarAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarAdminActionPerformed
+        if (isValidatedForm()) {
+            presentador.modificarHabitacion();
+        }
+    }//GEN-LAST:event_btnModificarAdminActionPerformed
  
     public void setPresentador(PAgregarModificarHabitacion p) {
         presentador = p;
     }
 
-    public void iniciar(){
-        frame.setContentPane(this);
-        frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-        frame.pack();
-        frame.setVisible(true);
-        frame.setSize(400, 500);
-        frame.setLocationRelativeTo(null);
-        presentador.cargarListadoTipos();
-        presentador.establecerPrecioAutomatico();
+    public void iniciar(){       
+        dialog = new JDialog(frame,true);
+        dialog.setContentPane(this);
+        dialog.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+        dialog.pack();
+        dialog.setSize(400, 500);
+        dialog.setLocationRelativeTo(null);
+        dialog.setVisible(true);//poner despues del null para centrar
     }
     
     public void cerrar(){
@@ -364,14 +376,11 @@ public class VAgregarModificarHabitaciones extends javax.swing.JPanel {
     private javax.swing.JComboBox<String> cboxTipos;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JPanel oanelAdmin1;
     private javax.swing.JPanel panelAdminAgregar;
     private javax.swing.JPanel panelAdminModificacion;
     private javax.swing.JPanel panelDatos;

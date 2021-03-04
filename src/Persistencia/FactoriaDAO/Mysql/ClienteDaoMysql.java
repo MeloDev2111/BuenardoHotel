@@ -50,10 +50,9 @@ public class ClienteDaoMysql implements IClienteDao{
         return c;
     }
 
-    
-    @Override
-    public ArrayList<Cliente> filtrar(String palabraClave) {
-        String sql ="select * from Clientes WHERE activo = true AND numDocumento like '%"+palabraClave+"%' ";
+        @Override
+    public ArrayList<Cliente> listado() {
+        String sql ="select * from Clientes WHERE activo = true";
         ArrayList<Cliente> lista =null;
         
         try {
@@ -82,6 +81,24 @@ public class ClienteDaoMysql implements IClienteDao{
         } 
         
         return lista;
+    }
+    
+    @Override
+    public ArrayList<Cliente> filtrar(String palabraClave) {
+        ArrayList<Cliente> lista = listado();
+        ArrayList<Cliente> listaFiltrada = new ArrayList();
+        
+        palabraClave = palabraClave.toUpperCase();
+            
+        for (Cliente c : lista) {
+            String numDocumento = c.getNumDocumento();
+                        
+            if (numDocumento.contains(palabraClave)) {
+                listaFiltrada.add(c);
+            }
+        }
+        
+        return listaFiltrada;
     }    
 
     @Override
@@ -108,7 +125,24 @@ public class ClienteDaoMysql implements IClienteDao{
 
     @Override
     public Cliente actualizar(Cliente obj) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        String sql ="UPDATE Clientes SET tipoCliente = ?,apellidosCliente = ?"
+                + ",nombresCliente = ?,tipoDocumento = ?,numDocumento = ? "
+                + "WHERE idCliente = ?;";
+        try {
+            PreparedStatement st = this.conexion.prepareStatement(sql);
+            st.setString(1, obj.getTipo().name());
+            st.setString(2, obj.getApellidos());
+            st.setString(3, obj.getNombres());
+            st.setString(4, obj.getTipoDocumento());
+            st.setString(5, obj.getNumDocumento());
+            st.setString(6, obj.getIdCliente());
+            st.executeUpdate();
+            
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        } 
+        
+        return obj;
     }
 
     @Override
@@ -124,11 +158,6 @@ public class ClienteDaoMysql implements IClienteDao{
         } 
         
         return obj;
-    }
-
-    @Override
-    public ArrayList<Cliente> listado() {
-        throw new UnsupportedOperationException("Not supported yet.");
     }
 
 }

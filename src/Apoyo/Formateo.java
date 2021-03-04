@@ -136,7 +136,7 @@ public class Formateo {
         int i=0;
         for (Cliente c : clientes) {
             C[i][0]=c.getIdCliente();
-            C[i][1]=c.getApellidos()+c.getNombres();
+            C[i][1]=c.getApellidos()+" "+c.getNombres();
             C[i][2]=c.getTipo().name();
             C[i][3]=c.getTipoDocumento();
             C[i][4]=c.getNumDocumento();

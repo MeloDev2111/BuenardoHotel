@@ -80,6 +80,8 @@ INSERT INTO Habitaciones(idTipoHabitacion,descripcion,precio,estado) VALUES
     (1,"Habitacion Simple con tv, cama",70,"OCUPADO")
 ;
 
+Update Habitaciones set idTipoHabitacion = 1, descripcion= "Hab simple con baño", precio=80 where idHabitacion = 2;
+
 select * from TiposHabitacion;
 select * from Habitaciones;
 
@@ -129,6 +131,10 @@ INSERT INTO Clientes(tipoCliente,apellidosCliente,nombresCliente,tipoDocumento,n
 ;
 
 select * from Clientes where activo = true;
+select * from Clientes;
+
+
+UPDATE Clientes SET tipoCliente = "NATURAL",apellidosCliente = "ABANTO NORIEGA",nombresCliente = "MARIA",tipoDocumento = "DNI",numDocumento = "10328452" WHERE idCliente = 1;
 
 
 -- EXPANSION REGISTRO DE ENTRADA

@@ -9,6 +9,7 @@ import Apoyo.Mensajes;
 import Apoyo.Validacion;
 import Presentacion.Presentadores.PAgregarModificarClientes;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.WindowConstants;
 
@@ -18,6 +19,7 @@ import javax.swing.WindowConstants;
  */
 public class VAgregarModificarCliente extends javax.swing.JPanel {
     private JFrame frame = new JFrame("Registro Clientes");
+    private JDialog dialog;
     private PAgregarModificarClientes presentador;
     private Mensajes msg = new Mensajes();
     private Validacion validar = new Validacion();
@@ -244,6 +246,11 @@ public class VAgregarModificarCliente extends javax.swing.JPanel {
 
         btnModificarAdmin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/generar.png"))); // NOI18N
         btnModificarAdmin.setText("Modificar");
+        btnModificarAdmin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModificarAdminActionPerformed(evt);
+            }
+        });
 
         btncancelarModif.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/delete.png"))); // NOI18N
         btncancelarModif.setText("Cancelar");
@@ -410,24 +417,31 @@ public class VAgregarModificarCliente extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnGuardarAdminActionPerformed
 
+    private void btnModificarAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarAdminActionPerformed
+        if (isValidatedForm()) {
+            presentador.modificarCliente();
+        }
+    }//GEN-LAST:event_btnModificarAdminActionPerformed
+
     
     public void setPresentador(PAgregarModificarClientes p) {
         presentador = p;
     }
 
-    public void iniciar(){
-        frame.setContentPane(this);
-        frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-        frame.pack();
-        frame.setVisible(true);
-        frame.setSize(400, 500);
-        frame.setLocationRelativeTo(null);
-        presentador.cargarListadoTipos();
-        presentador.establecerDatosTipoDocumento();
+    public void iniciar(){       
+//Llamo antes a las accioens del presentador pq el dialog pausa todo
+        dialog = new JDialog(frame,true);
+        dialog.setContentPane(this);
+        dialog.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+        dialog.pack();
+        dialog.setSize(400, 500);
+        dialog.setLocationRelativeTo(null);
+        dialog.setVisible(true);//poner despues del null para centrar
     }
     
     public void cerrar(){
         frame.dispose();
+        dialog.dispose();
     }
     
     public void deshabilitarBotones(){

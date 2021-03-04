@@ -23,6 +23,10 @@ public class LogicaHabitaciones implements IDBAccess{
     public void eliminar(Habitacion habitacion) {
         dao.eliminar(habitacion);
     }
+
+    public void modificar(Habitacion h) {
+        dao.actualizar(h);
+    }
    
     
 }

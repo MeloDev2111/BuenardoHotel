@@ -23,5 +23,9 @@ public class LogicaClientes implements IDBAccess{
     public void eliminar(Cliente cliente) {
         dao.eliminar(cliente);
     }
+
+    public void modificar(Cliente c) {
+        dao.actualizar(c);
+    }
     
 }

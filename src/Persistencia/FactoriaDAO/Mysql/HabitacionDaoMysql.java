@@ -101,7 +101,22 @@ public class HabitacionDaoMysql implements IHabitacionDao{
 
     @Override
     public Habitacion actualizar(Habitacion obj) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String sql ="Update Habitaciones set "
+                + "idTipoHabitacion = ?, descripcion= ?, precio=? "
+                + "where idHabitacion = ?";
+        try {
+            PreparedStatement st = this.conexion.prepareStatement(sql);
+            st.setString(1, obj.getTipo().getIdTipo());
+            st.setString(2, obj.getDescripcion());
+            st.setString(3, ""+obj.getPrecio());
+            st.setString(4, obj.getIdHabitacion());
+            st.executeUpdate();
+            
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        } 
+        
+        return obj;
     }
 
     @Override

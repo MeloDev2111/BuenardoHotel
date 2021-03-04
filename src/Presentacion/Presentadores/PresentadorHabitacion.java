@@ -77,8 +77,12 @@ public class PresentadorHabitacion {
         vAddHab.setPresentador(pAddHab);
         vAddHab.deshabilitarBotones();
         vAddHab.habilitarBtnsAdminAgregar();
+        pAddHab.cargarListadoTipos();
+        pAddHab.establecerPrecioAutomatico();
         
         vAddHab.iniciar();
+        //terminando el registro
+        establecerTablaHabitaciones();
     }
 
     public void mostrarVModificarHabitacion() {
@@ -89,9 +93,13 @@ public class PresentadorHabitacion {
         vAddHab.setPresentador(pAddHab);
         vAddHab.deshabilitarBotones();
         vAddHab.habilitarBtnsAdminModificar();
+        pAddHab.cargarListadoTipos();
+        pAddHab.establecerPrecioAutomatico();
         
-        vAddHab.iniciar();
         pAddHab.cargarDatos();
+        vAddHab.iniciar();
+        //terminando el registro
+        establecerTablaHabitaciones();
     }
 
     public void eliminarHabitacion() {
