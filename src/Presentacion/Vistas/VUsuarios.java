@@ -315,7 +315,7 @@ public class VUsuarios extends javax.swing.JPanel {
     
     public String getIdSeleccionado(){
         int pos = tableUsuarios.getSelectedRow();
-        return tableUsuarios.getValueAt(pos, 1).toString();
+        return tableUsuarios.getValueAt(pos, 0).toString();
     }
     
     public Boolean getFiltroSeleccionado(){

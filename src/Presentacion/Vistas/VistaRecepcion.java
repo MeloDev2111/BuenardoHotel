@@ -9,6 +9,7 @@ import Apoyo.Mensajes;
 import Presentacion.Presentadores.PresentadorRecepcion;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.WindowConstants;
 
 /**
  *
@@ -217,6 +218,7 @@ public class VistaRecepcion extends javax.swing.JPanel {
     public void iniciar(){
         frame.setContentPane(this);
         frame.setUndecorated(true);
+        frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
         frame.setSize(800,510);

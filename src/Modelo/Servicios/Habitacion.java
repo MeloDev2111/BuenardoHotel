@@ -30,8 +30,12 @@ public class Habitacion {
         }
     }
     
-    public void agregarHuesped(Hospedaje h) {
+    public void agregarAlquiler(Hospedaje h) {
         estado.agregarAlquiler(h);
+    }
+    
+    public void agregarReserva(Hospedaje h) {
+        estado.agregarReserva(h);
     }
 
     public void desalojarHuesped() {

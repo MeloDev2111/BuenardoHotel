@@ -1,14 +1,18 @@
 package Persistencia.FactoriaDAO.Mysql;
 
+import Apoyo.Formateo;
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import Persistencia.FactoriaDAO.IHabitacionDao;
 import Modelo.Servicios.Habitacion;
+import java.time.LocalDateTime;
 
 public class HabitacionDaoMysql implements IHabitacionDao{
     private Connection conexion;
+    
+    private Formateo format = new Formateo();
 
     public HabitacionDaoMysql(Connection con) {
         conexion=con;
@@ -153,6 +157,33 @@ public class HabitacionDaoMysql implements IHabitacionDao{
         
         return listaFiltrada;
     }    
+
+    @Override
+    public String consultarEstado(String idHabitacion, LocalDateTime fecha) {
+        String sql ="call consultarEstado(?,?)";
+        LocalDateTime fechaUTC0 = format.formatoUTC_0( fecha );
+        String estado ="";
+        
+        HospedajeDaoMysql daoHosp = new HospedajeDaoMysql(conexion);
+        try {
+            PreparedStatement st = this.conexion.prepareStatement(sql);
+            st.setString(1, idHabitacion);
+            st.setString(2, format.DateTime_to_timeStamp(fechaUTC0));
+            ResultSet rs = st.executeQuery(); //ejecutar el codigo sql ya sea ddl o dml??//ITERATOR? QUE ES ESTO? 
+            
+            while (rs.next()) {
+                estado = rs.getString("estado");
+            }
+            rs.close();
+            st.close();
+            
+            
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        } 
+        return estado;
+    }
+
 
 
 }

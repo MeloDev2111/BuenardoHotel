@@ -346,6 +346,11 @@ public class VRegistroEntrada extends javax.swing.JPanel {
         });
 
         jButton2.setText("Añadir");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel8.setText("Documento:");
@@ -507,6 +512,10 @@ public class VRegistroEntrada extends javax.swing.JPanel {
     private void txtDocumentoClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDocumentoClienteActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtDocumentoClienteActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        presentador.mostrarVAgregarCliente();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     public void setPresentador(PresentadorRegistroEntrada p) {
         presentador = p;

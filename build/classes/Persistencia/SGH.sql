@@ -172,11 +172,40 @@ create table Hospedajes(
     estado Enum('ACTIVO', 'BAJA') not null
 );
 
+alter table Hospedajes add constraint 
+foreign key(idCliente) references Clientes(idCliente)
+on update cascade on delete no action;  
 
--- FALTAN LAS RELACIONES DE HOSPEDAJE
+alter table Hospedajes add constraint 
+foreign key(idHabitacion) references Habitaciones(idHabitacion)
+on update cascade on delete no action;  
 
+alter table Hospedajes add constraint 
+foreign key(idUsuario) references Usuarios(idUsuario)
+on update cascade on delete set null;  
 
+-- ACA MODIFICAR LA VISTA PARA QUE TE MUESTRE LAS FECHAS EN UTC -5
+create view vistaHospedajesHorarioPeru as
+select
+	h.idHospedaje,
+    h.tipo as "Tipo Hospedaje",
+    h.idCliente,
+    c.apellidosCliente,
+    h.idHabitacion,
+    t.tipo as "Tipo Habtacion",
+    hab.precio,
+    date_sub(h.fechaEntrada, INTERVAL 5 hour) as "fechaEntrada",
+    date_sub(h.fechaSalida, INTERVAL 5 hour) as "fechaSalida",
+    datediff(fechaSalida,fechaEntrada) as diasEstancia,
+    h.idUsuario,
+    h.estado
+from Hospedajes h
+natural join Clientes c
+inner join Habitaciones hab on hab.idHabitacion = h.idHabitacion
+inner join TiposHabitacion t on t.idTipoHabitacion = hab.idTipoHabitacion
+;
 
+select * from vistaHospedajesHorarioPeru;
 -- registrar Alquiler
 DELIMITER $$
 CREATE procedure registrarHospedajeAlquiler(idCli int, idHab int, nroDias int, idUser int)
@@ -216,17 +245,7 @@ select * FROM Habitaciones;
 
 select * FROM Hospedajes;
 
-
--- calcular dias permitidos
-	select
-		datediff(fechaSalida,fechaEntrada) as diasEstancia,
-        datediff(fechaEntrada,current_timestamp()) as diasdispo
-    from Hospedajes
-    where idHabitacion = 1 AND fechaEntrada>=current_timestamp() AND estado = 'ACTIVO'
-    limit 1
-    ;
-    select *,datediff(fechaSalida,fechaEntrada) as diasEstancia from Hospedajes;
-
+select *,datediff(fechaSalida,fechaEntrada) as diasEstancia from Hospedajes;
 
 -- Procedure de calcular dias permitidos de una habitacion disponible
 DELIMITER $$
@@ -254,24 +273,34 @@ select * from Hospedajes;
 select current_timestamp();
 
 
-
-
-
--- INTENTADO OBTENER LOS ESTADOS FUTUROS
-select 
-	*,
-    call getDiasDisponibles(1,@dias),
-    case 
-		when @dias is not null
-        then
-			'DISPONIBLE'
-	end as 'Estado Futuro'
-from Habitaciones;
-
-
--- uso de cursores a ver que pedo
+-- Procedure de calcular dias permitidos de una habitacion en el futuro
 DELIMITER $$
-create procedure recorridoConCursor()
+create procedure getDiasReservables(
+IN idHab int,
+IN fReserva timestamp,
+OUT diasDispo int
+)
+begin
+	DECLARE dias int default 0;
+	select
+		datediff(fechaEntrada,fReserva) INTO dias
+    from Hospedajes
+    where idHabitacion = idHab AND fechaEntrada>=fReserva AND tipo='RESERVA' AND estado = 'ACTIVO'
+    limit 1;
+    
+    set diasDispo = dias;
+end$$
+delimiter ;
+
+call getDiasReservables(2,DATE_ADD(current_timestamp(), INTERVAL 12 DAY),@dias);
+select @dias;
+
+select * from Hospedajes;
+
+
+-- uso de cursores
+DELIMITER $$
+create procedure habilitarAllHabitaciones()
 begin
 	-- Declaración de variables
 	DECLARE habID int default 0;
@@ -293,11 +322,9 @@ begin
         IF fin=1 THEN LEAVE loop1;
 		END IF;
         
-		call modificarEstado(habID, 'OCUPADO');
-			
+		call modificarEstado(habID, 'DISPONIBLE');
 		-- Si el cursor se quedó sin elementos,
 		-- entonces nos salimos del bucle
-		
     
 	END LOOP loop1;
     
@@ -306,24 +333,95 @@ begin
 end$$
 delimiter ;
 
-call recorridoConCursor();
+call habilitarAllHabitaciones();
 -- drop procedure recorridoConCursor;
 
-select * from Habitaciones;
 call modificarEstado(1, 'DISPONIBLE');
 call modificarEstado(2, 'DISPONIBLE');
 select * from Habitaciones;
 
 
--- ME DEVUELVE EL HOSPEDAJE ACTIVO EN UNA DETERMINADA FECHA
+-- ME DEVUELVE LOS HOSPEDAJE ACTIVO EN UNA DETERMINADA FECHA
 select
-	*,
-    'Reservado' estadoFuturo
+	*
 from Habitaciones h, (select * from Hospedajes) futuro
 where h.idHabitacion = futuro.idHabitacion AND futuro.estado='ACTIVO'
-AND futuro.fechaEntrada<=DATE_ADD(current_timestamp(), INTERVAL 5 DAY) AND futuro.fechaSalida>=DATE_ADD(current_timestamp(), INTERVAL 5 DAY)
-AND h.idHabitacion = 2
+AND futuro.fechaEntrada<=DATE_ADD(current_timestamp(), INTERVAL 1 DAY) AND futuro.fechaSalida>=DATE_ADD(current_timestamp(), INTERVAL 1 DAY)
+-- AND h.idHabitacion = 2
 ;
+
+
+-- Consultar EL ESTADO (OCUPADO, RESERVADO, DISPONIBLE) DE UNA HABITACION
+DELIMITER $$
+create procedure consultarEstado(
+IN idHab int,
+IN ahora timestamp
+)
+proceso: begin
+	-- Declaración de variables
+    DECLARE _tipo Enum('ALQUILER', 'RESERVA');
+	DECLARE _habID int default 0;
+    DECLARE _fechaEntrada timestamp;
+    DECLARE _fechaSalida timestamp;
+    DECLARE _idUsuario int;
+    
+    DECLARE fin INTEGER DEFAULT 0;
+    -- Definicion del cursor
+    DECLARE c1 CURSOR FOR SELECT tipo,idHabitacion,fechaEntrada,fechaSalida,idUsuario FROM Hospedajes where estado = 'ACTIVO' AND idHabitacion=idHab order by fechaEntrada asc ;
+    -- Declaración de un manejador de error tipo NOT FOUND
+	DECLARE CONTINUE HANDLER FOR NOT FOUND SET fin = 1;
+
+    -- Abrimos el cursor
+    OPEN c1;
+	-- Comenzamos nuestro bucle de lectura
+    loop1: LOOP
+		-- Obtenemos la primera fila en la variables correspondientes
+		FETCH c1 INTO _tipo,_habID,_fechaEntrada,_fechaSalida,_idUsuario;
+        
+        -- si no tiene ningun registro
+        IF fin=1 THEN 
+			select idHab as "idHabitacion","DISPONIBLE" as "estado";
+            LEAVE loop1;
+		END IF;
+        
+        -- Aqui haremos la magia
+        
+        if ahora>_fechaEntrada then
+			if ahora<=_fechaSalida then
+				select _habID as "idHabitacion" ,"OCUPADO" as "estado";
+                LEAVE loop1;
+            end if;
+            -- si se va al else
+            -- "Siguiente Hospedaje proximo"
+		else
+			if ahora=_fechaEntrada then
+				if _tipo = "ALQUILER" then
+					select _habID as "idHabitacion","OCUPADO" as "estado";
+                else
+					select _habID as "idHabitacion","RESERVADO" as "estado";
+                end if;
+				leave loop1;
+            end if;
+            select _habID as "idHabitacion","DISPONIBLE" as "estado";
+            leave loop1;
+        end if;
+		-- Si el cursor se quedó sin elementos,
+		-- entonces nos salimos del bucle
+	END LOOP loop1;
+    
+	-- Cerramos el cursor
+	CLOSE c1;
+end$$
+delimiter ;
+
+call consultarEstado(2, DATE_ADD(current_timestamp(), INTERVAL 20 DAY));
+
+select * from Hospedajes where idHabitacion=2 AND estado="ACTIVO" order by fechaEntrada asc;
+select * from Hospedajes;
+select * from Usuarios;
+
+
+
 
 
 
@@ -342,22 +440,3 @@ drop database bffb61mrt4emysc84vyz;
 -- registrar hospedaje
 -- nah mas
 -- revisar
-
--- este tiene mas avance - NO FUNCIONA
-DELIMITER $$
-CREATE procedure validacionHospedajes()
-BEGIN
-	select 
-		case
-			when fechaEntrada >= fechaSalida
-            THEN 
-				modificarEstado(idHabitacion, 'DISPONIBLE') + deshabilitarUsuario(idUsuario)
-        end
-        
-    from Hospedajes h;
-END$$
-delimiter ;
-
-call validacionHospedajes();
-
--- ------------------------

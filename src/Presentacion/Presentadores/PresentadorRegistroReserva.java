@@ -3,6 +3,7 @@ package Presentacion.Presentadores;
 import Apoyo.Mensajes;
 import Modelo.Hospedaje;
 import Modelo.LogicaHospedajes;
+import Presentacion.Vistas.VAgregarModificarCliente;
 import Presentacion.Vistas.VClientes;
 import Presentacion.Vistas.VHabitaciones;
 import Presentacion.Vistas.VRegistroEntrada;
@@ -14,7 +15,7 @@ public class PresentadorRegistroReserva {
     private Hospedaje hospedaje;
     
     private Mensajes msg = new Mensajes();
-    
+    private LogicaHospedajes logiHosp = new LogicaHospedajes();
     public PresentadorRegistroReserva(VRegistroReserva vista, Hospedaje hospedaje) {
         this.vista = vista;
         this.hospedaje = hospedaje;
@@ -38,20 +39,23 @@ public class PresentadorRegistroReserva {
             String desc = hospedaje.getHabitacion().getDescripcion();
             
             vista.setInfoHabitacion(tipo,precio,desc);
-        }
-        
-        //calcular dias en determinada fecha
-        //            LogicaHospedajes logiHosp = new LogicaHospedajes();
-//            String id = hospedaje.getHabitacion().getIdHabitacion();
-//            vista.setDiasElegibles(logiHosp.getNroDiasDisponibles(id));
+                    //calcular dias en determinada fecha
+            String id = hospedaje.getHabitacion().getIdHabitacion();
+            
+            vista.setFechaReserva(hospedaje.getfHEntrada());
+            
+            vista.setDiasElegibles(
+                logiHosp.getNroDiasReservables( id, vista.getFechaReserva() )
+            );
 
+        }
     }
 
     public void mostrarVClientes() {
         VClientes vistaCli = new VClientes();
         PresentadorClientes pCli = new PresentadorClientes(vistaCli, hospedaje);
         vistaCli.setPresentador(pCli);
-        pCli.configurarRolRecep();
+        pCli.configurarRolRecepRR();
         
         vistaCli.iniciar();
         
@@ -60,40 +64,52 @@ public class PresentadorRegistroReserva {
         //this.vista.cambiarVistaActual(vistaCli);
     }
 
-    public boolean mostrarVHabitaciones() {
-        if (true) {
-            msg.errorMsg("FECHA NO SELECCIONADA");
-            return false;
-        }
+    public void mostrarVHabitaciones() {   
         
+        hospedaje.setfHEntrada(this.vista.getFechaReserva());
         VHabitaciones vistaHab = new VHabitaciones();
         PresentadorHabitacion pHab = new PresentadorHabitacion(vistaHab, hospedaje);
         vistaHab.setPresentador(pHab);
-        pHab.configurarRolRecepRegistros();
+        vistaHab.setFechaReserva(hospedaje.getfHEntrada());
+        
+        pHab.configurarRolRecepRegistroReserva();
         //Pasarle la fecha seleccionada
+        
+        vistaHab.setFechaReserva( hospedaje.getfHEntrada() );
         vistaHab.iniciar();
         
         this.vista.cerrar();
-        return true;
         //this.vista.cambiarVistaActual(vistaHab);
     }
 
     public boolean registrar() {
-//        if (hospedaje.getCliente()==null) {
-//            msg.errorMsg("CLIENTE NO SELECCIONADO");
-//            return false;
-//        }
-//        
-//        if (hospedaje.getHabitacion()==null) {
-//            msg.errorMsg("HABITACION NO SELECCIONADA");
-//            return false;
-//        }
+        if (hospedaje.getCliente()==null) {
+            msg.errorMsg("CLIENTE NO SELECCIONADO");
+            return false;
+        }
         
-        System.out.println(vista.getFechaReserva().toString());
+        if (hospedaje.getHabitacion()==null) {
+            msg.errorMsg("HABITACION NO SELECCIONADA");
+            return false;
+        }
         
-//        hospedaje.setNroDiasEstancia(vista.getNumDiasElegidos());
-//        hospedaje.getHabitacion().agregarHuesped(hospedaje);
+        hospedaje.setNroDiasEstancia(vista.getNumDiasElegidos());
+        System.out.println(hospedaje.toString());
+        
+        hospedaje.getHabitacion().agregarReserva(hospedaje);
         return true;
+    }
+
+    public void mostrarVAgregarCliente() {
+        VAgregarModificarCliente vAddCliente = new VAgregarModificarCliente();
+        PAgregarModificarClientes pAddCliente = new PAgregarModificarClientes(vAddCliente);
+        vAddCliente.setPresentador(pAddCliente);
+        vAddCliente.deshabilitarBotones();
+        vAddCliente.habilitarBtnsAdminAgregar();
+        pAddCliente.cargarListadoTipos();
+        pAddCliente.establecerDatosTipoDocumento();
+        
+        vAddCliente.iniciar();
     }
 
 }

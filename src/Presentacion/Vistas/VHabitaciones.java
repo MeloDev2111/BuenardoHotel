@@ -5,10 +5,14 @@
  */
 package Presentacion.Vistas;
 
+import Apoyo.Formateo;
 import Apoyo.Mensajes;
+import Apoyo.Validacion;
 import Presentacion.Presentadores.PresentadorHabitacion;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.LocalDateTime;
+import java.util.Date;
 import javax.swing.JFrame;
 
 /**
@@ -19,6 +23,8 @@ public class VHabitaciones extends javax.swing.JPanel {
     private JFrame frame = new JFrame("VAdmin");
     private PresentadorHabitacion presentador;
     private Mensajes msg = new Mensajes();
+    private Formateo format = new Formateo();
+    private Validacion validar = new Validacion();
     /**
      * Creates new form VHabitaciones
      */
@@ -49,19 +55,20 @@ public class VHabitaciones extends javax.swing.JPanel {
         jButton19 = new javax.swing.JButton();
         jButton20 = new javax.swing.JButton();
         jButton21 = new javax.swing.JButton();
-        jButton25 = new javax.swing.JButton();
         panelTitulo = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
-        panelRegistro = new javax.swing.JPanel();
-        btnElegir = new javax.swing.JButton();
-        btnVolverVRegistro = new javax.swing.JButton();
+        panelRegistroEntrada = new javax.swing.JPanel();
+        btnElegirRE = new javax.swing.JButton();
+        btnVolverRE = new javax.swing.JButton();
         panelConsultas = new javax.swing.JPanel();
-        btnConsultarHuesped = new javax.swing.JButton();
         btnVolverVRecep = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        dateReserva = new com.toedter.calendar.JDateChooser();
+        cboxHora = new javax.swing.JComboBox<>();
+        cboxMinuto = new javax.swing.JComboBox<>();
+        panelRegistroReserva = new javax.swing.JPanel();
+        btnElegirRR = new javax.swing.JButton();
+        btnVolverRR = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(102, 204, 255));
         setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -138,7 +145,7 @@ public class VHabitaciones extends javax.swing.JPanel {
                         .addComponent(rdBtnDisponibles)
                         .addGap(18, 18, 18)
                         .addComponent(rdBtnOcupados)
-                        .addGap(0, 10, Short.MAX_VALUE)))
+                        .addGap(0, 14, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         panelTableLayout.setVerticalGroup(
@@ -183,14 +190,6 @@ public class VHabitaciones extends javax.swing.JPanel {
             }
         });
 
-        jButton25.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton25.setText("Ver Huesped");
-        jButton25.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton25ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout panelAdminLayout = new javax.swing.GroupLayout(panelAdmin);
         panelAdmin.setLayout(panelAdminLayout);
         panelAdminLayout.setHorizontalGroup(
@@ -198,30 +197,27 @@ public class VHabitaciones extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelAdminLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jButton19, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(51, 51, 51)
+                .addGap(144, 144, 144)
                 .addComponent(jButton20, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(54, 54, 54)
-                .addComponent(jButton21, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton25, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(jButton21, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(23, 23, 23))
         );
 
-        panelAdminLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jButton19, jButton20, jButton21, jButton25});
+        panelAdminLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jButton19, jButton20, jButton21});
 
         panelAdminLayout.setVerticalGroup(
             panelAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelAdminLayout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addGroup(panelAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton25, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton19, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton20, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton21, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(22, Short.MAX_VALUE))
         );
 
-        panelAdminLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jButton19, jButton20, jButton21, jButton25});
+        panelAdminLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jButton19, jButton20, jButton21});
 
         panelTitulo.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -246,58 +242,50 @@ public class VHabitaciones extends javax.swing.JPanel {
                 .addContainerGap(26, Short.MAX_VALUE))
         );
 
-        panelRegistro.setBackground(new java.awt.Color(255, 255, 255));
+        panelRegistroEntrada.setBackground(new java.awt.Color(255, 255, 255));
 
-        btnElegir.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnElegir.setText("Elegir");
-        btnElegir.addActionListener(new java.awt.event.ActionListener() {
+        btnElegirRE.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnElegirRE.setText("Elegir");
+        btnElegirRE.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnElegirActionPerformed(evt);
+                btnElegirREActionPerformed(evt);
             }
         });
 
-        btnVolverVRegistro.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnVolverVRegistro.setText("Volver");
-        btnVolverVRegistro.addActionListener(new java.awt.event.ActionListener() {
+        btnVolverRE.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnVolverRE.setText("Volver");
+        btnVolverRE.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnVolverVRegistroActionPerformed(evt);
+                btnVolverREActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout panelRegistroLayout = new javax.swing.GroupLayout(panelRegistro);
-        panelRegistro.setLayout(panelRegistroLayout);
-        panelRegistroLayout.setHorizontalGroup(
-            panelRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 746, Short.MAX_VALUE)
-            .addGroup(panelRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(panelRegistroLayout.createSequentialGroup()
+        javax.swing.GroupLayout panelRegistroEntradaLayout = new javax.swing.GroupLayout(panelRegistroEntrada);
+        panelRegistroEntrada.setLayout(panelRegistroEntradaLayout);
+        panelRegistroEntradaLayout.setHorizontalGroup(
+            panelRegistroEntradaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 750, Short.MAX_VALUE)
+            .addGroup(panelRegistroEntradaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panelRegistroEntradaLayout.createSequentialGroup()
                     .addGap(128, 128, 128)
-                    .addComponent(btnElegir, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnElegirRE, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(231, 231, 231)
-                    .addComponent(btnVolverVRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnVolverRE, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addContainerGap(128, Short.MAX_VALUE)))
         );
-        panelRegistroLayout.setVerticalGroup(
-            panelRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-            .addGroup(panelRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(panelRegistroLayout.createSequentialGroup()
+        panelRegistroEntradaLayout.setVerticalGroup(
+            panelRegistroEntradaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 122, Short.MAX_VALUE)
+            .addGroup(panelRegistroEntradaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panelRegistroEntradaLayout.createSequentialGroup()
                     .addGap(22, 22, 22)
-                    .addGroup(panelRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btnElegir, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnVolverVRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelRegistroEntradaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnElegirRE, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnVolverRE, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addContainerGap(23, Short.MAX_VALUE)))
         );
 
         panelConsultas.setBackground(new java.awt.Color(255, 255, 255));
-
-        btnConsultarHuesped.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnConsultarHuesped.setText("Ver Huesped");
-        btnConsultarHuesped.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnConsultarHuespedActionPerformed(evt);
-            }
-        });
 
         btnVolverVRecep.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnVolverVRecep.setText("Volver");
@@ -309,12 +297,17 @@ public class VHabitaciones extends javax.swing.JPanel {
 
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton1.setText("Consultar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
-        jComboBox1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23" }));
+        cboxHora.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        cboxHora.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23" }));
 
-        jComboBox2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
+        cboxMinuto.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        cboxMinuto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
 
         javax.swing.GroupLayout panelConsultasLayout = new javax.swing.GroupLayout(panelConsultas);
         panelConsultas.setLayout(panelConsultasLayout);
@@ -322,17 +315,15 @@ public class VHabitaciones extends javax.swing.JPanel {
             panelConsultasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelConsultasLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(14, 14, 14)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(dateReserva, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(cboxHora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(btnConsultarHuesped, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnVolverVRecep, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cboxMinuto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnVolverVRecep, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         panelConsultasLayout.setVerticalGroup(
@@ -343,17 +334,59 @@ public class VHabitaciones extends javax.swing.JPanel {
                         .addGap(20, 20, 20)
                         .addGroup(panelConsultasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnVolverVRecep, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnConsultarHuesped, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(cboxHora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cboxMinuto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(panelConsultasLayout.createSequentialGroup()
                         .addGap(32, 32, 32)
-                        .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(dateReserva, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(25, Short.MAX_VALUE))
         );
 
-        panelConsultasLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnConsultarHuesped, btnVolverVRecep, jButton1});
+        panelConsultasLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnVolverVRecep, jButton1});
+
+        panelRegistroReserva.setBackground(new java.awt.Color(255, 255, 255));
+
+        btnElegirRR.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnElegirRR.setText("Elegir");
+        btnElegirRR.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnElegirRRActionPerformed(evt);
+            }
+        });
+
+        btnVolverRR.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnVolverRR.setText("Volver");
+        btnVolverRR.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVolverRRActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout panelRegistroReservaLayout = new javax.swing.GroupLayout(panelRegistroReserva);
+        panelRegistroReserva.setLayout(panelRegistroReservaLayout);
+        panelRegistroReservaLayout.setHorizontalGroup(
+            panelRegistroReservaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 750, Short.MAX_VALUE)
+            .addGroup(panelRegistroReservaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panelRegistroReservaLayout.createSequentialGroup()
+                    .addGap(128, 128, 128)
+                    .addComponent(btnElegirRR, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(231, 231, 231)
+                    .addComponent(btnVolverRR, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(128, Short.MAX_VALUE)))
+        );
+        panelRegistroReservaLayout.setVerticalGroup(
+            panelRegistroReservaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+            .addGroup(panelRegistroReservaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panelRegistroReservaLayout.createSequentialGroup()
+                    .addGap(22, 22, 22)
+                    .addGroup(panelRegistroReservaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnElegirRR, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnVolverRR, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addContainerGap(23, Short.MAX_VALUE)))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -361,9 +394,10 @@ public class VHabitaciones extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(panelAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(panelTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(panelRegistro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(panelRegistroEntrada, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(panelTable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(panelConsultas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(panelRegistroReserva, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -374,10 +408,12 @@ public class VHabitaciones extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(panelAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(panelRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(panelRegistroEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(panelConsultas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(panelRegistroReserva, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -397,35 +433,47 @@ public class VHabitaciones extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_jButton21ActionPerformed
 
-    private void jButton25ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton25ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton25ActionPerformed
-
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         presentador.establecerTablaHabitaciones();
     }//GEN-LAST:event_btnBuscarActionPerformed
 
-    private void btnElegirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnElegirActionPerformed
+    private void btnElegirREActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnElegirREActionPerformed
         if (isSelected()) {
             if (isDisponible()) {
-                presentador.elegirHabitacion();
+                presentador.elegirHabitacionRE();
             }else{
                 msg.advertenciaMsg("REGISTRO NO PERMITIDO","HABITACION NO DISPONIBLE");
             }
         }
-    }//GEN-LAST:event_btnElegirActionPerformed
+    }//GEN-LAST:event_btnElegirREActionPerformed
 
-    private void btnVolverVRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverVRegistroActionPerformed
-        presentador.VolverVRegistro();
-    }//GEN-LAST:event_btnVolverVRegistroActionPerformed
-
-    private void btnConsultarHuespedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarHuespedActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnConsultarHuespedActionPerformed
+    private void btnVolverREActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverREActionPerformed
+        presentador.VolverVRegistroEntrada();
+    }//GEN-LAST:event_btnVolverREActionPerformed
 
     private void btnVolverVRecepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverVRecepActionPerformed
         this.cerrar();
     }//GEN-LAST:event_btnVolverVRecepActionPerformed
+
+    private void btnElegirRRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnElegirRRActionPerformed
+        if (isSelected()) {
+            if (isDisponible()) {
+                presentador.elegirHabitacionRR();
+            }else{
+                msg.advertenciaMsg("REGISTRO NO PERMITIDO","HABITACION NO DISPONIBLE");
+            }
+        }
+    }//GEN-LAST:event_btnElegirRRActionPerformed
+
+    private void btnVolverRRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverRRActionPerformed
+        presentador.VolverVRegistroReserva();
+    }//GEN-LAST:event_btnVolverRRActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        if (isFormValidado()) {
+            presentador.establecerTablaConsultada();
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
     public void setListeners() {
         ActionListener listener = new ActionListener() {
             @Override
@@ -461,8 +509,9 @@ public class VHabitaciones extends javax.swing.JPanel {
     
     public void deshabilitarBotones(){
         this.panelAdmin.setVisible(false);
-        this.panelRegistro.setVisible(false);
         this.panelConsultas.setVisible(false);
+        this.panelRegistroEntrada.setVisible(false);
+        this.panelRegistroReserva.setVisible(false);
     }
     
     public void deshabilitarFiltros(){
@@ -476,15 +525,24 @@ public class VHabitaciones extends javax.swing.JPanel {
         this.rdBtnTodos.setSelected(true);
     }
     
-    public void habilitarBtnsRecepRegistros(){
-        this.panelRegistro.setVisible(true);
+    public void habilitarBtnsRecepRegistroEntrada(){
+        this.panelRegistroEntrada.setVisible(true);
         this.rdBtnDisponibles.setSelected(true);
         deshabilitarFiltros();
     }
     
+    public void habilitarBtnsRecepRegistroReserva(){
+        this.panelRegistroReserva.setVisible(true);
+        this.rdBtnDisponibles.setSelected(true);
+        deshabilitarFiltros();
+    }
+    
+    
     public void habilitarBtnsRecepConsultas(){
         this.panelConsultas.setVisible(true);
         this.rdBtnTodos.setSelected(true);
+        deshabilitarFiltros();
+        
     }
     
     public void setTablaHabitaciones(Object[][] listaHabitaciones){
@@ -531,28 +589,81 @@ public class VHabitaciones extends javax.swing.JPanel {
         return "Disponible".equals(estado);
     }
     
+    public LocalDateTime getFechaReserva(){
+        Date d = this.dateReserva.getDate();
+        
+        String enformatoTimeStamp = format.Date_to_String(d);
+        
+        String hour = this.cboxHora.getSelectedItem().toString();
+        String minute = this.cboxMinuto.getSelectedItem().toString();
+        
+        enformatoTimeStamp+=" "+hour+":"+minute+":00";
+        
+        return format.timeStamp_to_DateTime(enformatoTimeStamp);
+    }
+    
+    public void setFechaReserva(LocalDateTime fecha){
+        this.dateReserva.setDate(format.LocalDateTime_to_Date(fecha));
+        this.setHora(format.LocalDateTime_to_Horas(fecha));
+        this.setMinuto(format.LocalDateTime_to_Minutos(fecha));
+    }
+    
+    private void setHora(int hora){
+        for (int i = 0; i < cboxHora.getItemCount(); i++) {
+            int valorPuntero = Integer.valueOf(cboxHora.getItemAt(i));
+            if (valorPuntero==hora) {
+                cboxHora.setSelectedIndex(i);
+                break;
+            }
+        }     
+    }
+    
+    private void setMinuto(int minuto){
+        for (int i = 0; i < cboxMinuto.getItemCount(); i++) {
+            int valorPuntero = Integer.valueOf(cboxMinuto.getItemAt(i));
+            if (valorPuntero==minuto) {
+                cboxMinuto.setSelectedIndex(i);
+                break;
+            }
+        }     
+    }   
+    
+    private boolean isFormValidado() {
+        if (this.dateReserva.getDate()==null) {
+            msg.errorMsg("Fecha no seleccionada");
+            return false;
+        }
+        
+        if (!validar.isFuture(this.getFechaReserva())) {
+            return false;
+        }
+        
+        return true;
+    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;
-    private javax.swing.JButton btnConsultarHuesped;
-    private javax.swing.JButton btnElegir;
+    private javax.swing.JButton btnElegirRE;
+    private javax.swing.JButton btnElegirRR;
     private javax.swing.ButtonGroup btnGroupFiltros;
+    private javax.swing.JButton btnVolverRE;
+    private javax.swing.JButton btnVolverRR;
     private javax.swing.JButton btnVolverVRecep;
-    private javax.swing.JButton btnVolverVRegistro;
+    private javax.swing.JComboBox<String> cboxHora;
+    private javax.swing.JComboBox<String> cboxMinuto;
+    private com.toedter.calendar.JDateChooser dateReserva;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton19;
     private javax.swing.JButton jButton20;
     private javax.swing.JButton jButton21;
-    private javax.swing.JButton jButton25;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JPanel panelAdmin;
     private javax.swing.JPanel panelConsultas;
-    private javax.swing.JPanel panelRegistro;
+    private javax.swing.JPanel panelRegistroEntrada;
+    private javax.swing.JPanel panelRegistroReserva;
     private javax.swing.JPanel panelTable;
     private javax.swing.JPanel panelTitulo;
     private javax.swing.JRadioButton rdBtnDisponibles;

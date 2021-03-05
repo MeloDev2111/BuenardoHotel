@@ -46,8 +46,71 @@ public class HospedajeDaoMysql implements IHospedajeDao{
     }
     
     @Override
+    public int getDiasReservables(String idHabitacion, LocalDateTime fecha) {
+        String sql ="call getDiasReservables(?,?,@dias)";
+        String sql2="select @dias";
+        int dias=0;
+        
+        try {
+            PreparedStatement st = this.conexion.prepareStatement(sql);
+            st.setString(1, idHabitacion);
+            LocalDateTime fConsultaBD = format.formatoUTC_0( fecha );
+            st.setString(2, format.DateTime_to_timeStamp(fConsultaBD));
+            ResultSet rs = st.executeQuery(); //ejecutar el codigo sql ya sea ddl o dml??//ITERATOR? QUE ES ESTO? 
+            
+            st = this.conexion.prepareStatement(sql2);
+            rs = st.executeQuery();
+            while (rs.next()) {
+                dias = rs.getInt("@dias");
+            }
+            rs.close();
+            st.close();
+            
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        } 
+        
+        return dias;
+    }
+    
+    @Override
     public Hospedaje buscar(String idHospedaje) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        String sql ="SELECT *,datediff(fechaSalida,fechaEntrada) as diasEstancia "
+                + "FROM Hospedajes WHERE idHospedaje=? AND estado='ACTIVO' ";
+        Hospedaje h =null;
+        
+        HabitacionDaoMysql daoHab = new HabitacionDaoMysql(conexion);
+        ClienteDaoMysql daoCli = new ClienteDaoMysql(conexion);
+        UsuarioDaoMysql daoUser = new UsuarioDaoMysql(conexion);
+        
+        try {
+            PreparedStatement st = this.conexion.prepareStatement(sql);
+            st.setString(1, idHospedaje);
+
+            ResultSet rs = st.executeQuery(); //ejecutar el codigo sql ya sea ddl o dml??//ITERATOR? QUE ES ESTO? 
+            
+            while (rs.next()) {
+                h = new Hospedaje();
+                h.setIdHospedaje( rs.getString("idHospedaje") );
+                h.setTipo(rs.getString("tipo"));
+                h.setCliente( daoCli.buscar( rs.getString("idCliente") ) );
+                h.setHabitacion(daoHab.buscar( rs.getString("idHabitacion") ) );
+                LocalDateTime fHEntradaBD = format.timeStamp_to_DateTime( rs.getString("fechaEntrada") );
+                h.setfHEntrada( format.formatoUTC0_to_Actual(fHEntradaBD) );
+                LocalDateTime fHSalidaBD = format.timeStamp_to_DateTime( rs.getString("fechaSalida") );
+                h.setfHSalida( format.formatoUTC0_to_Actual( fHSalidaBD ) );
+                h.setNroDiasEstancia( rs.getInt("diasEstancia") );
+                h.setUser( daoUser.buscar( rs.getString("idUsuario") ) );
+                h.setEstado(rs.getString("estado"));
+            }
+            rs.close();
+            st.close();
+            
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        } 
+        
+        return h;
     }
     
 
@@ -96,7 +159,7 @@ public class HospedajeDaoMysql implements IHospedajeDao{
             PreparedStatement st = this.conexion.prepareStatement(sql);
             st.setString(1, obj.getCliente().getIdCliente());
             st.setString(2, obj.getHabitacion().getIdHabitacion());
-            LocalDateTime fHEntradaBD = format.formatoUTC_0( obj.getfHEntrada() );
+            LocalDateTime fHEntradaBD = format.formatoUTC_0(obj.getfHEntrada() );
             st.setString(3, format.DateTime_to_timeStamp(fHEntradaBD));
             st.setInt(4, obj.getNroDiasEstancia());
 
@@ -138,7 +201,7 @@ public class HospedajeDaoMysql implements IHospedajeDao{
     @Override
     public ArrayList<Hospedaje> listado() {
         String sql ="SELECT *,datediff(fechaSalida,fechaEntrada) as diasEstancia"
-                + " FROM Hospedajes";
+                + " FROM Hospedajes WHERE estado='ACTIVO' ";
         ArrayList<Hospedaje> lista =null;
         
         HabitacionDaoMysql daoHab = new HabitacionDaoMysql(conexion);
@@ -182,7 +245,19 @@ public class HospedajeDaoMysql implements IHospedajeDao{
 
     @Override
     public Hospedaje eliminar(Hospedaje obj) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        
+        String sql ="UPDATE Hospedajes SET estado = 'BAJA' WHERE idHospedaje=?";
+        try {
+            PreparedStatement st = this.conexion.prepareStatement(sql);
+            st.setString(1, obj.getIdHospedaje());
+            st.executeUpdate();
+            
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        } 
+        
+        return obj;
+        
     }
 
 }

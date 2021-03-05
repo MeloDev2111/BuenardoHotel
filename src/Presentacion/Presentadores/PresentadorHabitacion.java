@@ -7,6 +7,8 @@ import Modelo.Servicios.LogicaHabitaciones;
 import Presentacion.Vistas.VAgregarModificarHabitaciones;
 import Presentacion.Vistas.VHabitaciones;
 import Presentacion.Vistas.VRegistroEntrada;
+import Presentacion.Vistas.VRegistroReserva;
+import java.time.LocalDateTime;
 
 /* @author MeloDev */
 public class PresentadorHabitacion {
@@ -36,16 +38,24 @@ public class PresentadorHabitacion {
     public void configurarRolRecepConsultas(){
         vista.deshabilitarBotones();
         vista.habilitarBtnsRecepConsultas();
-        establecerTablaHabitaciones();
+        //fecha y hora Actuales
+        LocalDateTime ahora = LocalDateTime.now();
+        vista.setFechaReserva(ahora);
+        //
+        establecerTablaConsultada();
     }
     
-    public void configurarRolRecepRegistros(){
+    public void configurarRolRecepRegistroEntrada(){
         vista.deshabilitarBotones();
-        vista.habilitarBtnsRecepRegistros();
+        vista.habilitarBtnsRecepRegistroEntrada();
         establecerTablaHabitaciones();
     }
     
-    
+    public void configurarRolRecepRegistroReserva(){
+        vista.deshabilitarBotones();
+        vista.habilitarBtnsRecepRegistroReserva();
+        establecerTablaConsultada();
+    }
     
     public void establecerTablaHabitaciones() {
         vista.setTablaHabitaciones(
@@ -54,15 +64,30 @@ public class PresentadorHabitacion {
             )     
         );
     }
+    
+    public void establecerTablaConsultada(){
+        vista.setTablaHabitaciones(
+            format.formatoJtableHabitaciones(
+                logica.consultarHabitaciones(vista.getNombreTipo(), vista.getFechaReserva())
+            )     
+        );
+    }
 
-    public void elegirHabitacion() {
+    public void elegirHabitacionRE() {
         habitacion = logica.buscar(vista.getIdSeleccionado());
         hospedaje.setHabitacion(habitacion);
         System.out.println(habitacion.toString());
-        VolverVRegistro();
+        VolverVRegistroEntrada();
+    }
+    
+    public void elegirHabitacionRR() {
+        habitacion = logica.buscar(vista.getIdSeleccionado());
+        hospedaje.setHabitacion(habitacion);
+        System.out.println(habitacion.toString());
+        VolverVRegistroReserva();
     }
 
-    public void VolverVRegistro() {
+    public void VolverVRegistroEntrada() {
         VRegistroEntrada vistaReg = new VRegistroEntrada();
         PresentadorRegistroEntrada pReg = new PresentadorRegistroEntrada(vistaReg, hospedaje);
         vistaReg.setPresentador(pReg);
@@ -71,6 +96,15 @@ public class PresentadorHabitacion {
         this.vista.cerrar();
     }
 
+    public void VolverVRegistroReserva() {
+        VRegistroReserva vistaReg = new VRegistroReserva();
+        PresentadorRegistroReserva pReg = new PresentadorRegistroReserva(vistaReg, hospedaje);
+        vistaReg.setPresentador(pReg);
+        
+        vistaReg.iniciar();
+        this.vista.cerrar();
+    }   
+ 
     public void mostrarVAgregarHabitaciones() {
         VAgregarModificarHabitaciones vAddHab = new VAgregarModificarHabitaciones();
         PAgregarModificarHabitacion pAddHab = new PAgregarModificarHabitacion(vAddHab);

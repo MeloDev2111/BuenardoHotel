@@ -5,6 +5,7 @@ import Modelo.Hospedaje;
 import Modelo.Login.Usuario;
 import Modelo.Servicios.Habitacion;
 import Presentacion.Vistas.VHabitaciones;
+import Presentacion.Vistas.VHospedajes;
 import Presentacion.Vistas.VRegistroEntrada;
 import Presentacion.Vistas.VRegistroReserva;
 import Presentacion.Vistas.VistaLogin;
@@ -63,6 +64,13 @@ public class PresentadorRecepcion {
     }
 
     public void mostrarVHospedajes() {
-        msg.advertenciaMsg("IN PROCESS", "PRONTO!!");
+        VHospedajes vistaHos = new VHospedajes();
+        Hospedaje hos = new Hospedaje();
+        PresentadorHospedajes pHos = new PresentadorHospedajes(vistaHos, hos);
+        vistaHos.setPresentador(pHos);
+        pHos.configurarRolAdmin();
+        vistaHos.setListeners();
+        
+        vistaHos.iniciar();
     }
 }

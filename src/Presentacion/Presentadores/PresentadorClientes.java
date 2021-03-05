@@ -7,6 +7,7 @@ import Modelo.LogicaClientes;
 import Presentacion.Vistas.VAgregarModificarCliente;
 import Presentacion.Vistas.VClientes;
 import Presentacion.Vistas.VRegistroEntrada;
+import Presentacion.Vistas.VRegistroReserva;
 
 /* @author MeloDev */
 public class PresentadorClientes {
@@ -33,9 +34,15 @@ public class PresentadorClientes {
         establecerTablaClientes();
     }
     
-    public void configurarRolRecep(){
+    public void configurarRolRecepRE(){
         vista.deshabilitarBotones();
-        vista.habilitarBtnsRecep();
+        vista.habilitarBtnsRecepRE();
+        establecerTablaClientes();
+    }
+    
+    public void configurarRolRecepRR(){
+        vista.deshabilitarBotones();
+        vista.habilitarBtnsRecepRR();
         establecerTablaClientes();
     }
     
@@ -86,17 +93,35 @@ public class PresentadorClientes {
         establecerTablaClientes();
     }
 
-    public void elegirCliente() {
+    public void elegirClienteRE() {
         cliente = logiClientes.buscar(vista.getIdSeleccionado());
         System.out.println(cliente.toString());
         
         hospedaje.setCliente(cliente);
-        volverVRegistro();
+        volverVRegistroEntrada();
     }
+    
+    public void elegirClienteRR() {
+        cliente = logiClientes.buscar(vista.getIdSeleccionado());
+        System.out.println(cliente.toString());
+        
+        hospedaje.setCliente(cliente);
+        volverVRegistroReserva();
+    }
+    
 
-    public void volverVRegistro() {
+    public void volverVRegistroEntrada() {
         VRegistroEntrada vistaReg = new VRegistroEntrada();
         PresentadorRegistroEntrada pReg = new PresentadorRegistroEntrada(vistaReg, hospedaje);
+        vistaReg.setPresentador(pReg);
+        
+        vistaReg.iniciar();
+        this.vista.cerrar();
+    }
+    
+    public void volverVRegistroReserva() {
+        VRegistroReserva vistaReg = new VRegistroReserva();
+        PresentadorRegistroReserva pReg = new PresentadorRegistroReserva(vistaReg, hospedaje);
         vistaReg.setPresentador(pReg);
         
         vistaReg.iniciar();

@@ -3,6 +3,7 @@ package Presentacion.Presentadores;
 import Apoyo.Mensajes;
 import Modelo.Hospedaje;
 import Modelo.LogicaHospedajes;
+import Presentacion.Vistas.VAgregarModificarCliente;
 import Presentacion.Vistas.VClientes;
 import Presentacion.Vistas.VHabitaciones;
 import Presentacion.Vistas.VRegistroEntrada;
@@ -48,7 +49,7 @@ public class PresentadorRegistroEntrada {
         VClientes vistaCli = new VClientes();
         PresentadorClientes pCli = new PresentadorClientes(vistaCli, hospedaje);
         vistaCli.setPresentador(pCli);
-        pCli.configurarRolRecep();
+        pCli.configurarRolRecepRE();
         
         vistaCli.iniciar();
         
@@ -61,7 +62,7 @@ public class PresentadorRegistroEntrada {
         VHabitaciones vistaHab = new VHabitaciones();
         PresentadorHabitacion pHab = new PresentadorHabitacion(vistaHab, hospedaje);
         vistaHab.setPresentador(pHab);
-        pHab.configurarRolRecepRegistros();
+        pHab.configurarRolRecepRegistroEntrada();
         
         vistaHab.iniciar();
         
@@ -69,7 +70,19 @@ public class PresentadorRegistroEntrada {
         
         //this.vista.cambiarVistaActual(vistaHab);
     }
-
+    
+    public void mostrarVAgregarCliente() {
+        VAgregarModificarCliente vAddCliente = new VAgregarModificarCliente();
+        PAgregarModificarClientes pAddCliente = new PAgregarModificarClientes(vAddCliente);
+        vAddCliente.setPresentador(pAddCliente);
+        vAddCliente.deshabilitarBotones();
+        vAddCliente.habilitarBtnsAdminAgregar();
+        pAddCliente.cargarListadoTipos();
+        pAddCliente.establecerDatosTipoDocumento();
+        
+        vAddCliente.iniciar();
+    }
+        
     public boolean registrar() {
         if (hospedaje.getCliente()==null) {
             msg.errorMsg("CLIENTE NO SELECCIONADO");
@@ -82,7 +95,7 @@ public class PresentadorRegistroEntrada {
         }
         
         hospedaje.setNroDiasEstancia(vista.getNumDiasElegidos());
-        hospedaje.getHabitacion().agregarHuesped(hospedaje);
+        hospedaje.getHabitacion().agregarAlquiler(hospedaje);
         return true;
     }
 

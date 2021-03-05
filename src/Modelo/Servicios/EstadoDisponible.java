@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
 
 /* @author MeloDev */
 public class EstadoDisponible extends EstadoHabitacion{
-    LogicaRegistroEntrada logiRE = new LogicaRegistroEntrada();
+    private LogicaRegistroEntrada logiRE = new LogicaRegistroEntrada();
     public EstadoDisponible(Habitacion habitacion) {
         super(habitacion);
         nombreEstado="Disponible";

@@ -3,6 +3,7 @@ package Modelo;
 import Apoyo.Mensajes;
 import Modelo.Login.Usuario;
 import Persistencia.FactoriaDAO.IHospedajeDao;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 /* @author MeloDev */
@@ -12,6 +13,10 @@ public class LogicaHospedajes implements IDBAccess{
     
     public int getNroDiasDisponibles(String idHabitacion){
         return dao.getDiasDisponibles(idHabitacion);
+    }
+    
+    public int getNroDiasReservables(String idHabitacion, LocalDateTime fecha){
+        return dao.getDiasReservables(idHabitacion,fecha);
     }
     
     public ArrayList<Hospedaje> cargarHospedajesFiltrados(String filter, String tipo) {
@@ -39,7 +44,9 @@ public class LogicaHospedajes implements IDBAccess{
         if ("RESERVA".equals(h.getNombreTipo())) {
             System.out.println("IMPLEMENTAR");
             //sin dar de baja su usuario
+            dao.eliminar(h);
         }else{
+            dao.eliminar(h);
             System.out.println("IMPLEMENTAR DANDO DE BAJA EL USUARIO");
         }
         

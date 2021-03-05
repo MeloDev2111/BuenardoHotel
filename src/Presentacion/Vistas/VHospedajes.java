@@ -10,6 +10,7 @@ import Presentacion.Presentadores.PresentadorHospedajes;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JFrame;
+import javax.swing.WindowConstants;
 
 /**
  *
@@ -47,9 +48,8 @@ public class VHospedajes extends javax.swing.JPanel {
         rdBtnReserva = new javax.swing.JRadioButton();
         panelAdmin = new javax.swing.JPanel();
         btnAgregar = new javax.swing.JButton();
-        btnModificar = new javax.swing.JButton();
         btnDeshabilitar = new javax.swing.JButton();
-        btnAgregar1 = new javax.swing.JButton();
+        btnReservar = new javax.swing.JButton();
         panelTitulo = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
 
@@ -157,14 +157,6 @@ public class VHospedajes extends javax.swing.JPanel {
             }
         });
 
-        btnModificar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnModificar.setText("Visualizar");
-        btnModificar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnModificarActionPerformed(evt);
-            }
-        });
-
         btnDeshabilitar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnDeshabilitar.setText("Deshabilitar");
         btnDeshabilitar.addActionListener(new java.awt.event.ActionListener() {
@@ -173,11 +165,11 @@ public class VHospedajes extends javax.swing.JPanel {
             }
         });
 
-        btnAgregar1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnAgregar1.setText("Reservar");
-        btnAgregar1.addActionListener(new java.awt.event.ActionListener() {
+        btnReservar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnReservar.setText("Reservar");
+        btnReservar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAgregar1ActionPerformed(evt);
+                btnReservarActionPerformed(evt);
             }
         });
 
@@ -188,11 +180,9 @@ public class VHospedajes extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelAdminLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(61, 61, 61)
-                .addComponent(btnAgregar1, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(159, 159, 159)
+                .addComponent(btnReservar, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(61, 61, 61)
                 .addComponent(btnDeshabilitar, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -202,9 +192,8 @@ public class VHospedajes extends javax.swing.JPanel {
                 .addGap(23, 23, 23)
                 .addGroup(panelAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnDeshabilitar, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnAgregar1, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnReservar, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(22, Short.MAX_VALUE))
         );
 
@@ -247,12 +236,12 @@ public class VHospedajes extends javax.swing.JPanel {
                 .addComponent(panelTable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(panelAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 120, Short.MAX_VALUE))
+                .addGap(0, 32, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-        presentador.mostrarVAgregarUsuario();
+        presentador.mostrarVRegistroEntrada();
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
@@ -267,13 +256,9 @@ public class VHospedajes extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnDeshabilitarActionPerformed
 
-    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
-        presentador.mostrarVModificarUsuarios();
-    }//GEN-LAST:event_btnModificarActionPerformed
-
-    private void btnAgregar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregar1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnAgregar1ActionPerformed
+    private void btnReservarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReservarActionPerformed
+        presentador.mostrarVRegistroReserva();
+    }//GEN-LAST:event_btnReservarActionPerformed
     
     public void setPresentador(PresentadorHospedajes p) {
         presentador = p;
@@ -294,14 +279,14 @@ public class VHospedajes extends javax.swing.JPanel {
 
     public void iniciar(){
         frame.setContentPane(this);
-        frame.setUndecorated(true);
+        frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
-        frame.setSize(1000, 730);
+        frame.setSize(750, 600);
         frame.setLocationRelativeTo(null);
         presentador.establecerTablaHospedajes();
         this.setListeners();
-        this.rdBtnAlquiler.setSelected(true);
+        this.rdBtnTodos.setSelected(true);
     }
     
     public void cerrar(){
@@ -322,7 +307,7 @@ public class VHospedajes extends javax.swing.JPanel {
     
     public String getIdSeleccionado(){
         int pos = tableHospedajes.getSelectedRow();
-        return tableHospedajes.getValueAt(pos, 1).toString();
+        return tableHospedajes.getValueAt(pos, 0).toString();
     }
     
     public String getFiltroSeleccionado(){
@@ -339,11 +324,10 @@ public class VHospedajes extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar;
-    private javax.swing.JButton btnAgregar1;
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnDeshabilitar;
     private javax.swing.ButtonGroup btnGroupFiltro;
-    private javax.swing.JButton btnModificar;
+    private javax.swing.JButton btnReservar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane3;

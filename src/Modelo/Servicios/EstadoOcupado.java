@@ -1,11 +1,11 @@
 package Modelo.Servicios;
 
-import Modelo.Cliente;
 import Modelo.Hospedaje;
+import Modelo.tipoHospedaje;
 
 /* @author MeloDev */
 public class EstadoOcupado extends EstadoHabitacion{
-    
+    private LogicaRegistroEntrada logiRR = new LogicaRegistroEntrada();
     public EstadoOcupado(Habitacion habitacion) {
         super(habitacion);
         nombreEstado="Ocupado";
@@ -17,8 +17,14 @@ public class EstadoOcupado extends EstadoHabitacion{
     }
 
     @Override
-    public void agregarReserva(Hospedaje h) {
-        msg.errorMsg("Actualmente "+nombreEstado+", no se puede reservar habitacion");
+    public void agregarReserva(Hospedaje hspdj) {
+        hspdj.setfHSalida(hspdj.getfHEntrada().plusDays(hspdj.getNroDiasEstancia()));
+        hspdj.setTipo(tipoHospedaje.RESERVA);
+        hspdj.setEstado("ACTIVO");
+        //GUARDAR HOSPEDAJE
+        
+        logiRR.registrarReserva(hspdj);
+        msg.OKMsg("Reserva Registrado");
     }
     
     @Override

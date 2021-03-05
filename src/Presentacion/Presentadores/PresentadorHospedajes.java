@@ -5,6 +5,8 @@ import Apoyo.Mensajes;
 import Modelo.Hospedaje;
 import Modelo.LogicaHospedajes;
 import Presentacion.Vistas.VHospedajes;
+import Presentacion.Vistas.VRegistroEntrada;
+import Presentacion.Vistas.VRegistroReserva;
 
 /* @author MeloDev */
 public class PresentadorHospedajes {
@@ -44,14 +46,27 @@ public class PresentadorHospedajes {
         h = servicio.buscar(idSelec);
         
         servicio.eliminarHospedaje(h);
+        establecerTablaHospedajes();
     }
 
-    public void mostrarVAgregarUsuario(){
-
-    } 
+    public void mostrarVRegistroEntrada() {
+        VRegistroEntrada vistaRegE = new VRegistroEntrada();
+        Hospedaje hospedaje = new Hospedaje();
+        PresentadorRegistroEntrada pRE = new PresentadorRegistroEntrada(vistaRegE, hospedaje);
+        vistaRegE.setPresentador(pRE);
         
-    public void mostrarVModificarUsuarios(){
-
+        vistaRegE.iniciar();
     }
-    
+
+    public void mostrarVRegistroReserva() {
+        VRegistroReserva vistaRegR = new VRegistroReserva();
+        Hospedaje hospedaje = new Hospedaje();
+        PresentadorRegistroReserva pRR = new PresentadorRegistroReserva(vistaRegR, hospedaje);
+        vistaRegR.setPresentador(pRR);
+        
+        vistaRegR.iniciar();
+    }
+
+
+
 }

@@ -46,9 +46,12 @@ public class VClientes extends javax.swing.JPanel {
         btnEliminar = new javax.swing.JButton();
         panelTitulo = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
-        panelRecep = new javax.swing.JPanel();
-        btnElegir = new javax.swing.JButton();
-        btnVolverVRecep = new javax.swing.JButton();
+        panelRecepRE = new javax.swing.JPanel();
+        btnElegirRE = new javax.swing.JButton();
+        btnVolverRE = new javax.swing.JButton();
+        panelRecepRR = new javax.swing.JPanel();
+        btnElegirRR = new javax.swing.JButton();
+        btnVolverRR = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(102, 204, 255));
         setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -196,42 +199,81 @@ public class VClientes extends javax.swing.JPanel {
                 .addContainerGap(26, Short.MAX_VALUE))
         );
 
-        panelRecep.setBackground(new java.awt.Color(255, 255, 255));
+        panelRecepRE.setBackground(new java.awt.Color(255, 255, 255));
 
-        btnElegir.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnElegir.setText("Elegir");
-        btnElegir.addActionListener(new java.awt.event.ActionListener() {
+        btnElegirRE.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnElegirRE.setText("Elegir");
+        btnElegirRE.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnElegirActionPerformed(evt);
+                btnElegirREActionPerformed(evt);
             }
         });
 
-        btnVolverVRecep.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnVolverVRecep.setText("Volver");
-        btnVolverVRecep.addActionListener(new java.awt.event.ActionListener() {
+        btnVolverRE.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnVolverRE.setText("Volver");
+        btnVolverRE.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnVolverVRecepActionPerformed(evt);
+                btnVolverREActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout panelRecepLayout = new javax.swing.GroupLayout(panelRecep);
-        panelRecep.setLayout(panelRecepLayout);
-        panelRecepLayout.setHorizontalGroup(
-            panelRecepLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelRecepLayout.createSequentialGroup()
+        javax.swing.GroupLayout panelRecepRELayout = new javax.swing.GroupLayout(panelRecepRE);
+        panelRecepRE.setLayout(panelRecepRELayout);
+        panelRecepRELayout.setHorizontalGroup(
+            panelRecepRELayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelRecepRELayout.createSequentialGroup()
                 .addGap(157, 157, 157)
-                .addComponent(btnElegir, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnElegirRE, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(161, 161, 161)
-                .addComponent(btnVolverVRecep, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnVolverRE, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        panelRecepLayout.setVerticalGroup(
-            panelRecepLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelRecepLayout.createSequentialGroup()
+        panelRecepRELayout.setVerticalGroup(
+            panelRecepRELayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelRecepRELayout.createSequentialGroup()
                 .addGap(23, 23, 23)
-                .addGroup(panelRecepLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnElegir, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnVolverVRecep, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(panelRecepRELayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnElegirRE, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnVolverRE, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(22, Short.MAX_VALUE))
+        );
+
+        panelRecepRR.setBackground(new java.awt.Color(255, 255, 255));
+
+        btnElegirRR.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnElegirRR.setText("Elegir");
+        btnElegirRR.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnElegirRRActionPerformed(evt);
+            }
+        });
+
+        btnVolverRR.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnVolverRR.setText("Volver");
+        btnVolverRR.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVolverRRActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout panelRecepRRLayout = new javax.swing.GroupLayout(panelRecepRR);
+        panelRecepRR.setLayout(panelRecepRRLayout);
+        panelRecepRRLayout.setHorizontalGroup(
+            panelRecepRRLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelRecepRRLayout.createSequentialGroup()
+                .addGap(157, 157, 157)
+                .addComponent(btnElegirRR, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(161, 161, 161)
+                .addComponent(btnVolverRR, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        panelRecepRRLayout.setVerticalGroup(
+            panelRecepRRLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelRecepRRLayout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addGroup(panelRecepRRLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnElegirRR, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnVolverRR, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(22, Short.MAX_VALUE))
         );
 
@@ -242,7 +284,8 @@ public class VClientes extends javax.swing.JPanel {
             .addComponent(panelAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(panelTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(panelTable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(panelRecep, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(panelRecepRE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(panelRecepRR, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -253,8 +296,10 @@ public class VClientes extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(panelAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(panelRecep, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 18, Short.MAX_VALUE))
+                .addComponent(panelRecepRE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(panelRecepRR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 17, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -279,15 +324,25 @@ public class VClientes extends javax.swing.JPanel {
         presentador.establecerTablaClientes();
     }//GEN-LAST:event_btnBuscarActionPerformed
 
-    private void btnElegirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnElegirActionPerformed
+    private void btnElegirREActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnElegirREActionPerformed
         if (isRowSelected()) {
-            presentador.elegirCliente();
+            presentador.elegirClienteRE();
         }
-    }//GEN-LAST:event_btnElegirActionPerformed
+    }//GEN-LAST:event_btnElegirREActionPerformed
 
-    private void btnVolverVRecepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverVRecepActionPerformed
-        presentador.volverVRegistro();
-    }//GEN-LAST:event_btnVolverVRecepActionPerformed
+    private void btnVolverREActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverREActionPerformed
+        presentador.volverVRegistroEntrada();
+    }//GEN-LAST:event_btnVolverREActionPerformed
+
+    private void btnElegirRRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnElegirRRActionPerformed
+        if (isRowSelected()) {
+            presentador.elegirClienteRR();
+        }
+    }//GEN-LAST:event_btnElegirRRActionPerformed
+
+    private void btnVolverRRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverRRActionPerformed
+        presentador.volverVRegistroReserva();
+    }//GEN-LAST:event_btnVolverRRActionPerformed
       
     public void setPresentador(PresentadorClientes p) {
         presentador = p;
@@ -313,16 +368,22 @@ public class VClientes extends javax.swing.JPanel {
     
     public void deshabilitarBotones(){
         this.panelAdmin.setVisible(false);
-        this.panelRecep.setVisible(false);
+        this.panelRecepRE.setVisible(false);
+        this.panelRecepRR.setVisible(false);
     }
 
     public void habilitarBtnsAdmin(){
         this.panelAdmin.setVisible(true);
     }
     
-    public void habilitarBtnsRecep(){
-        this.panelRecep.setVisible(true);
+    public void habilitarBtnsRecepRE(){
+        this.panelRecepRE.setVisible(true);
     }
+    
+    public void habilitarBtnsRecepRR(){
+        this.panelRecepRR.setVisible(true);
+    }
+    
     
     public void setTablaClientes(Object[][] listaClientes){
         String[] cabezera = {"idCliente", "nombreCliente", "tipoCliente", "tipoDocumento", "numDocumento"};
@@ -352,16 +413,19 @@ public class VClientes extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnBuscar;
-    private javax.swing.JButton btnElegir;
+    private javax.swing.JButton btnElegirRE;
+    private javax.swing.JButton btnElegirRR;
     private javax.swing.JButton btnEliminar;
     private javax.swing.ButtonGroup btnGroupFiltro;
     private javax.swing.JButton btnModificar;
-    private javax.swing.JButton btnVolverVRecep;
+    private javax.swing.JButton btnVolverRE;
+    private javax.swing.JButton btnVolverRR;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JPanel panelAdmin;
-    private javax.swing.JPanel panelRecep;
+    private javax.swing.JPanel panelRecepRE;
+    private javax.swing.JPanel panelRecepRR;
     private javax.swing.JPanel panelTable;
     private javax.swing.JPanel panelTitulo;
     private javax.swing.JTable tableClientes;

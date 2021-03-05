@@ -78,7 +78,7 @@ public class VRegistroReserva extends javax.swing.JPanel {
         panelCliente = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         btnMostrarVClientes = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnAñadirCliente = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         txtDocumentoCliente = new javax.swing.JTextField();
@@ -376,7 +376,12 @@ public class VRegistroReserva extends javax.swing.JPanel {
             }
         });
 
-        jButton2.setText("Añadir");
+        btnAñadirCliente.setText("Añadir");
+        btnAñadirCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAñadirClienteActionPerformed(evt);
+            }
+        });
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel8.setText("Documento:");
@@ -417,7 +422,7 @@ public class VRegistroReserva extends javax.swing.JPanel {
                         .addGap(26, 26, 26)
                         .addComponent(btnMostrarVClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnAñadirCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelClienteLayout.createSequentialGroup()
                         .addGroup(panelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel9)
@@ -437,7 +442,7 @@ public class VRegistroReserva extends javax.swing.JPanel {
                 .addGroup(panelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(btnMostrarVClientes)
-                    .addComponent(jButton2))
+                    .addComponent(btnAñadirCliente))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -523,7 +528,9 @@ public class VRegistroReserva extends javax.swing.JPanel {
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void btnMostrarVHabitacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarVHabitacionesActionPerformed
-        presentador.mostrarVHabitaciones();
+        if (isFormValidado()) {
+            presentador.mostrarVHabitaciones();
+        }
     }//GEN-LAST:event_btnMostrarVHabitacionesActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
@@ -540,6 +547,10 @@ public class VRegistroReserva extends javax.swing.JPanel {
     private void txtDocumentoClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDocumentoClienteActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtDocumentoClienteActionPerformed
+
+    private void btnAñadirClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAñadirClienteActionPerformed
+        presentador.mostrarVAgregarCliente();
+    }//GEN-LAST:event_btnAñadirClienteActionPerformed
 
     public void setPresentador(PresentadorRegistroReserva p) {
         presentador = p;
@@ -581,13 +592,36 @@ public class VRegistroReserva extends javax.swing.JPanel {
         String minute = this.cBoxMinuto.getSelectedItem().toString();
         
         enformatoTimeStamp+=" "+hour+":"+minute+":00";
-        System.out.println(enformatoTimeStamp);
+        
         return format.timeStamp_to_DateTime(enformatoTimeStamp);
     }
     
     public void setFechaReserva(LocalDateTime fecha){
-        
+        Date d = format.LocalDateTime_to_Date(fecha);
+        this.dateReserva.setDate(d);
+        this.setHora(format.LocalDateTime_to_Horas(fecha));
+        this.setMinuto(format.LocalDateTime_to_Minutos(fecha));
     }
+    
+    private void setHora(int hora){
+        for (int i = 0; i < cBoxHora.getItemCount(); i++) {
+            int valorPuntero = Integer.valueOf(cBoxHora.getItemAt(i));
+            if (valorPuntero==hora) {
+                cBoxHora.setSelectedIndex(i);
+                break;
+            }
+        }     
+    }
+    
+    private void setMinuto(int minuto){
+        for (int i = 0; i < cBoxMinuto.getItemCount(); i++) {
+            int valorPuntero = Integer.valueOf(cBoxMinuto.getItemAt(i));
+            if (valorPuntero==minuto) {
+                cBoxMinuto.setSelectedIndex(i);
+                break;
+            }
+        }     
+    }   
     
     public int getNumDiasElegidos(){
         String elegido = ""+this.cBoxDias.getSelectedItem();
@@ -606,7 +640,6 @@ public class VRegistroReserva extends javax.swing.JPanel {
                 items[i] = ""+(i+1);
             }
         }
-        
         
         this.cBoxDias.setModel(new DefaultComboBoxModel<>(items));
     }
@@ -651,6 +684,7 @@ public class VRegistroReserva extends javax.swing.JPanel {
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAñadirCliente;
     private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnMostrarVClientes;
     private javax.swing.JButton btnMostrarVHabitaciones;
@@ -660,7 +694,6 @@ public class VRegistroReserva extends javax.swing.JPanel {
     private javax.swing.JComboBox<String> cBoxHora;
     private javax.swing.JComboBox<String> cBoxMinuto;
     private com.toedter.calendar.JDateChooser dateReserva;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

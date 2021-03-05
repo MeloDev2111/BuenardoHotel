@@ -7,6 +7,7 @@ import Modelo.Servicios.Habitacion;
 import Modelo.Servicios.TipoHabitacion;
 import Modelo.TiposCliente;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -15,9 +16,40 @@ import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /* @author MeloDev */
 public class Formateo {
+    
+    public Date LocalDateTime_to_Date(LocalDateTime d){
+        DateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+        DateTimeFormatter dtfFecha = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        
+        String fechaEnTexto = d.format(dtfFecha);
+        
+        Date fecha = null;
+        
+        try {
+            fecha = formato.parse(fechaEnTexto);
+        } catch (ParseException ex) {
+            Logger.getLogger(Formateo.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return fecha;
+    }
+    
+    public int LocalDateTime_to_Horas(LocalDateTime d){
+        DateTimeFormatter dtfHora = DateTimeFormatter.ofPattern("HH:mm:ss");
+        
+        return Integer.valueOf(d.format(dtfHora).split(":")[0]);
+    }
+    public int LocalDateTime_to_Minutos(LocalDateTime d){
+        DateTimeFormatter dtfHora = DateTimeFormatter.ofPattern("HH:mm:ss");
+        
+        return Integer.valueOf(d.format(dtfHora).split(":")[1]);
+    }
+    
     
     public String Date_to_String(Date d){
         DateFormat fechaEnString = new SimpleDateFormat("yyyy-MM-dd");
