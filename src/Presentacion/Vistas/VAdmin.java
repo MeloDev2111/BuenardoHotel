@@ -125,7 +125,7 @@ public class VAdmin extends javax.swing.JPanel{
 
         btnVClientes.setFont(new java.awt.Font("UD Digi Kyokasho NP-B", 1, 24)); // NOI18N
         btnVClientes.setForeground(new java.awt.Color(255, 255, 255));
-        btnVClientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/habitaciones.png"))); // NOI18N
+        btnVClientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/clientes.png"))); // NOI18N
         btnVClientes.setText(" Clientes");
         btnVClientes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnVClientes.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -147,7 +147,7 @@ public class VAdmin extends javax.swing.JPanel{
 
         btnVUsuarios.setFont(new java.awt.Font("UD Digi Kyokasho NP-B", 1, 24)); // NOI18N
         btnVUsuarios.setForeground(new java.awt.Color(255, 255, 255));
-        btnVUsuarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/clientes.png"))); // NOI18N
+        btnVUsuarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/iconUsuario.png"))); // NOI18N
         btnVUsuarios.setText(" Usuarios");
         btnVUsuarios.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnVUsuarios.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -158,7 +158,7 @@ public class VAdmin extends javax.swing.JPanel{
 
         btnVReservaciones.setFont(new java.awt.Font("UD Digi Kyokasho NP-B", 1, 24)); // NOI18N
         btnVReservaciones.setForeground(new java.awt.Color(255, 255, 255));
-        btnVReservaciones.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/habitaciones.png"))); // NOI18N
+        btnVReservaciones.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/reservas-consumos.png"))); // NOI18N
         btnVReservaciones.setText(" Hospedajes");
         btnVReservaciones.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnVReservaciones.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -169,7 +169,7 @@ public class VAdmin extends javax.swing.JPanel{
 
         btnVHabitaciones.setFont(new java.awt.Font("UD Digi Kyokasho NP-B", 1, 24)); // NOI18N
         btnVHabitaciones.setForeground(new java.awt.Color(255, 255, 255));
-        btnVHabitaciones.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/clientes.png"))); // NOI18N
+        btnVHabitaciones.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/habitaciones.png"))); // NOI18N
         btnVHabitaciones.setText(" Habitaciones");
         btnVHabitaciones.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnVHabitaciones.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -180,7 +180,7 @@ public class VAdmin extends javax.swing.JPanel{
 
         btnVComprobantes.setFont(new java.awt.Font("UD Digi Kyokasho NP-B", 1, 24)); // NOI18N
         btnVComprobantes.setForeground(new java.awt.Color(255, 255, 255));
-        btnVComprobantes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/habitaciones.png"))); // NOI18N
+        btnVComprobantes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/pagos.png"))); // NOI18N
         btnVComprobantes.setText(" Comprobantes");
         btnVComprobantes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnVComprobantes.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -191,7 +191,7 @@ public class VAdmin extends javax.swing.JPanel{
 
         btnVServicios.setFont(new java.awt.Font("UD Digi Kyokasho NP-B", 1, 24)); // NOI18N
         btnVServicios.setForeground(new java.awt.Color(255, 255, 255));
-        btnVServicios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/clientes.png"))); // NOI18N
+        btnVServicios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/productos.png"))); // NOI18N
         btnVServicios.setText("Servicios");
         btnVServicios.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnVServicios.addMouseListener(new java.awt.event.MouseAdapter() {

@@ -105,6 +105,7 @@ public class VHabitaciones extends javax.swing.JPanel {
         jLabel1.setText("Tipo");
 
         btnBuscar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/buscar.png"))); // NOI18N
         btnBuscar.setText("Buscar");
         btnBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -145,7 +146,7 @@ public class VHabitaciones extends javax.swing.JPanel {
                         .addComponent(rdBtnDisponibles)
                         .addGap(18, 18, 18)
                         .addComponent(rdBtnOcupados)
-                        .addGap(0, 14, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         panelTableLayout.setVerticalGroup(
@@ -167,6 +168,7 @@ public class VHabitaciones extends javax.swing.JPanel {
         panelAdmin.setBackground(new java.awt.Color(255, 255, 255));
 
         jButton19.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButton19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/añadir.png"))); // NOI18N
         jButton19.setText("Agregar");
         jButton19.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -175,6 +177,7 @@ public class VHabitaciones extends javax.swing.JPanel {
         });
 
         jButton20.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButton20.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/modify.png"))); // NOI18N
         jButton20.setText("Modificar");
         jButton20.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -183,6 +186,7 @@ public class VHabitaciones extends javax.swing.JPanel {
         });
 
         jButton21.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButton21.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/delete.png"))); // NOI18N
         jButton21.setText("Eliminar");
         jButton21.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -219,9 +223,10 @@ public class VHabitaciones extends javax.swing.JPanel {
 
         panelAdminLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jButton19, jButton20, jButton21});
 
-        panelTitulo.setBackground(new java.awt.Color(255, 255, 255));
+        panelTitulo.setBackground(new java.awt.Color(0, 102, 255));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setText("Lista de Habitaciones");
 
@@ -245,6 +250,7 @@ public class VHabitaciones extends javax.swing.JPanel {
         panelRegistroEntrada.setBackground(new java.awt.Color(255, 255, 255));
 
         btnElegirRE.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnElegirRE.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/microscope.png"))); // NOI18N
         btnElegirRE.setText("Elegir");
         btnElegirRE.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -253,6 +259,7 @@ public class VHabitaciones extends javax.swing.JPanel {
         });
 
         btnVolverRE.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnVolverRE.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/undo.png"))); // NOI18N
         btnVolverRE.setText("Volver");
         btnVolverRE.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -264,7 +271,7 @@ public class VHabitaciones extends javax.swing.JPanel {
         panelRegistroEntrada.setLayout(panelRegistroEntradaLayout);
         panelRegistroEntradaLayout.setHorizontalGroup(
             panelRegistroEntradaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 750, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
             .addGroup(panelRegistroEntradaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(panelRegistroEntradaLayout.createSequentialGroup()
                     .addGap(128, 128, 128)
@@ -288,6 +295,7 @@ public class VHabitaciones extends javax.swing.JPanel {
         panelConsultas.setBackground(new java.awt.Color(255, 255, 255));
 
         btnVolverVRecep.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnVolverVRecep.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/undo.png"))); // NOI18N
         btnVolverVRecep.setText("Volver");
         btnVolverVRecep.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -296,6 +304,7 @@ public class VHabitaciones extends javax.swing.JPanel {
         });
 
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/reservas-consumos.png"))); // NOI18N
         jButton1.setText("Consultar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -348,6 +357,7 @@ public class VHabitaciones extends javax.swing.JPanel {
         panelRegistroReserva.setBackground(new java.awt.Color(255, 255, 255));
 
         btnElegirRR.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnElegirRR.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/microscope.png"))); // NOI18N
         btnElegirRR.setText("Elegir");
         btnElegirRR.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -356,6 +366,7 @@ public class VHabitaciones extends javax.swing.JPanel {
         });
 
         btnVolverRR.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnVolverRR.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/undo.png"))); // NOI18N
         btnVolverRR.setText("Volver");
         btnVolverRR.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -367,7 +378,7 @@ public class VHabitaciones extends javax.swing.JPanel {
         panelRegistroReserva.setLayout(panelRegistroReservaLayout);
         panelRegistroReservaLayout.setHorizontalGroup(
             panelRegistroReservaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 750, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
             .addGroup(panelRegistroReservaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(panelRegistroReservaLayout.createSequentialGroup()
                     .addGap(128, 128, 128)
@@ -403,7 +414,7 @@ public class VHabitaciones extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(panelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(0, 0, 0)
                 .addComponent(panelTable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(panelAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)

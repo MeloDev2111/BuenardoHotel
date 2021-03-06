@@ -88,6 +88,7 @@ public class VClientes extends javax.swing.JPanel {
         jLabel1.setText("Tipo Documento (DNI o RUC)");
 
         btnBuscar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/buscar_1.png"))); // NOI18N
         btnBuscar.setText("Buscar");
         btnBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -128,6 +129,7 @@ public class VClientes extends javax.swing.JPanel {
         panelAdmin.setBackground(new java.awt.Color(255, 255, 255));
 
         btnAgregar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnAgregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/añadir.png"))); // NOI18N
         btnAgregar.setText("Agregar");
         btnAgregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -136,6 +138,7 @@ public class VClientes extends javax.swing.JPanel {
         });
 
         btnModificar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnModificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/modify.png"))); // NOI18N
         btnModificar.setText("Modificar");
         btnModificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -144,6 +147,7 @@ public class VClientes extends javax.swing.JPanel {
         });
 
         btnEliminar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/delete.png"))); // NOI18N
         btnEliminar.setText("Eliminar");
         btnEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -158,11 +162,11 @@ public class VClientes extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelAdminLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 150, Short.MAX_VALUE)
                 .addComponent(btnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(143, 143, 143)
-                .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(40, 40, 40))
+                .addComponent(btnEliminar)
+                .addGap(38, 38, 38))
         );
         panelAdminLayout.setVerticalGroup(
             panelAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -202,6 +206,7 @@ public class VClientes extends javax.swing.JPanel {
         panelRecepRE.setBackground(new java.awt.Color(255, 255, 255));
 
         btnElegirRE.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnElegirRE.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/microscope.png"))); // NOI18N
         btnElegirRE.setText("Elegir");
         btnElegirRE.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -210,6 +215,7 @@ public class VClientes extends javax.swing.JPanel {
         });
 
         btnVolverRE.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnVolverRE.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/undo.png"))); // NOI18N
         btnVolverRE.setText("Volver");
         btnVolverRE.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -241,6 +247,7 @@ public class VClientes extends javax.swing.JPanel {
         panelRecepRR.setBackground(new java.awt.Color(255, 255, 255));
 
         btnElegirRR.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnElegirRR.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/microscope.png"))); // NOI18N
         btnElegirRR.setText("Elegir");
         btnElegirRR.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -249,6 +256,7 @@ public class VClientes extends javax.swing.JPanel {
         });
 
         btnVolverRR.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnVolverRR.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/undo.png"))); // NOI18N
         btnVolverRR.setText("Volver");
         btnVolverRR.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -299,7 +307,7 @@ public class VClientes extends javax.swing.JPanel {
                 .addComponent(panelRecepRE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(panelRecepRR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 17, Short.MAX_VALUE))
+                .addGap(0, 1, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

@@ -45,7 +45,7 @@
               <Color blue="b4" green="af" red="31" type="rgb"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="text" type="java.lang.String" value="REGISTRO DE ENTRADA"/>
+            <Property name="text" type="java.lang.String" value="REGISTRO DE RESERVA"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel6">

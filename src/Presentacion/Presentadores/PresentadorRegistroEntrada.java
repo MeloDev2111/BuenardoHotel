@@ -96,6 +96,8 @@ public class PresentadorRegistroEntrada {
         
         hospedaje.setNroDiasEstancia(vista.getNumDiasElegidos());
         hospedaje.getHabitacion().agregarAlquiler(hospedaje);
+        this.vista.limpiarFormulario();
+        hospedaje=new Hospedaje();
         return true;
     }
 

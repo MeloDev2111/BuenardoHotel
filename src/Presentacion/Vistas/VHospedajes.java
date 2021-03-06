@@ -17,7 +17,7 @@ import javax.swing.WindowConstants;
  * @author eddyf
  */
 public class VHospedajes extends javax.swing.JPanel {
-    private JFrame frame = new JFrame("VUsuarios");
+    private JFrame frame = new JFrame("VHospedajes");
     private PresentadorHospedajes presentador;
     private Mensajes msg = new Mensajes();
     /**

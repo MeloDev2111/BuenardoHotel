@@ -1,5 +1,6 @@
 package Presentacion.Presentadores;
 
+import Apoyo.Mensajes;
 import Modelo.Cliente;
 import Modelo.Hospedaje;
 import Modelo.Servicios.Habitacion;
@@ -15,6 +16,7 @@ public class PresentadorAdmin{
     private Usuario user;
     private VAdmin vista;
     
+    private Mensajes msg = new Mensajes();
     public PresentadorAdmin(Usuario user, VAdmin vista) {
         this.vista = vista;
         this.user = user;
@@ -74,11 +76,11 @@ public class PresentadorAdmin{
     }
     
     public void mostrarVComprobantes(){
-        
+        msg.advertenciaMsg("IN PROCESS", "PRONTO!!");
     }
     
     public void mostrarVServicios(){
-        
+        msg.advertenciaMsg("IN PROCESS", "PRONTO!!");
     }
     
 

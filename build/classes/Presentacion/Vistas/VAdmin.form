@@ -223,7 +223,7 @@
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/Imagenes/habitaciones.png"/>
+              <Image iconType="3" name="/Imagenes/clientes.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value=" Clientes"/>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
@@ -263,7 +263,7 @@
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/Imagenes/clientes.png"/>
+              <Image iconType="3" name="/Imagenes/iconUsuario.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value=" Usuarios"/>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
@@ -283,7 +283,7 @@
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/Imagenes/habitaciones.png"/>
+              <Image iconType="3" name="/Imagenes/reservas-consumos.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value=" Hospedajes"/>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
@@ -303,7 +303,7 @@
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/Imagenes/clientes.png"/>
+              <Image iconType="3" name="/Imagenes/habitaciones.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value=" Habitaciones"/>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
@@ -323,7 +323,7 @@
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/Imagenes/habitaciones.png"/>
+              <Image iconType="3" name="/Imagenes/pagos.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value=" Comprobantes"/>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
@@ -343,7 +343,7 @@
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/Imagenes/clientes.png"/>
+              <Image iconType="3" name="/Imagenes/productos.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Servicios"/>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">

@@ -105,7 +105,20 @@ public class UsuarioDaoMysql implements IUsuarioDao{
         
         return usuario;
     }
-
+    
+        @Override
+    public void habilitar(Usuario usuario) {
+        String sql ="UPDATE Usuarios SET activo = true WHERE idUsuario=?";
+        try {
+            PreparedStatement st = this.conexion.prepareStatement(sql);
+            st.setString(1, usuario.getIdUsuario());
+            st.executeUpdate();
+            
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        } 
+    }
+    
     @Override
     public Usuario buscar(String idUsuario) {
         Usuario usuario = null;
@@ -199,4 +212,5 @@ public class UsuarioDaoMysql implements IUsuarioDao{
         
         return lista;
     }
+
 }

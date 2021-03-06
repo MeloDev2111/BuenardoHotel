@@ -1,6 +1,7 @@
 package Presentacion.Presentadores;
 
 import Apoyo.Formateo;
+import Apoyo.Mensajes;
 import Modelo.Servicios.Habitacion;
 import Modelo.Servicios.LogicaHabitaciones;
 import Modelo.Servicios.LogicaTiposHabitacion;
@@ -13,9 +14,9 @@ public class PAgregarModificarHabitacion {
     private Habitacion h;
     
     private LogicaTiposHabitacion logicaTipos = new LogicaTiposHabitacion();
-    private Formateo format = new Formateo();
     private LogicaHabitaciones logicaHabs = new LogicaHabitaciones();
-    
+    private Formateo format = new Formateo();
+    private Mensajes msg = new Mensajes();
     
     public PAgregarModificarHabitacion(VAgregarModificarHabitaciones vista, Habitacion h) {
         this.vista = vista;
@@ -65,6 +66,10 @@ public class PAgregarModificarHabitacion {
     public void establecerPrecioAutomatico() {
         TipoHabitacion tipo = logicaTipos.buscar(vista.getTipoSeleccionado());
         vista.mostrarPrecio(""+tipo.getPrecioDflt());
+    }
+
+    public void mostrarVAgregarTipoHab() {
+        msg.advertenciaMsg("IN PROCESS", "PRONTO!!");
     }
     
     

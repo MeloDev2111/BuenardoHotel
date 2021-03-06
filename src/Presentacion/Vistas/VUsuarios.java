@@ -53,6 +53,7 @@ public class VUsuarios extends javax.swing.JPanel {
         jLabel7 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(102, 204, 255));
+        setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         panelTable.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -95,11 +96,11 @@ public class VUsuarios extends javax.swing.JPanel {
 
         btnGroupFiltro.add(rdBtnTodos);
         rdBtnTodos.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        rdBtnTodos.setSelected(true);
         rdBtnTodos.setText("Todos");
 
         btnGroupFiltro.add(rdBtnDisponibles);
         rdBtnDisponibles.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        rdBtnDisponibles.setSelected(true);
         rdBtnDisponibles.setText("Disponibles");
 
         javax.swing.GroupLayout panelTableLayout = new javax.swing.GroupLayout(panelTable);
@@ -109,7 +110,7 @@ public class VUsuarios extends javax.swing.JPanel {
             .addGroup(panelTableLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(panelTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 730, Short.MAX_VALUE)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 724, Short.MAX_VALUE)
                     .addGroup(panelTableLayout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(18, 18, 18)
@@ -143,6 +144,7 @@ public class VUsuarios extends javax.swing.JPanel {
         panelAdmin.setBackground(new java.awt.Color(255, 255, 255));
 
         btnAgregar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnAgregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/añadir.png"))); // NOI18N
         btnAgregar.setText("Agregar");
         btnAgregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -151,6 +153,7 @@ public class VUsuarios extends javax.swing.JPanel {
         });
 
         btnModificar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnModificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/modify.png"))); // NOI18N
         btnModificar.setText("Modificar");
         btnModificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -159,7 +162,7 @@ public class VUsuarios extends javax.swing.JPanel {
         });
 
         btnHabilitar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnHabilitar.setText("Habilitar");
+        btnHabilitar.setText("|Habilitar");
         btnHabilitar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnHabilitarActionPerformed(evt);
@@ -167,7 +170,7 @@ public class VUsuarios extends javax.swing.JPanel {
         });
 
         btnDeshabilitar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnDeshabilitar.setText("Deshabilitar");
+        btnDeshabilitar.setText("Ø Deshabilitar");
         btnDeshabilitar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDeshabilitarActionPerformed(evt);
@@ -181,12 +184,12 @@ public class VUsuarios extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelAdminLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE)
                 .addComponent(btnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(67, 67, 67)
                 .addComponent(btnHabilitar, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(58, 58, 58)
-                .addComponent(btnDeshabilitar, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(52, 52, 52)
+                .addComponent(btnDeshabilitar)
                 .addContainerGap())
         );
         panelAdminLayout.setVerticalGroup(
@@ -240,7 +243,7 @@ public class VUsuarios extends javax.swing.JPanel {
                 .addComponent(panelTable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(panelAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 120, Short.MAX_VALUE))
+                .addGap(0, 114, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -254,7 +257,7 @@ public class VUsuarios extends javax.swing.JPanel {
 
     private void btnHabilitarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHabilitarActionPerformed
         if (tableUsuarios.getSelectedRow()!=-1) {            
-            presentador.EliminarUsuarios();
+            presentador.habilitarUsuario();
         }else{
             msg.errorMsg("DEBE SELECCIONAR UN USUARIO");
         }
@@ -265,7 +268,11 @@ public class VUsuarios extends javax.swing.JPanel {
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnDeshabilitarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeshabilitarActionPerformed
-        // TODO add your handling code here:
+        if (tableUsuarios.getSelectedRow()!=-1) {            
+            presentador.deshabilitarUsuarios();
+        }else{
+            msg.errorMsg("DEBE SELECCIONAR UN USUARIO");
+        }
     }//GEN-LAST:event_btnDeshabilitarActionPerformed
     
     public void setPresentador(PresentadorUsuarios p) {
@@ -294,7 +301,7 @@ public class VUsuarios extends javax.swing.JPanel {
         frame.setLocationRelativeTo(null);
         presentador.establecerTablaUsuarios();
         this.setListeners();
-        this.rdBtnDisponibles.setSelected(true);
+        this.rdBtnTodos.setSelected(true);
     }
     
     public void cerrar(){

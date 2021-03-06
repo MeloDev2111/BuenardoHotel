@@ -31,21 +31,38 @@ public class PresentadorUsuarios {
         );
     }
 
-    public void EliminarUsuarios(){
-        String idSelec = vista.getIdSeleccionado();
+    public void deshabilitarUsuarios(){
+        String idSelec = vista.getIdSeleccionado();            
         if (!user.getIdUsuario().equals(idSelec) ) {
-            servicio.eliminarUsuario(idSelec);
+            Usuario userConsultado = servicio.buscar(idSelec);    
+            if (userConsultado.isActivo()) {
+                servicio.deshabilitarUsuario(idSelec);
+                establecerTablaUsuarios();
+            }else{
+              msg.errorMsg("EL USUARIO YA ESTA DESHABILITADO");  
+            }
+        }else{
+            msg.errorMsg("EL USUARIO SELECCIONADO ES EL QUE ESTA USANDO "
+                    + "ACTUALMENTE");
         }
         
-        msg.errorMsg("EL ID SELECCIONADO ES EL USADO ACTUALMENTE");
     }
-
+    public void habilitarUsuario() {
+        String idSelec = vista.getIdSeleccionado();
+        Usuario userConsultado = servicio.buscar(idSelec); 
+        if (!userConsultado.isActivo()) {
+            servicio.habilitarUsuario(idSelec);
+            establecerTablaUsuarios();
+        }else{
+          msg.errorMsg("EL USUARIO YA ESTA HABILITADO");  
+        }
+    }
+    
     public void mostrarVAgregarUsuario(){
-
+        msg.advertenciaMsg("IN PROCESS", "PRONTO!!");
     } 
         
     public void mostrarVModificarUsuarios(){
-
+        msg.advertenciaMsg("IN PROCESS", "PRONTO!!");
     }
-    
 }

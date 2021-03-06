@@ -5,7 +5,6 @@
  */
 package Presentacion.Vistas;
 
-import Apoyo.Mensajes;
 import Apoyo.Validacion;
 import Presentacion.Presentadores.PAgregarModificarHabitacion;
 import javax.swing.DefaultComboBoxModel;
@@ -21,7 +20,6 @@ public class VAgregarModificarHabitaciones extends javax.swing.JPanel {
     private JFrame frame = new JFrame("Registro Habitaciones");
     private JDialog dialog;
     private PAgregarModificarHabitacion presentador;
-    private Mensajes msg = new Mensajes();
     private Validacion validar = new Validacion();
     
     
@@ -57,7 +55,13 @@ public class VAgregarModificarHabitaciones extends javax.swing.JPanel {
         btnGuardarAdmin = new javax.swing.JButton();
         jButton10 = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(255, 255, 255));
+
+        panelTitulo.setBackground(new java.awt.Color(255, 102, 102));
+        panelTitulo.setForeground(new java.awt.Color(255, 51, 102));
+
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Registro Habitacion");
 
@@ -74,6 +78,8 @@ public class VAgregarModificarHabitaciones extends javax.swing.JPanel {
                 .addComponent(jLabel1)
                 .addContainerGap(20, Short.MAX_VALUE))
         );
+
+        panelDatos.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setText("Tipo");
@@ -108,6 +114,11 @@ public class VAgregarModificarHabitaciones extends javax.swing.JPanel {
         });
 
         btnAñadirTipo.setText("Add");
+        btnAñadirTipo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAñadirTipoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelDatosLayout = new javax.swing.GroupLayout(panelDatos);
         panelDatos.setLayout(panelDatosLayout);
@@ -156,6 +167,9 @@ public class VAgregarModificarHabitaciones extends javax.swing.JPanel {
                 .addContainerGap(42, Short.MAX_VALUE))
         );
 
+        panelAdminModificacion.setBackground(new java.awt.Color(255, 102, 102));
+
+        btnModificarAdmin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/modify.png"))); // NOI18N
         btnModificarAdmin.setText("Modificar");
         btnModificarAdmin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -163,6 +177,7 @@ public class VAgregarModificarHabitaciones extends javax.swing.JPanel {
             }
         });
 
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/undo.png"))); // NOI18N
         jButton2.setText("Cancelar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -175,10 +190,10 @@ public class VAgregarModificarHabitaciones extends javax.swing.JPanel {
         panelAdminModificacionLayout.setHorizontalGroup(
             panelAdminModificacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelAdminModificacionLayout.createSequentialGroup()
-                .addGap(66, 66, 66)
-                .addComponent(btnModificarAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(52, 52, 52)
+                .addComponent(btnModificarAdmin)
                 .addGap(53, 53, 53)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButton2)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panelAdminModificacionLayout.setVerticalGroup(
@@ -191,6 +206,9 @@ public class VAgregarModificarHabitaciones extends javax.swing.JPanel {
                 .addContainerGap(26, Short.MAX_VALUE))
         );
 
+        panelAdminAgregar.setBackground(new java.awt.Color(255, 102, 102));
+
+        btnGuardarAdmin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/añadir.png"))); // NOI18N
         btnGuardarAdmin.setText("Agregar");
         btnGuardarAdmin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -198,6 +216,7 @@ public class VAgregarModificarHabitaciones extends javax.swing.JPanel {
             }
         });
 
+        jButton10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/undo.png"))); // NOI18N
         jButton10.setText("Cancelar");
         jButton10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -210,10 +229,10 @@ public class VAgregarModificarHabitaciones extends javax.swing.JPanel {
         panelAdminAgregarLayout.setHorizontalGroup(
             panelAdminAgregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelAdminAgregarLayout.createSequentialGroup()
-                .addGap(66, 66, 66)
-                .addComponent(btnGuardarAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(56, 56, 56)
+                .addComponent(btnGuardarAdmin)
                 .addGap(53, 53, 53)
-                .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButton10)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panelAdminAgregarLayout.setVerticalGroup(
@@ -282,6 +301,10 @@ public class VAgregarModificarHabitaciones extends javax.swing.JPanel {
             presentador.modificarHabitacion();
         }
     }//GEN-LAST:event_btnModificarAdminActionPerformed
+
+    private void btnAñadirTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAñadirTipoActionPerformed
+        presentador.mostrarVAgregarTipoHab();
+    }//GEN-LAST:event_btnAñadirTipoActionPerformed
  
     public void setPresentador(PAgregarModificarHabitacion p) {
         presentador = p;

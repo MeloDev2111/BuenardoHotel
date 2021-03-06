@@ -579,6 +579,15 @@ public class VRegistroEntrada extends javax.swing.JPanel {
         this.panelBase.repaint();
     }
     
+    public void limpiarFormulario() {
+        this.txtNombreCliente.setText("");
+        this.txtTipoCliente.setText("");
+        this.txtDocumentoCliente.setText("");
+        this.txtTipoHabitacion.setText("");
+        this.txtPrecio.setText("");
+        this.txtDescripcion.setText("");
+    }
+    
     //ALTERNATIVA SI SE QUIERE TRABAJAR EN UNO SOLO
 //    public void cambiarVistaActual(JPanel nuevoPanel) {
 //        nuevoPanel.setSize(750,500);

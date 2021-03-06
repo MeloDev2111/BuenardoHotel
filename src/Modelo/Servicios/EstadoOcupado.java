@@ -5,7 +5,7 @@ import Modelo.tipoHospedaje;
 
 /* @author MeloDev */
 public class EstadoOcupado extends EstadoHabitacion{
-    private LogicaRegistroEntrada logiRR = new LogicaRegistroEntrada();
+    private LogicaRegistro logiRR = new LogicaRegistro();
     public EstadoOcupado(Habitacion habitacion) {
         super(habitacion);
         nombreEstado="Ocupado";

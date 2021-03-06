@@ -6,7 +6,6 @@ import Modelo.LogicaHospedajes;
 import Presentacion.Vistas.VAgregarModificarCliente;
 import Presentacion.Vistas.VClientes;
 import Presentacion.Vistas.VHabitaciones;
-import Presentacion.Vistas.VRegistroEntrada;
 import Presentacion.Vistas.VRegistroReserva;
 
 /* @author MeloDev */
@@ -97,6 +96,8 @@ public class PresentadorRegistroReserva {
         System.out.println(hospedaje.toString());
         
         hospedaje.getHabitacion().agregarReserva(hospedaje);
+        this.vista.limpiarFormulario();
+        hospedaje=new Hospedaje();
         return true;
     }
 

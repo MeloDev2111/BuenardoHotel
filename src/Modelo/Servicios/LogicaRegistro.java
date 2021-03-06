@@ -10,7 +10,7 @@ import Modelo.Login.Usuario;
 import java.time.format.DateTimeFormatter;
 
 /* @author MeloDev */
-public class LogicaRegistroEntrada {
+public class LogicaRegistro {
     private Mensajes msg = new Mensajes();
     private Formateo format = new Formateo();
     private LogicaHospedajes logica = new LogicaHospedajes();

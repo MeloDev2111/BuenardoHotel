@@ -10,9 +10,7 @@ import Apoyo.Mensajes;
 import Apoyo.Validacion;
 import Presentacion.Presentadores.PresentadorRegistroReserva;
 import java.awt.GridLayout;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.util.Date;
 import javax.swing.BoxLayout;
 import javax.swing.DefaultComboBoxModel;
@@ -95,7 +93,7 @@ public class VRegistroReserva extends javax.swing.JPanel {
         jLabel5.setFont(new java.awt.Font("Tw Cen MT", 1, 36)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(49, 175, 180));
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setText("REGISTRO DE ENTRADA");
+        jLabel5.setText("REGISTRO DE RESERVA");
 
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/logo2_Hotel.png"))); // NOI18N
@@ -663,6 +661,16 @@ public class VRegistroReserva extends javax.swing.JPanel {
         }
         
         return true;
+    }
+    
+    public void limpiarFormulario() {
+        this.txtNombreCliente.setText("");
+        this.txtTipoCliente.setText("");
+        this.txtDocumentoCliente.setText("");
+        this.txtTipoHabitacion.setText("");
+        this.txtPrecio.setText("");
+        this.txtDescripcion.setText("");
+        
     }
     
     //ALTERNATIVA SI SE QUIERE TRABAJAR EN UNO SOLO
